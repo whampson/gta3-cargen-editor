@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Text;
+using WHampson.Gta3CarGenEditor.Properties;
 
 namespace WHampson.Gta3CarGenEditor.Models
 {
     public class PCSaveDataFile : SaveDataFile
     {
+        private const int SizeOfSimpleVars = 0xBC;
+
         public PCSaveDataFile()
             : base(GamePlatform.PC)
         { }
@@ -15,107 +16,127 @@ namespace WHampson.Gta3CarGenEditor.Models
         {
             long start = stream.Position;
             using (BinaryReader r = new BinaryReader(stream, Encoding.Default, true)) {
+                int bytesRead;
                 int blockSize;
+                int totalSize;
+                int totalBytesRead;
 
-                // Read data blocks
-                for (int i = 0; i < NumDataBlocks; i++) {
-                    blockSize = r.ReadInt32();
-                    switch (i) {
-                        case 0:
-                            _block00 = r.ReadBytes(blockSize);
-                            break;
-                        case 1:
-                            blockSize = r.ReadInt32();
-                            _block01 = r.ReadBytes(blockSize);
-                            r.ReadUInt16();
-                            break;
-                        case 2:
-                            blockSize = r.ReadInt32();
-                            _block02 = r.ReadBytes(blockSize);
-                            break;
-                        case 3:
-                            blockSize = r.ReadInt32();
-                            _block03 = r.ReadBytes(blockSize);
-                            break;
-                        case 4:
-                            blockSize = r.ReadInt32();
-                            _block04 = r.ReadBytes(blockSize);
-                            break;
-                        case 5:
-                            blockSize = r.ReadInt32();
-                            _block05 = r.ReadBytes(blockSize);
-                            break;
-                        case 6:
-                            blockSize = r.ReadInt32();
-                            _block06 = r.ReadBytes(blockSize);
-                            break;
-                        case 7:
-                            blockSize = r.ReadInt32();
-                            _block07 = r.ReadBytes(blockSize);
-                            break;
-                        case 8:
-                            blockSize = r.ReadInt32();
-                            _block08 = r.ReadBytes(blockSize);
-                            break;
-                        case 9:
-                            blockSize = r.ReadInt32();
-                            _block09 = r.ReadBytes(blockSize);
-                            break;
-                        case 10:
-                            blockSize = r.ReadInt32();
-                            _block10 = r.ReadBytes(blockSize);
-                            break;
-                        case 11:
-                            blockSize = r.ReadInt32();
-                            _block11 = r.ReadBytes(blockSize);
-                            break;
-                        case 12:
-                            blockSize = r.ReadInt32();
-                            _block12 = r.ReadBytes(blockSize);
-                            break;
-                        case 13:
-                            blockSize = r.ReadInt32();
-                            CarGeneratorsBlock = Deserialize<CarGeneratorsDataBlock>(stream);
-                            break;
-                        case 14:
-                            blockSize = r.ReadInt32();
-                            _block14 = r.ReadBytes(blockSize);
-                            break;
-                        case 15:
-                            blockSize = r.ReadInt32();
-                            _block15 = r.ReadBytes(blockSize);
-                            break;
-                        case 16:
-                            blockSize = r.ReadInt32();
-                            _block16 = r.ReadBytes(blockSize);
-                            break;
-                        case 17:
-                            blockSize = r.ReadInt32();
-                            _block17 = r.ReadBytes(blockSize);
-                            break;
-                        case 18:
-                            blockSize = r.ReadInt32();
-                            _block18 = r.ReadBytes(blockSize);
-                            break;
-                        case 19:
-                            blockSize = r.ReadInt32();
-                            _block19 = r.ReadBytes(blockSize);
-                            break;
-                    }
+                // Read SimpleVars and Scripts block size
+                totalBytesRead = 0;
+                totalSize = r.ReadInt32();
+
+                // Read SimpleVars
+                m_simpleVars = r.ReadBytes(SizeOfSimpleVars);
+                totalBytesRead += m_simpleVars.Length;
+
+                // Read Scripts
+                blockSize = r.ReadInt32();
+                m_scripts = r.ReadBytes(blockSize);
+
+                totalBytesRead += m_scripts.Length + 4;
+                if (totalBytesRead != totalSize) {
+                    string msg = string.Format("{0}: {1}",
+                        nameof(PCSaveDataFile), Resources.IncorrectNumberOfBytesDecodedMessage);
+                    throw new InvalidDataException(msg);
                 }
 
-                // Read padding blocks
-                for (int i = 0; i < NumPaddingBlocks; i++) {
-                    blockSize = r.ReadInt32();
-                    switch (i) {
-                        case 0:
-                            _pBlock00 = r.ReadBytes(blockSize);
-                            break;
-                        case 1:
-                            _pBlock01 = r.ReadBytes(blockSize);
-                            break;
-                    }
+                // Read PlayerPeds
+                blockSize = r.ReadInt32();
+                m_playerPeds = r.ReadBytes(blockSize);
+
+                // Read Garages
+                blockSize = r.ReadInt32();
+                m_garages = r.ReadBytes(blockSize);
+
+                // Read Vehicles
+                blockSize = r.ReadInt32();
+                m_vehicles = r.ReadBytes(blockSize);
+
+                // Read Objects
+                blockSize = r.ReadInt32();
+                m_objects = r.ReadBytes(blockSize);
+
+                // Read PathFind
+                blockSize = r.ReadInt32();
+                m_pathFind = r.ReadBytes(blockSize);
+
+                // Read Cranes
+                blockSize = r.ReadInt32();
+                m_cranes = r.ReadBytes(blockSize);
+
+                // Read Pickups
+                blockSize = r.ReadInt32();
+                m_pickups = r.ReadBytes(blockSize);
+
+                // Read PhoneInfo
+                blockSize = r.ReadInt32();
+                m_phoneInfo = r.ReadBytes(blockSize);
+
+                // Read Restarts
+                blockSize = r.ReadInt32();
+                m_restarts = r.ReadBytes(blockSize);
+
+                // Read Radar
+                blockSize = r.ReadInt32();
+                m_radar = r.ReadBytes(blockSize);
+
+                // Read Zones
+                blockSize = r.ReadInt32();
+                m_zones = r.ReadBytes(blockSize);
+
+                // Read Gangs
+                blockSize = r.ReadInt32();
+                m_gangs = r.ReadBytes(blockSize);
+
+                // Read CarGenerators
+                totalSize = r.ReadInt32();
+                blockSize = r.ReadInt32();
+
+                bytesRead = (int) Deserialize(stream, out m_carGenerators);
+                if (bytesRead != blockSize) {
+                    string msg = string.Format("{0}: {1}",
+                        nameof(PCSaveDataFile), Resources.IncorrectNumberOfBytesDecodedMessage);
+                    throw new InvalidDataException(msg);
                 }
+
+                totalBytesRead = bytesRead + 4;
+                if (totalBytesRead != totalSize) {
+                    string msg = string.Format("{0}: {1}",
+                        nameof(PCSaveDataFile), Resources.IncorrectNumberOfBytesDecodedMessage);
+                    throw new InvalidDataException(msg);
+                }
+
+                // Read Particles
+                blockSize = r.ReadInt32();
+                m_particles = r.ReadBytes(blockSize);
+
+                // Read AudioScriptObjects
+                blockSize = r.ReadInt32();
+                m_audioScriptObjects = r.ReadBytes(blockSize);
+
+                // Read PlayerInfo
+                blockSize = r.ReadInt32();
+                m_playerInfo = r.ReadBytes(blockSize);
+
+                // Read Stats
+                blockSize = r.ReadInt32();
+                m_stats = r.ReadBytes(blockSize);
+
+                // Read Streaming
+                blockSize = r.ReadInt32();
+                m_streaming = r.ReadBytes(blockSize);
+
+                // Read PedTypes
+                blockSize = r.ReadInt32();
+                m_pedTypes = r.ReadBytes(blockSize);
+
+                // Read Padding0
+                blockSize = r.ReadInt32();
+                m_padding0 = r.ReadBytes(blockSize);
+
+                // Read Padding1
+                blockSize = r.ReadInt32();
+                m_padding1 = r.ReadBytes(blockSize);
             }
 
             return stream.Position - start;
@@ -123,46 +144,99 @@ namespace WHampson.Gta3CarGenEditor.Models
 
         protected override long SerializeObject(Stream stream)
         {
-            List<byte[]> dataBlocks = GetAllDataBlocks();
-            List<byte[]> paddingBlocks = GetAllPaddingBlocks();
-
             long start = stream.Position;
             using (BinaryWriter w = new BinaryWriter(stream, Encoding.Default, true)) {
-                // Write data blocks
-                for (int i = 0; i < NumDataBlocks; i++) {
-                    byte[] block;
+                // Write SimpleVars and Scripts
+                w.Write(m_simpleVars.Length + m_scripts.Length + 4);
+                w.Write(m_simpleVars);
+                w.Write(m_scripts.Length);
+                w.Write(m_scripts);
 
-                    // Get data block
-                    if (i == 13) {
-                        block = Serialize(CarGeneratorsBlock);
-                    }
-                    else {
-                        block = dataBlocks[i];
-                    }
+                // Write PlayerPeds
+                w.Write(m_playerPeds.Length);
+                w.Write(m_playerPeds);
 
-                    // Write wrapper block length
-                    if (i > 0 && i <= 20) {
-                        w.Write(WordAlign(block.Length + 4));
-                    }
+                // Write Garages
+                w.Write(m_garages.Length);
+                w.Write(m_garages);
 
-                    // Write block length
-                    w.Write(block.Length);
+                // Write Vehicles
+                w.Write(m_vehicles.Length);
+                w.Write(m_vehicles);
 
-                    // Write block data
-                    w.Write(block);
+                // Write Objects
+                w.Write(m_objects.Length);
+                w.Write(m_objects);
 
-                    // Write block alignment
-                    if (i == 1) {
-                        w.Write((short) 0);
-                    }
-                }
+                // Write PathFind
+                w.Write(m_pathFind.Length);
+                w.Write(m_pathFind);
 
-                // Write padding blocks
-                for (int i = 0; i < NumPaddingBlocks; i++) {
-                    byte[] block = paddingBlocks[i];
-                    w.Write(block.Length);
-                    w.Write(block);
-                }
+                // Write Cranes
+                w.Write(m_cranes.Length);
+                w.Write(m_cranes);
+
+                // Write Pickups
+                w.Write(m_pickups.Length);
+                w.Write(m_pickups);
+
+                // Write PhoneInfo
+                w.Write(m_phoneInfo.Length);
+                w.Write(m_phoneInfo);
+
+                // Write Restarts
+                w.Write(m_restarts.Length);
+                w.Write(m_restarts);
+
+                // Write Radar
+                w.Write(m_radar.Length);
+                w.Write(m_radar);
+
+                // Write Zones
+                w.Write(m_zones.Length);
+                w.Write(m_zones);
+
+                // Write Gangs
+                w.Write(m_gangs.Length);
+                w.Write(m_gangs);
+
+                // Write CarGenerators
+                byte[] carGenerators = Serialize(m_carGenerators);
+                w.Write(carGenerators.Length + 4);
+                w.Write(carGenerators.Length);
+                w.Write(carGenerators);
+
+                // Write Particles
+                w.Write(m_particles.Length);
+                w.Write(m_particles);
+
+                // Write AudioScriptObjects
+                w.Write(m_audioScriptObjects.Length);
+                w.Write(m_audioScriptObjects);
+
+                // Write PlayerInfo
+                w.Write(m_playerInfo.Length);
+                w.Write(m_playerInfo);
+
+                // Write Stats
+                w.Write(m_stats.Length);
+                w.Write(m_stats);
+
+                // Write Streaming
+                w.Write(m_streaming.Length);
+                w.Write(m_streaming);
+
+                // Write PedTypes
+                w.Write(m_pedTypes.Length);
+                w.Write(m_pedTypes);
+
+                // Write Padding0
+                w.Write(m_padding0.Length);
+                w.Write(m_padding0);
+
+                // Write Padding1
+                w.Write(m_padding1.Length);
+                w.Write(m_padding1);
 
                 // Write checksum
                 w.Write(GetChecksum(stream));
