@@ -77,5 +77,23 @@ namespace WHampson.Gta3CarGenEditor.Properties {
                 return ResourceManager.GetString("InvalidBlockTagMessage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not a valid GTA3 save data file..
+        /// </summary>
+        internal static string InvalidFileMessage {
+            get {
+                return ResourceManager.GetString("InvalidFileMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File type not yet supported: {0}.
+        /// </summary>
+        internal static string UnsupportedFileTypeMessage {
+            get {
+                return ResourceManager.GetString("UnsupportedFileTypeMessage", resourceCulture);
+            }
+        }
     }
 }

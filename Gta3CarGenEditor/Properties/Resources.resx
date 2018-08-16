@@ -123,4 +123,11 @@
   <data name="InvalidBlockTagMessage" xml:space="preserve">
     <value>Invalid block tag.</value>
   </data>
+  <data name="InvalidFileMessage" xml:space="preserve">
+    <value>Not a valid GTA3 save data file.</value>
+  </data>
+  <data name="UnsupportedFileTypeMessage" xml:space="preserve">
+    <value>File type not yet supported: {0}</value>
+    <comment>{0} - platform name</comment>
+  </data>
 </root>
