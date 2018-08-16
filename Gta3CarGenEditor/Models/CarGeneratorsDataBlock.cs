@@ -31,25 +31,6 @@ namespace WHampson.Gta3CarGenEditor.Models
             set { m_carGeneratorsArray = value; OnPropertyChanged(); }
         }
 
-        protected override long SerializeObject(Stream stream)
-        {
-            byte[] carGenInfo = Serialize(m_carGeneratorsInfo);
-            byte[] carGenArray = CarGeneratorsArray.SelectMany(x => Serialize(x)).ToArray();
-            int totalSize = carGenInfo.Length + carGenArray.Length + 8;
-
-            long start = stream.Position;
-            using (BinaryWriter w = new BinaryWriter(stream, Encoding.Default, true)) {
-                w.Write(Encoding.ASCII.GetBytes(BlockTag));
-                w.Write(totalSize);
-                w.Write(carGenInfo.Length);
-                w.Write(carGenInfo);
-                w.Write(carGenArray.Length);
-                w.Write(carGenArray);
-            }
-
-            return stream.Position - start;
-        }
-
         protected override long DeserializeObject(Stream stream)
         {
             long start = stream.Position;
@@ -100,6 +81,25 @@ namespace WHampson.Gta3CarGenEditor.Models
                         Resources.IncorrectNumberOfBytesDecodedMessage);
                     throw new InvalidDataException(msg);
                 }
+            }
+
+            return stream.Position - start;
+        }
+
+        protected override long SerializeObject(Stream stream)
+        {
+            byte[] carGenInfo = Serialize(m_carGeneratorsInfo);
+            byte[] carGenArray = CarGeneratorsArray.SelectMany(x => Serialize(x)).ToArray();
+            int totalSize = carGenInfo.Length + carGenArray.Length + 8;
+
+            long start = stream.Position;
+            using (BinaryWriter w = new BinaryWriter(stream, Encoding.Default, true)) {
+                w.Write(Encoding.ASCII.GetBytes(BlockTag));
+                w.Write(totalSize);
+                w.Write(carGenInfo.Length);
+                w.Write(carGenInfo);
+                w.Write(carGenArray.Length);
+                w.Write(carGenArray);
             }
 
             return stream.Position - start;
