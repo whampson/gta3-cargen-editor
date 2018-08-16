@@ -6,6 +6,8 @@ namespace WHampson.Gta3CarGenEditor.Models
 {
     public class CarGenerator : SerializableObject
     {
+        public const int SizeOfCarGenerator = 72;
+
         private VehicleModel m_model;
         private Vector3d m_location;
         private float m_heading;
