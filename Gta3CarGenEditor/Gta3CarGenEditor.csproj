@@ -89,7 +89,6 @@
   <ItemGroup>
     <Compile Include="Models\CarGenerators.cs" />
     <Compile Include="Models\GamePlatform.cs" />
-    <Compile Include="Models\Gta3SaveGame.cs" />
     <Compile Include="Models\Vector3d.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
