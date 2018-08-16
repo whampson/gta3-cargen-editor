@@ -1,0 +1,8 @@
+# Ignore Visual Studio junk
+.vs/
+
+# Ignore build directories
+bin/
+obj/
+
+*.png
