@@ -1,70 +1,66 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using WHampson.Gta3CarGenEditor.Helpers;
+using WHampson.Gta3CarGenEditor.Properties;
 
 namespace WHampson.Gta3CarGenEditor.Models
 {
     public abstract class SaveDataFile : SerializableObject
     {
-        protected const int NumDataBlocks = 20;
-        protected const int NumPaddingBlocks = 2;
+        protected byte[] m_simpleVars;
+        protected byte[] m_scripts;
+        protected byte[] m_playerPeds;
+        protected byte[] m_garages;
+        protected byte[] m_vehicles;
+        protected byte[] m_objects;
+        protected byte[] m_pathFind;
+        protected byte[] m_cranes;
+        protected byte[] m_pickups;
+        protected byte[] m_phoneInfo;
+        protected byte[] m_restarts;
+        protected byte[] m_radar;
+        protected byte[] m_zones;
+        protected byte[] m_gangs;
+        protected CarGeneratorsDataBlock m_carGenerators;
+        protected byte[] m_particles;
+        protected byte[] m_audioScriptObjects;
+        protected byte[] m_playerInfo;
+        protected byte[] m_stats;
+        protected byte[] m_streaming;
+        protected byte[] m_pedTypes;
+        protected byte[] m_padding0;
+        protected byte[] m_padding1;
 
-        protected byte[] _block00;
-        protected byte[] _block01;
-        protected byte[] _block02;
-        protected byte[] _block03;
-        protected byte[] _block04;
-        protected byte[] _block05;
-        protected byte[] _block06;
-        protected byte[] _block07;
-        protected byte[] _block08;
-        protected byte[] _block09;
-        protected byte[] _block10;
-        protected byte[] _block11;
-        protected byte[] _block12;
-        protected byte[] _block13;
-        protected byte[] _block14;
-        protected byte[] _block15;
-        protected byte[] _block16;
-        protected byte[] _block17;
-        protected byte[] _block18;
-        protected byte[] _block19;
-
-        protected byte[] _pBlock00;
-        protected byte[] _pBlock01;
-
-        public SaveDataFile(GamePlatform fileType)
+        protected SaveDataFile(GamePlatform fileType)
         {
-            _block00 = new byte[0];
-            _block01 = new byte[0];
-            _block02 = new byte[0];
-            _block03 = new byte[0];
-            _block04 = new byte[0];
-            _block05 = new byte[0];
-            _block06 = new byte[0];
-            _block07 = new byte[0];
-            _block08 = new byte[0];
-            _block09 = new byte[0];
-            _block10 = new byte[0];
-            _block11 = new byte[0];
-            _block12 = new byte[0];
-            _block13 = new byte[0];
-            _block14 = new byte[0];
-            _block15 = new byte[0];
-            _block16 = new byte[0];
-            _block17 = new byte[0];
-            _block18 = new byte[0];
-            _block19 = new byte[0];
-
-            _pBlock00 = new byte[0];
-            _pBlock01 = new byte[0];
-
             FileType = fileType;
-            CarGeneratorsBlock = new CarGeneratorsDataBlock();
+
+            m_simpleVars = new byte[0];
+            m_scripts = new byte[0];
+            m_playerPeds = new byte[0];
+            m_garages = new byte[0];
+            m_vehicles = new byte[0];
+            m_objects = new byte[0];
+            m_pathFind = new byte[0];
+            m_cranes = new byte[0];
+            m_pickups = new byte[0];
+            m_phoneInfo = new byte[0];
+            m_restarts = new byte[0];
+            m_radar = new byte[0];
+            m_zones = new byte[0];
+            m_gangs = new byte[0];
+            m_carGenerators = new CarGeneratorsDataBlock();
+            m_particles = new byte[0];
+            m_audioScriptObjects = new byte[0];
+            m_playerInfo = new byte[0];
+            m_stats = new byte[0];
+            m_streaming = new byte[0];
+            m_pedTypes = new byte[0];
+            m_padding0 = new byte[0];
+            m_padding1 = new byte[0];
         }
 
         public GamePlatform FileType
@@ -74,33 +70,14 @@ namespace WHampson.Gta3CarGenEditor.Models
 
         public CarGeneratorsDataBlock CarGeneratorsBlock
         {
-            get;
-            protected set;
+            get { return m_carGenerators; }
+            set { m_carGenerators = value; OnPropertyChanged(); }
         }
 
         public void Store(string path)
         {
             byte[] data = Serialize(this);
             File.WriteAllBytes(path, data);
-        }
-
-        protected List<byte[]> GetAllDataBlocks()
-        {
-            return new List<byte[]>()
-            {
-                _block00, _block01, _block02, _block03, _block04,
-                _block05, _block06, _block07, _block08, _block09,
-                _block10, _block11, _block12, _block13, _block14,
-                _block15, _block16, _block17, _block18, _block19,
-            };
-        }
-
-        protected List<byte[]> GetAllPaddingBlocks()
-        {
-            return new List<byte[]>()
-            {
-                _pBlock00, _pBlock01
-            };
         }
 
         protected int GetChecksum(Stream stream)
@@ -124,16 +101,18 @@ namespace WHampson.Gta3CarGenEditor.Models
                     return Deserialize<PS2SaveDataFile>(data);
                 default:
                     string plat = EnumHelper.GetAttribute<DescriptionAttribute>(fileType).Description;
-                    throw new NotSupportedException("File type not yet supported: " + plat);
+                    string msg = string.Format(Resources.UnsupportedFileTypeMessage, plat);
+                    throw new NotSupportedException(msg);
             }
         }
 
         private static GamePlatform DetectFileType(byte[] data)
         {
+            const string ScriptsTag = "SCR\0";
             const int UnknownConstant = 0x031401;
 
             using (BinaryReader r = new BinaryReader(new MemoryStream(data))) {
-                byte[] scrTag = Encoding.ASCII.GetBytes("SCR\0");
+                byte[] scrTag = Encoding.ASCII.GetBytes(ScriptsTag);
 
                 bool isMobile;
                 bool isPcOrXbox;
@@ -166,7 +145,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                     }
                 }
 
-                throw new InvalidDataException("Not a valid GTA3 savegame.");
+                throw new InvalidDataException(Resources.InvalidFileMessage);
             }
         }
 
