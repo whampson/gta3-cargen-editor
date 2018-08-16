@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Text;
 using WHampson.Gta3CarGenEditor.Helpers;
@@ -61,9 +60,9 @@ namespace WHampson.Gta3CarGenEditor.Models
                 // Read block tag
                 string tag = Encoding.ASCII.GetString(r.ReadBytes(BlockTag.Length));
                 if (tag != BlockTag) {
-                    //string msg = string.Format(Resources.DeserializeInvalidDataExceptionMessage, nameof(CarGeneratorsDataBlock));
-                    //throw new InvalidDataException(msg);
-                    throw new InvalidDataException();
+                    string msg = string.Format("Car Generators Block: {0}",
+                        Resources.InvalidBlockTagMessage);
+                    throw new InvalidDataException(msg);
                 }
 
                 // Read size information
@@ -73,13 +72,15 @@ namespace WHampson.Gta3CarGenEditor.Models
                 int infoSize = r.ReadInt32();
                 bytesRead = Deserialize(stream, out m_carGeneratorsInfo);
                 if (bytesRead != infoSize) {
-                    throw new InvalidDataException();
+                    string msg = string.Format("Car Generators Block: {0}",
+                        Resources.IncorrectNumberOfBytesDecodedMessage);
+                    throw new InvalidDataException(msg);
                 }
                 totalBytesRead += bytesRead + 4;
 
                 // Create car generators array
                 int carGenSize = r.ReadInt32();
-                m_carGeneratorsArray = new CarGenerator[carGenSize / 72];       // TODO: don't hardcode 72
+                m_carGeneratorsArray = new CarGenerator[carGenSize / CarGenerator.SizeOfCarGenerator];
                 totalBytesRead += 4;
 
                 // Read car generators array
@@ -88,12 +89,16 @@ namespace WHampson.Gta3CarGenEditor.Models
                     bytesRead += Deserialize(stream, out m_carGeneratorsArray[i]);
                 }
                 if (bytesRead != carGenSize) {
-                    throw new InvalidDataException();
+                    string msg = string.Format("Car Generators Block: {0}",
+                        Resources.IncorrectNumberOfBytesDecodedMessage);
+                    throw new InvalidDataException(msg);
                 }
                 totalBytesRead += bytesRead;
 
                 if (totalBytesRead != totalSize) {
-                    throw new InvalidDataException();
+                    string msg = string.Format("Car Generators Block: {0}",
+                        Resources.IncorrectNumberOfBytesDecodedMessage);
+                    throw new InvalidDataException(msg);
                 }
             }
 

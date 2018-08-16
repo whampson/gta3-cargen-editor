@@ -61,11 +61,20 @@ namespace WHampson.Gta3CarGenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The data provided does not deserialize to a valid {0} object..
+        ///   Looks up a localized string similar to Incorrect number of bytes decoded..
         /// </summary>
-        internal static string DeserializeInvalidDataExceptionMessage {
+        internal static string IncorrectNumberOfBytesDecodedMessage {
             get {
-                return ResourceManager.GetString("DeserializeInvalidDataExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("IncorrectNumberOfBytesDecodedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid block tag..
+        /// </summary>
+        internal static string InvalidBlockTagMessage {
+            get {
+                return ResourceManager.GetString("InvalidBlockTagMessage", resourceCulture);
             }
         }
     }

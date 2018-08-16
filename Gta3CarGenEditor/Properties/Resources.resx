@@ -117,8 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DeserializeInvalidDataExceptionMessage" xml:space="preserve">
-    <value>The data provided does not deserialize to a valid {0} object.</value>
-    <comment>{0} - object type name</comment>
+  <data name="IncorrectNumberOfBytesDecodedMessage" xml:space="preserve">
+    <value>Incorrect number of bytes decoded.</value>
+  </data>
+  <data name="InvalidBlockTagMessage" xml:space="preserve">
+    <value>Invalid block tag.</value>
   </data>
 </root>
