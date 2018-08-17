@@ -61,6 +61,7 @@
     <Compile Include="Converters\EnumDescriptionConverter.cs" />
     <Compile Include="Converters\Vector3dToStringConverter.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Helpers\FileDialogEventArgs.cs" />
     <Compile Include="Helpers\MessageBoxEventArgs.cs" />
     <Compile Include="Helpers\MessageBoxEx.cs" />
     <Compile Include="Helpers\ObservableObject.cs" />

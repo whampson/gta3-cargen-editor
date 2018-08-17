@@ -15,6 +15,7 @@ namespace WHampson.Gta3CarGenEditor.Helpers
             string filter = null,
             Action<bool?, FileDialogEventArgs> resultAction = null)
         {
+            DialogType = dialogType;
             Title = title;
             Filter = filter;
             ResultAction = resultAction;
