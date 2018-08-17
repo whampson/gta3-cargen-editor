@@ -61,6 +61,15 @@ namespace WHampson.Gta3CarGenEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incorrect block size read..
+        /// </summary>
+        internal static string IncorrectBlockSizeReadMessage {
+            get {
+                return ResourceManager.GetString("IncorrectBlockSizeReadMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incorrect number of bytes decoded..
         /// </summary>
         internal static string IncorrectNumberOfBytesDecodedMessage {
@@ -70,7 +79,16 @@ namespace WHampson.Gta3CarGenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid block tag..
+        ///   Looks up a localized string similar to Incorrect number of bytes encoded..
+        /// </summary>
+        internal static string IncorrectNumberOfBytesEncodedMessage {
+            get {
+                return ResourceManager.GetString("IncorrectNumberOfBytesEncodedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect block tag - &apos;{0}&apos;. Expecting &apos;{1}&apos;..
         /// </summary>
         internal static string InvalidBlockTagMessage {
             get {
@@ -88,11 +106,11 @@ namespace WHampson.Gta3CarGenEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File type not yet supported: {0}.
+        ///   Looks up a localized string similar to You weren&apos;t supposed to be able to get here, you know..
         /// </summary>
-        internal static string UnsupportedFileTypeMessage {
+        internal static string OopsMessage {
             get {
-                return ResourceManager.GetString("UnsupportedFileTypeMessage", resourceCulture);
+                return ResourceManager.GetString("OopsMessage", resourceCulture);
             }
         }
     }

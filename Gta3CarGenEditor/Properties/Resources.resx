@@ -117,17 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="IncorrectBlockSizeReadMessage" xml:space="preserve">
+    <value>Incorrect block size read.</value>
+  </data>
   <data name="IncorrectNumberOfBytesDecodedMessage" xml:space="preserve">
     <value>Incorrect number of bytes decoded.</value>
   </data>
+  <data name="IncorrectNumberOfBytesEncodedMessage" xml:space="preserve">
+    <value>Incorrect number of bytes encoded.</value>
+  </data>
   <data name="InvalidBlockTagMessage" xml:space="preserve">
-    <value>Invalid block tag.</value>
+    <value>Incorrect block tag - '{0}'. Expecting '{1}'.</value>
+    <comment>{0} = bad tag; {1} = expected tag</comment>
   </data>
   <data name="InvalidFileMessage" xml:space="preserve">
     <value>Not a valid GTA3 save data file.</value>
   </data>
-  <data name="UnsupportedFileTypeMessage" xml:space="preserve">
-    <value>File type not yet supported: {0}</value>
-    <comment>{0} - platform name</comment>
+  <data name="OopsMessage" xml:space="preserve">
+    <value>You weren't supposed to be able to get here, you know.</value>
   </data>
 </root>

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using WHampson.Gta3CarGenEditor.Extensions;
 using WHampson.Gta3CarGenEditor.Helpers;
 using WHampson.Gta3CarGenEditor.Properties;
 
@@ -155,14 +156,16 @@ namespace WHampson.Gta3CarGenEditor.Models
                     // Read tag
                     string tag = Encoding.ASCII.GetString(r.ReadBytes(block.Tag.Length));
                     if (tag != block.Tag) {
-                        throw new InvalidDataException();
+                        string msg = string.Format(Resources.InvalidBlockTagMessage,
+                            tag.StripNull(), block.Tag.StripNull());
+                        throw new InvalidDataException(msg);
                     }
 
                     // Read nested block size
                     if (block.StoreBlockSize) {
                         nestedBlockSize = r.ReadInt32();
                         if (nestedBlockSize != blockSize - tag.Length - 4) {
-                            throw new InvalidDataException();
+                            throw new InvalidDataException(Resources.IncorrectBlockSizeReadMessage);
                         }
                         blockSize = nestedBlockSize;
                     }
@@ -204,7 +207,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                 }
 
                 if (bytesRead != totalSize) {
-                    throw new InvalidDataException();
+                    throw new InvalidDataException(Resources.IncorrectNumberOfBytesDecodedMessage);
                 }
             }
 
@@ -297,7 +300,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                 }
 
                 if (bytesWritten != totalSize + 4) {
-                    throw new InvalidDataException();
+                    throw new InvalidDataException(Resources.IncorrectNumberOfBytesEncodedMessage);
                 }
             }
 
@@ -329,10 +332,7 @@ namespace WHampson.Gta3CarGenEditor.Models
         /// <param name="path">The path to the file to load.</param>
         /// <returns>The newly-created <see cref="SaveDataFile"/>.</returns>
         /// <exception cref="InvalidDataException">
-        /// Thrown i the file is not a valid GTA3 save data file.
-        /// </exception>
-        /// <exception cref="NotSupportedException">
-        /// Thrown if the file is a valid GTA3 save data file of an unsupported format.
+        /// Thrown if the file is not a valid GTA3 save data file.
         /// </exception>
         public static SaveDataFile Load(string path)
         {
@@ -351,7 +351,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                 case GamePlatform.Xbox:
                     return Deserialize<SaveDataFileXbox>(data);
                 default:
-                    throw new InvalidOperationException("You weren't supposed to be able to get here, you know.");
+                    throw new InvalidOperationException(Resources.OopsMessage);
             }
         }
 
