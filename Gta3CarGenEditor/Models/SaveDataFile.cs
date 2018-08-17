@@ -9,8 +9,20 @@ using WHampson.Gta3CarGenEditor.Properties;
 
 namespace WHampson.Gta3CarGenEditor.Models
 {
+    /// <summary>
+    /// Represents a Grand Theft Auto III save data file.
+    /// </summary>
     public abstract class SaveDataFile : SerializableObject
     {
+        private const string ScriptsTag = "SCR\0";
+        private const string RestartsTag = "RST\0";
+        private const string RadarTag = "RDR\0";
+        private const string ZonesTag = "ZNS\0";
+        private const string GangsTag = "GNG\0";
+        private const string CarGeneratorsTag = "CGN\0";
+        private const string AudioScriptObjectsTag = "AUD\0";
+        private const string PedTypesTag = "PTP\0";
+
         protected DataBlock m_simpleVars;
         protected DataBlock m_scripts;
         protected DataBlock m_playerPeds;
@@ -38,10 +50,10 @@ namespace WHampson.Gta3CarGenEditor.Models
         protected SaveDataFile(GamePlatform fileType)
         {
             FileType = fileType;
-            CarGeneratorsBlock = new CarGeneratorsDataBlock();
+            CarGenerators = new CarGeneratorsData();
 
             m_simpleVars            = new DataBlock() { StoreBlockSize = false };
-            m_scripts               = new DataBlock() { Tag = "SCR\0" };
+            m_scripts               = new DataBlock() { Tag = ScriptsTag };
             m_playerPeds            = new DataBlock();
             m_garages               = new DataBlock();
             m_vehicles              = new DataBlock();
@@ -50,38 +62,54 @@ namespace WHampson.Gta3CarGenEditor.Models
             m_cranes                = new DataBlock();
             m_pickups               = new DataBlock();
             m_phoneInfo             = new DataBlock();
-            m_restarts              = new DataBlock() { Tag = "RST\0" };
-            m_radar                 = new DataBlock() { Tag = "RDR\0" };
-            m_zones                 = new DataBlock() { Tag = "ZNS\0" };
-            m_gangs                 = new DataBlock() { Tag = "GNG\0" };
-            m_carGenerators         = new DataBlock() { Tag = "CGN\0" };
+            m_restarts              = new DataBlock() { Tag = RestartsTag };
+            m_radar                 = new DataBlock() { Tag = RadarTag };
+            m_zones                 = new DataBlock() { Tag = ZonesTag };
+            m_gangs                 = new DataBlock() { Tag = GangsTag };
+            m_carGenerators         = new DataBlock() { Tag = CarGeneratorsTag };
             m_particles             = new DataBlock();
-            m_audioScriptObjects    = new DataBlock() { Tag = "AUD\0" };
+            m_audioScriptObjects    = new DataBlock() { Tag = AudioScriptObjectsTag };
             m_playerInfo            = new DataBlock();
             m_stats                 = new DataBlock();
             m_streaming             = new DataBlock();
-            m_pedTypes              = new DataBlock() { Tag = "PTP\0" };
+            m_pedTypes              = new DataBlock() { Tag = PedTypesTag };
             m_padding0              = new DataBlock();
             m_padding1              = new DataBlock();
         }
 
+        /// <summary>
+        /// Gets the file format type based on the <see cref="GamePlatform"/>
+        /// that created this save data.
+        /// </summary>
         public GamePlatform FileType
         {
             get;
         }
 
-        public CarGeneratorsDataBlock CarGeneratorsBlock
+        /// <summary>
+        /// Gets or sets the car generator data.
+        /// </summary>
+        public CarGeneratorsData CarGenerators
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Writes this saved game data to a file.
+        /// </summary>
+        /// <param name="path">The file to write.</param>
         public void Store(string path)
         {
             byte[] data = Serialize(this);
             File.WriteAllBytes(path, data);
         }
 
+        /// <summary>
+        /// Computes the checksum that goes in the footer of the file.
+        /// </summary>
+        /// <param name="stream">The stream containing the serialized save data.</param>
+        /// <returns>The serialized data checksum.</returns>
         protected int GetChecksum(Stream stream)
         {
             using (MemoryStream m = new MemoryStream()) {
@@ -91,8 +119,22 @@ namespace WHampson.Gta3CarGenEditor.Models
             }
         }
 
+        /// <summary>
+        /// Sets the Data field of a <see cref="DataBlock"/> by
+        /// reading data at the current position in a stream in
+        /// accordance with the <see cref="DataBlock"/> parameters.
+        /// </summary>
+        /// <param name="stream">The stream to read.</param>
+        /// <param name="block">The block to populate.</param>
+        /// <returns>The number of bytes read.</returns>
         protected int ReadDataBlock(Stream stream, DataBlock block)
         {
+            // Format:
+            //     (optional) BlockSize
+            //     (optional) Tag
+            //     (optional) BlockSize - sizeof(Tag)
+            //     (required) Data
+
             long start = stream.Position;
             using (BinaryReader r = new BinaryReader(stream, Encoding.Default, true)) {
                 int blockSize;
@@ -139,6 +181,14 @@ namespace WHampson.Gta3CarGenEditor.Models
             return (int) (stream.Position - start);
         }
 
+        /// <summary>
+        /// Reads a big data block from the stream at the current position.
+        /// A big data block is defined as a tagless <see cref="DataBlock"/> containing
+        /// at least one nested <see cref="DataBlock"/> inside of it.
+        /// </summary>
+        /// <param name="stream">The stream to read.</param>
+        /// <param name="blocks">The nested blocks to populate.</param>
+        /// <returns>The number of bytes read.</returns>
         protected int ReadBigDataBlock(Stream stream, params DataBlock[] blocks)
         {
             long start = stream.Position;
@@ -161,6 +211,14 @@ namespace WHampson.Gta3CarGenEditor.Models
             return (int) (stream.Position - start);
         }
 
+        /// <summary>
+        /// Writes the Data field of a <see cref="DataBlock"/> to
+        /// a stream at the current position in accordance with the
+        /// <see cref="DataBlock"/> parameters.
+        /// </summary>
+        /// <param name="stream">The stream to write to.</param>
+        /// <param name="block">The block to write.</param>
+        /// <returns>The number of bytes written.</returns>
         protected int WriteDataBlock(Stream stream, DataBlock block)
         {
             // Format:
@@ -208,6 +266,14 @@ namespace WHampson.Gta3CarGenEditor.Models
             return (int) (stream.Position - start);
         }
 
+        /// <summary>
+        /// Writes a big data block to the stream at the current position.
+        /// A big data block is defined as a tagless <see cref="DataBlock"/> containing
+        /// at least one nested <see cref="DataBlock"/> inside of it.
+        /// </summary>
+        /// <param name="stream">The stream to write to.</param>
+        /// <param name="blocks">The nested blocks to write.</param>
+        /// <returns>The number of bytes written.</returns>
         protected int WriteBigDataBlock(Stream stream, params DataBlock[] blocks)
         {
             long start = stream.Position;
@@ -238,12 +304,14 @@ namespace WHampson.Gta3CarGenEditor.Models
             return (int) (stream.Position - start);
         }
 
+        /// <summary>
+        /// Computes the size of a <see cref="DataBlock"/> when serialized.
+        /// </summary>
+        /// <param name="block">The block to get the size of.</param>
+        /// <returns>The size of the data block in bytes.</returns>
         protected int GetBlockSize(DataBlock block)
         {
             int size = block.Data.Length;
-            //if (block.StoreBlockSize) {
-            //    size += 4;
-            //}
             if (block.HasTag) {
                 size += block.Tag.Length;
                 if (block.StoreBlockSize) {
@@ -254,6 +322,18 @@ namespace WHampson.Gta3CarGenEditor.Models
             return size;
         }
 
+        /// <summary>
+        /// Creates a new <see cref="SaveDataFile"/> object from binary
+        /// data found inside the specified file.
+        /// </summary>
+        /// <param name="path">The path to the file to load.</param>
+        /// <returns>The newly-created <see cref="SaveDataFile"/>.</returns>
+        /// <exception cref="InvalidDataException">
+        /// Thrown i the file is not a valid GTA3 save data file.
+        /// </exception>
+        /// <exception cref="NotSupportedException">
+        /// Thrown if the file is a valid GTA3 save data file of an unsupported format.
+        /// </exception>
         public static SaveDataFile Load(string path)
         {
             byte[] data = File.ReadAllBytes(path);
@@ -271,18 +351,40 @@ namespace WHampson.Gta3CarGenEditor.Models
             }
         }
 
+        /// <summary>
+        /// Adjusts an address so it becomes a multiple of 4 bytes (32 bits).
+        /// Alignment occurs by rounding up.
+        /// </summary>
+        /// <param name="addr">The address to align.</param>
+        /// <returns>The aligned address.</returns>
+        protected static int Align32(int addr)
+        {
+            if (addr < 0) {
+                return 0;
+            }
+
+            int retval = addr;
+            if (addr % 4 != 0) {
+                retval += 4 - addr % 4;
+            }
+
+            return retval;
+        }
+
+        /// <summary>
+        /// Determines the file type of a GTA3 saved game. If the file
+        /// type can't be determined, the file is declared invalid.
+        /// </summary>
         private static GamePlatform DetectFileType(byte[] data)
         {
-            const string ScriptsTag = "SCR\0";
             const int UnknownConstant = 0x031401;
 
             using (BinaryReader r = new BinaryReader(new MemoryStream(data))) {
-                byte[] scrTag = Encoding.ASCII.GetBytes(ScriptsTag);
-
                 bool isMobile;
                 bool isPcOrXbox;
                 bool isPs2;
 
+                byte[] scrTag = Encoding.ASCII.GetBytes(ScriptsTag);
                 int scrOffset = FindFirst(scrTag, data);
                 int sizeOfBlock1 = ReadInt(data, ReadInt(data, 0x00) + 0x04);
 
@@ -314,12 +416,10 @@ namespace WHampson.Gta3CarGenEditor.Models
             }
         }
 
-        private static int ReadInt(byte[] data, int addr)
-        {
-            return BitConverter.ToInt32(data, addr);
-        }
-
-        protected static int FindFirst(byte[] seq, byte[] arr)
+        /// <summary>
+        /// Locates the address of the first occurrence of a sequence in an array.
+        /// </summary>
+        private static int FindFirst(byte[] seq, byte[] arr)
         {
             int len = seq.Length;
             int limit = arr.Length - len;
@@ -339,18 +439,12 @@ namespace WHampson.Gta3CarGenEditor.Models
             return -1;
         }
 
-        protected static int Align32(int addr)
+        /// <summary>
+        /// Reads a 32-bit integer from an arbitrary address in an array.
+        /// </summary>
+        private static int ReadInt(byte[] data, int addr)
         {
-            if (addr < 0) {
-                return 0;
-            }
-
-            int retval = addr;
-            if (addr % 4 != 0) {
-                retval += 4 - addr % 4;
-            }
-
-            return retval;
+            return BitConverter.ToInt32(data, addr);
         }
     }
 }
