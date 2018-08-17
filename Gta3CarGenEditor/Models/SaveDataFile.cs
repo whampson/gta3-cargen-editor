@@ -352,6 +352,23 @@ namespace WHampson.Gta3CarGenEditor.Models
         }
 
         /// <summary>
+        /// Unpacks all data blocks into their respective data fields.
+        /// </summary>
+        protected void DeserializeDataBlocks()
+        {
+            CarGenerators = Deserialize<CarGeneratorsData>(m_carGenerators.Data);
+        }
+
+        /// <summary>
+        /// Serializes all data fields and stores the result in the respective
+        /// data blocks.
+        /// </summary>
+        protected void SerializeDataBlocks()
+        {
+            m_carGenerators.Data = Serialize(CarGenerators);
+        }
+
+        /// <summary>
         /// Adjusts an address so it becomes a multiple of 4 bytes (32 bits).
         /// Alignment occurs by rounding up.
         /// </summary>

@@ -1,9 +1,11 @@
 ﻿using System.IO;
 using System.Text;
-using WHampson.Gta3CarGenEditor.Properties;
 
 namespace WHampson.Gta3CarGenEditor.Models
 {
+    /// <summary>
+    /// Represents a Grand Theft Auto III save data file for the PC platform.
+    /// </summary>
     public class PCSaveDataFile : SaveDataFile
     {
         private const int SizeOfSimpleVars = 0xBC;
@@ -42,11 +44,15 @@ namespace WHampson.Gta3CarGenEditor.Models
                 ReadDataBlock(stream, m_padding1);
             }
 
+            DeserializeDataBlocks();
+
             return stream.Position - start;
         }
 
         protected override long SerializeObject(Stream stream)
         {
+            SerializeDataBlocks();
+
             long start = stream.Position;
             using (BinaryWriter w = new BinaryWriter(stream, Encoding.Default, true)) {
                 WriteBigDataBlock(stream, m_simpleVars, m_scripts);
