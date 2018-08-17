@@ -4,12 +4,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using WHampson.Gta3CarGenEditor.Helpers;
 using WHampson.Gta3CarGenEditor.Models;
-using WHampson.Gta3CarGenEditor.ViewModels;
 
 namespace WHampson.Gta3CarGenEditor
 {
@@ -25,7 +22,7 @@ namespace WHampson.Gta3CarGenEditor
 
             OpenFileDialog dialog = new OpenFileDialog();
             if (dialog.ShowDialog() != true) {
-                return;
+                goto exit;
             }
 
             SaveDataFile saveData = SaveDataFile.Load(dialog.FileName);
@@ -33,6 +30,7 @@ namespace WHampson.Gta3CarGenEditor
             byte[] newData = SerializableObject.Serialize(saveData);
             File.WriteAllBytes(dialog.FileName + ".dmp", newData);
 
+        exit:
             Application.Current.Shutdown();
         }
     }
