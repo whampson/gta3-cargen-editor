@@ -3,11 +3,14 @@ using System.Text;
 
 namespace WHampson.Gta3CarGenEditor.Models
 {
-    public class PS2SaveDataFile : SaveDataFile
+    /// <summary>
+    /// Represents a Grand Theft Auto III save data file for the PlayStaton 2 console platform.
+    /// </summary>
+    public class SaveDataFilePS2 : SaveDataFile
     {
         private const int SizeOfSimpleVars = 0xB0;
 
-        public PS2SaveDataFile()
+        public SaveDataFilePS2()
             : base(GamePlatform.PS2)
         {
             m_simpleVars.Data = new byte[SizeOfSimpleVars];

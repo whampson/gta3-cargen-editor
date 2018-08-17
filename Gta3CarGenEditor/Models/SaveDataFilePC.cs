@@ -6,11 +6,11 @@ namespace WHampson.Gta3CarGenEditor.Models
     /// <summary>
     /// Represents a Grand Theft Auto III save data file for the PC platform.
     /// </summary>
-    public class PCSaveDataFile : SaveDataFile
+    public class SaveDataFilePC : SaveDataFile
     {
         private const int SizeOfSimpleVars = 0xBC;
 
-        public PCSaveDataFile()
+        public SaveDataFilePC()
             : base(GamePlatform.PC)
         {
             m_simpleVars.Data = new byte[SizeOfSimpleVars];
