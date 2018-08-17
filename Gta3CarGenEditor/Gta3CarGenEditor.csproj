@@ -65,13 +65,16 @@
     <Compile Include="Helpers\ObservableObject.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\SerializableObject.cs" />
+    <Compile Include="Models\SaveDataFileAndroid.cs" />
     <Compile Include="Models\CarGeneratorsData.cs" />
     <Compile Include="Models\CarGeneratorsInfo.cs" />
     <Compile Include="Models\DataBlock.cs" />
-    <Compile Include="Models\PCSaveDataFile.cs" />
-    <Compile Include="Models\PS2SaveDataFile.cs" />
+    <Compile Include="Models\SaveDataFileIOS.cs" />
+    <Compile Include="Models\SaveDataFilePC.cs" />
+    <Compile Include="Models\SaveDataFilePS2.cs" />
     <Compile Include="Models\SaveDataFile.cs" />
     <Compile Include="Models\VehicleModel.cs" />
+    <Compile Include="Models\SaveDataFileXbox.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

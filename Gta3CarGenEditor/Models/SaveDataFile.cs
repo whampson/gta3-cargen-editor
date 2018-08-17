@@ -340,14 +340,18 @@ namespace WHampson.Gta3CarGenEditor.Models
             GamePlatform fileType = DetectFileType(data);
 
             switch (fileType) {
+                case GamePlatform.Android:
+                    return Deserialize<SaveDataFileAndroid>(data);
+                case GamePlatform.IOS:
+                    return Deserialize<SaveDataFileIOS>(data);
                 case GamePlatform.PC:
-                    return Deserialize<PCSaveDataFile>(data);
+                    return Deserialize<SaveDataFilePC>(data);
                 case GamePlatform.PS2:
-                    return Deserialize<PS2SaveDataFile>(data);
+                    return Deserialize<SaveDataFilePS2>(data);
+                case GamePlatform.Xbox:
+                    return Deserialize<SaveDataFileXbox>(data);
                 default:
-                    string plat = EnumHelper.GetAttribute<DescriptionAttribute>(fileType).Description;
-                    string msg = string.Format(Resources.UnsupportedFileTypeMessage, plat);
-                    throw new NotSupportedException(msg);
+                    throw new InvalidOperationException("You weren't supposed to be able to get here, you know.");
             }
         }
 
@@ -403,12 +407,15 @@ namespace WHampson.Gta3CarGenEditor.Models
 
                 byte[] scrTag = Encoding.ASCII.GetBytes(ScriptsTag);
                 int scrOffset = FindFirst(scrTag, data);
-                int sizeOfBlock1 = ReadInt(data, ReadInt(data, 0x00) + 0x04);
+                if (scrOffset < 0) {
+                    goto invalid_file;
+                }
 
                 isMobile = (scrOffset == 0xB8 && ReadInt(data, 0x34) == UnknownConstant);
                 isPcOrXbox = (scrOffset == 0xC4 && ReadInt(data, 0x44) == UnknownConstant);
                 isPs2 = (scrOffset == 0xB8 && ReadInt(data, 0x04) == UnknownConstant);
 
+                int sizeOfBlock1 = ReadInt(data, ReadInt(data, 0x00) + 0x04);
                 if (isPs2) {
                     return GamePlatform.PS2;
                 }
@@ -429,6 +436,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                     }
                 }
 
+            invalid_file:
                 throw new InvalidDataException(Resources.InvalidFileMessage);
             }
         }
