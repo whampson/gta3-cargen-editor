@@ -40,7 +40,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
                     CarGenerators = null;
                 }
                 else {
-                    foreach (CarGenerator cg in SaveDataFile.CarGeneratorsBlock.CarGeneratorsArray) {
+                    foreach (CarGenerator cg in SaveDataFile.CarGenerators.CarGeneratorsArray) {
                         CarGenerators.Add(cg);
                     }
                 }
@@ -158,8 +158,8 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
                 }
             }
 
-            SaveDataFile.CarGeneratorsBlock.CarGeneratorsInfo.NumberOfCarGenerators = numCarGens;
-            SaveDataFile.CarGeneratorsBlock.CarGeneratorsArray = CarGenerators.ToArray();
+            SaveDataFile.CarGenerators.CarGeneratorsInfo.NumberOfCarGenerators = numCarGens;
+            SaveDataFile.CarGenerators.CarGeneratorsArray = CarGenerators.ToArray();
             SaveDataFile.Store(SaveDataFilePath);
         }
 
