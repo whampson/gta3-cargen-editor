@@ -65,7 +65,7 @@
     <Compile Include="Helpers\ObservableObject.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\SerializableObject.cs" />
-    <Compile Include="Models\CarGeneratorsDataBlock.cs" />
+    <Compile Include="Models\CarGeneratorsData.cs" />
     <Compile Include="Models\CarGeneratorsInfo.cs" />
     <Compile Include="Models\DataBlock.cs" />
     <Compile Include="Models\PCSaveDataFile.cs" />
@@ -88,7 +88,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\CarGenerators.cs" />
+    <Compile Include="Models\CarGenerator.cs" />
     <Compile Include="Models\GamePlatform.cs" />
     <Compile Include="Models\Vector3d.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

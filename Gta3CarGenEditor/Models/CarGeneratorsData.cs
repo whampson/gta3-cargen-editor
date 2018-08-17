@@ -6,14 +6,14 @@ using WHampson.Gta3CarGenEditor.Properties;
 
 namespace WHampson.Gta3CarGenEditor.Models
 {
-    public class CarGeneratorsDataBlock : SerializableObject
+    public class CarGeneratorsData : SerializableObject
     {
         private const string BlockTag = "CGN\0";
 
         private CarGeneratorsInfo m_carGeneratorsInfo;
         private CarGenerator[] m_carGeneratorsArray;
 
-        public CarGeneratorsDataBlock()
+        public CarGeneratorsData()
         {
             m_carGeneratorsInfo = new CarGeneratorsInfo();
             m_carGeneratorsArray = new CarGenerator[0];
