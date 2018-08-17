@@ -8,20 +8,21 @@ namespace WHampson.Gta3CarGenEditor.Helpers
     /// </summary>
     public class MessageBoxEventArgs : EventArgs
     {
-        public MessageBoxEventArgs(Action<MessageBoxResult> resultAction, string text,
+        public MessageBoxEventArgs(string text,
             string caption = "",
             MessageBoxButton buttons = MessageBoxButton.OK,
             MessageBoxImage icon = MessageBoxImage.None,
             MessageBoxResult defaultResult = MessageBoxResult.None,
-            MessageBoxOptions options = MessageBoxOptions.None)
+            MessageBoxOptions options = MessageBoxOptions.None,
+            Action<MessageBoxResult> resultAction = null)
         {
-            ResultAction = resultAction;
             Text = text;
             Caption = caption;
             Buttons = buttons;
             Icon = icon;
             DefaultResult = defaultResult;
             Options = options;
+            ResultAction = resultAction;
         }
 
         public string Text
