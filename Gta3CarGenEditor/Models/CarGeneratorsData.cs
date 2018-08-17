@@ -8,8 +8,6 @@ namespace WHampson.Gta3CarGenEditor.Models
 {
     public class CarGeneratorsData : SerializableObject
     {
-        private const string BlockTag = "CGN\0";
-
         private CarGeneratorsInfo m_carGeneratorsInfo;
         private CarGenerator[] m_carGeneratorsArray;
 
@@ -37,30 +35,19 @@ namespace WHampson.Gta3CarGenEditor.Models
             using (BinaryReader r = new BinaryReader(stream, Encoding.Default, true)) {
                 long bytesRead;
                 long totalBytesRead = 0;
-
-                // Read block tag
-                string tag = Encoding.ASCII.GetString(r.ReadBytes(BlockTag.Length));
-                if (tag != BlockTag) {
-                    string msg = string.Format("Car Generators Block: {0}",
-                        Resources.InvalidBlockTagMessage);
-                    throw new InvalidDataException(msg);
-                }
-
-                // Read size information
-                int totalSize = r.ReadInt32();
+                int infoSize;
+                int carGenSize;
 
                 // Read car generators info
-                int infoSize = r.ReadInt32();
+                infoSize = r.ReadInt32();
                 bytesRead = Deserialize(stream, out m_carGeneratorsInfo);
                 if (bytesRead != infoSize) {
-                    string msg = string.Format("Car Generators Block: {0}",
-                        Resources.IncorrectNumberOfBytesDecodedMessage);
-                    throw new InvalidDataException(msg);
+                    throw new InvalidDataException(Resources.IncorrectNumberOfBytesDecodedMessage);
                 }
                 totalBytesRead += bytesRead + 4;
 
                 // Create car generators array
-                int carGenSize = r.ReadInt32();
+                carGenSize = r.ReadInt32();
                 m_carGeneratorsArray = new CarGenerator[carGenSize / CarGenerator.SizeOfCarGenerator];
                 totalBytesRead += 4;
 
@@ -70,17 +57,9 @@ namespace WHampson.Gta3CarGenEditor.Models
                     bytesRead += Deserialize(stream, out m_carGeneratorsArray[i]);
                 }
                 if (bytesRead != carGenSize) {
-                    string msg = string.Format("Car Generators Block: {0}",
-                        Resources.IncorrectNumberOfBytesDecodedMessage);
-                    throw new InvalidDataException(msg);
+                    throw new InvalidDataException(Resources.IncorrectNumberOfBytesDecodedMessage);
                 }
                 totalBytesRead += bytesRead;
-
-                if (totalBytesRead != totalSize) {
-                    string msg = string.Format("Car Generators Block: {0}",
-                        Resources.IncorrectNumberOfBytesDecodedMessage);
-                    throw new InvalidDataException(msg);
-                }
             }
 
             return stream.Position - start;
@@ -90,12 +69,9 @@ namespace WHampson.Gta3CarGenEditor.Models
         {
             byte[] carGenInfo = Serialize(m_carGeneratorsInfo);
             byte[] carGenArray = CarGeneratorsArray.SelectMany(x => Serialize(x)).ToArray();
-            int totalSize = carGenInfo.Length + carGenArray.Length + 8;
 
             long start = stream.Position;
             using (BinaryWriter w = new BinaryWriter(stream, Encoding.Default, true)) {
-                w.Write(Encoding.ASCII.GetBytes(BlockTag));
-                w.Write(totalSize);
                 w.Write(carGenInfo.Length);
                 w.Write(carGenInfo);
                 w.Write(carGenArray.Length);
