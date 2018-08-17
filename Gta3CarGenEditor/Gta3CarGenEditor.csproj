@@ -67,6 +67,7 @@
     <Compile Include="Helpers\SerializableObject.cs" />
     <Compile Include="Models\CarGeneratorsDataBlock.cs" />
     <Compile Include="Models\CarGeneratorsInfo.cs" />
+    <Compile Include="Models\DataBlock.cs" />
     <Compile Include="Models\PCSaveDataFile.cs" />
     <Compile Include="Models\PS2SaveDataFile.cs" />
     <Compile Include="Models\SaveDataFile.cs" />
