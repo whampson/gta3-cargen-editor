@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,57 +11,58 @@ namespace WHampson.Gta3CarGenEditor.Models
 {
     public abstract class SaveDataFile : SerializableObject
     {
-        protected byte[] m_simpleVars;
-        protected byte[] m_scripts;
-        protected byte[] m_playerPeds;
-        protected byte[] m_garages;
-        protected byte[] m_vehicles;
-        protected byte[] m_objects;
-        protected byte[] m_pathFind;
-        protected byte[] m_cranes;
-        protected byte[] m_pickups;
-        protected byte[] m_phoneInfo;
-        protected byte[] m_restarts;
-        protected byte[] m_radar;
-        protected byte[] m_zones;
-        protected byte[] m_gangs;
-        protected CarGeneratorsDataBlock m_carGenerators;
-        protected byte[] m_particles;
-        protected byte[] m_audioScriptObjects;
-        protected byte[] m_playerInfo;
-        protected byte[] m_stats;
-        protected byte[] m_streaming;
-        protected byte[] m_pedTypes;
-        protected byte[] m_padding0;
-        protected byte[] m_padding1;
+        protected DataBlock m_simpleVars;
+        protected DataBlock m_scripts;
+        protected DataBlock m_playerPeds;
+        protected DataBlock m_garages;
+        protected DataBlock m_vehicles;
+        protected DataBlock m_objects;
+        protected DataBlock m_pathFind;
+        protected DataBlock m_cranes;
+        protected DataBlock m_pickups;
+        protected DataBlock m_phoneInfo;
+        protected DataBlock m_restarts;
+        protected DataBlock m_radar;
+        protected DataBlock m_zones;
+        protected DataBlock m_gangs;
+        protected DataBlock m_carGenerators;
+        protected DataBlock m_particles;
+        protected DataBlock m_audioScriptObjects;
+        protected DataBlock m_playerInfo;
+        protected DataBlock m_stats;
+        protected DataBlock m_streaming;
+        protected DataBlock m_pedTypes;
+        protected DataBlock m_padding0;
+        protected DataBlock m_padding1;
 
         protected SaveDataFile(GamePlatform fileType)
         {
             FileType = fileType;
+            CarGeneratorsBlock = new CarGeneratorsDataBlock();
 
-            m_simpleVars = new byte[0];
-            m_scripts = new byte[0];
-            m_playerPeds = new byte[0];
-            m_garages = new byte[0];
-            m_vehicles = new byte[0];
-            m_objects = new byte[0];
-            m_pathFind = new byte[0];
-            m_cranes = new byte[0];
-            m_pickups = new byte[0];
-            m_phoneInfo = new byte[0];
-            m_restarts = new byte[0];
-            m_radar = new byte[0];
-            m_zones = new byte[0];
-            m_gangs = new byte[0];
-            m_carGenerators = new CarGeneratorsDataBlock();
-            m_particles = new byte[0];
-            m_audioScriptObjects = new byte[0];
-            m_playerInfo = new byte[0];
-            m_stats = new byte[0];
-            m_streaming = new byte[0];
-            m_pedTypes = new byte[0];
-            m_padding0 = new byte[0];
-            m_padding1 = new byte[0];
+            m_simpleVars            = new DataBlock() { StoreBlockSize = false };
+            m_scripts               = new DataBlock() { Tag = "SCR\0" };
+            m_playerPeds            = new DataBlock();
+            m_garages               = new DataBlock();
+            m_vehicles              = new DataBlock();
+            m_objects               = new DataBlock();
+            m_pathFind              = new DataBlock();
+            m_cranes                = new DataBlock();
+            m_pickups               = new DataBlock();
+            m_phoneInfo             = new DataBlock();
+            m_restarts              = new DataBlock() { Tag = "RST\0" };
+            m_radar                 = new DataBlock() { Tag = "RDR\0" };
+            m_zones                 = new DataBlock() { Tag = "ZNS\0" };
+            m_gangs                 = new DataBlock() { Tag = "GNG\0" };
+            m_carGenerators         = new DataBlock() { Tag = "CGN\0" };
+            m_particles             = new DataBlock();
+            m_audioScriptObjects    = new DataBlock() { Tag = "AUD\0" };
+            m_playerInfo            = new DataBlock();
+            m_stats                 = new DataBlock();
+            m_streaming             = new DataBlock();
+            m_pedTypes              = new DataBlock() { Tag = "PTP\0" };
+            m_padding0              = new DataBlock();
+            m_padding1              = new DataBlock();
         }
 
         public GamePlatform FileType
@@ -70,8 +72,8 @@ namespace WHampson.Gta3CarGenEditor.Models
 
         public CarGeneratorsDataBlock CarGeneratorsBlock
         {
-            get { return m_carGenerators; }
-            set { m_carGenerators = value; OnPropertyChanged(); }
+            get;
+            set;
         }
 
         public void Store(string path)
@@ -87,6 +89,169 @@ namespace WHampson.Gta3CarGenEditor.Models
                 stream.CopyTo(m);
                 return m.ToArray().Sum(x => x);
             }
+        }
+
+        protected int ReadDataBlock(Stream stream, DataBlock block)
+        {
+            long start = stream.Position;
+            using (BinaryReader r = new BinaryReader(stream, Encoding.Default, true)) {
+                int blockSize;
+                int nestedBlockSize;
+                int paddingSize;
+
+                // Get block size
+                if (block.StoreBlockSize) {
+                    // Read block size from stream
+                    blockSize = r.ReadInt32();
+                }
+                else {
+                    // Use pre-allocated array size
+                    blockSize = block.Data.Length;
+                }
+
+                if (block.HasTag) {
+                    // Read tag
+                    string tag = Encoding.ASCII.GetString(r.ReadBytes(block.Tag.Length));
+                    if (tag != block.Tag) {
+                        throw new InvalidDataException();
+                    }
+
+                    // Read nested block size
+                    if (block.StoreBlockSize) {
+                        nestedBlockSize = r.ReadInt32();
+                        if (nestedBlockSize != blockSize - tag.Length - 4) {
+                            throw new InvalidDataException();
+                        }
+                        blockSize = nestedBlockSize;
+                    }
+                }
+
+                // Compute padding
+                paddingSize = Align32(blockSize) - blockSize;
+
+                // Read data
+                block.Data = r.ReadBytes(blockSize);
+
+                // Read padding
+                r.ReadBytes(paddingSize);
+            }
+
+            return (int) (stream.Position - start);
+        }
+
+        protected int ReadBigDataBlock(Stream stream, params DataBlock[] blocks)
+        {
+            long start = stream.Position;
+            using (BinaryReader r = new BinaryReader(stream, Encoding.Default, true)) {
+                int totalSize;
+                int bytesRead;
+
+                totalSize = r.ReadInt32();
+
+                bytesRead = 0;
+                foreach (DataBlock block in blocks) {
+                    bytesRead += ReadDataBlock(stream, block);
+                }
+
+                if (bytesRead != totalSize) {
+                    throw new InvalidDataException();
+                }
+            }
+
+            return (int) (stream.Position - start);
+        }
+
+        protected int WriteDataBlock(Stream stream, DataBlock block)
+        {
+            // Format:
+            //     (optional) BlockSize
+            //     (optional) Tag
+            //     (optional) BlockSize - sizeof(Tag)
+            //     (required) Data
+
+            long start = stream.Position;
+            using (BinaryWriter w = new BinaryWriter(stream, Encoding.Default, true)) {
+                int blockSize;
+                int nestedBlockSize;
+                int paddingSize;
+
+                // Write block size
+                blockSize = GetBlockSize(block);
+                if (block.StoreBlockSize) {
+                    w.Write(blockSize);     // Subtract 4 because stored size does not include itself
+                }
+
+                if (block.HasTag) {
+                    // Write tag
+                    w.Write(Encoding.ASCII.GetBytes(block.Tag));
+
+                    // Write nested block size
+                    if (block.StoreBlockSize) {
+                        nestedBlockSize = blockSize - block.Tag.Length - 4;
+                        w.Write(nestedBlockSize);
+                        blockSize = nestedBlockSize;
+                    }
+                }
+
+                Debug.Assert(block.Data.Length == blockSize);
+
+                // Compute padding
+                paddingSize = Align32(blockSize) - blockSize;
+
+                // Write data
+                w.Write(block.Data);
+
+                // Write padding
+                w.Write(new byte[paddingSize]);
+            }
+
+            return (int) (stream.Position - start);
+        }
+
+        protected int WriteBigDataBlock(Stream stream, params DataBlock[] blocks)
+        {
+            long start = stream.Position;
+            using (BinaryWriter w = new BinaryWriter(stream, Encoding.Default, true)) {
+                int totalSize;
+                int bytesWritten;
+
+                totalSize = 0;
+                foreach (DataBlock block in blocks) {
+                    totalSize += Align32(GetBlockSize(block));
+                    if (block.StoreBlockSize) {
+                        totalSize += 4;
+                    }
+                }
+
+                w.Write(totalSize);
+                bytesWritten = 4;
+
+                foreach (DataBlock block in blocks) {
+                    bytesWritten += WriteDataBlock(stream, block);
+                }
+
+                if (bytesWritten != totalSize + 4) {
+                    throw new InvalidDataException();
+                }
+            }
+
+            return (int) (stream.Position - start);
+        }
+
+        protected int GetBlockSize(DataBlock block)
+        {
+            int size = block.Data.Length;
+            //if (block.StoreBlockSize) {
+            //    size += 4;
+            //}
+            if (block.HasTag) {
+                size += block.Tag.Length;
+                if (block.StoreBlockSize) {
+                    size += 4;
+                }
+            }
+
+            return size;
         }
 
         public static SaveDataFile Load(string path)
@@ -174,7 +339,7 @@ namespace WHampson.Gta3CarGenEditor.Models
             return -1;
         }
 
-        protected static int WordAlign(int addr)
+        protected static int Align32(int addr)
         {
             if (addr < 0) {
                 return 0;
