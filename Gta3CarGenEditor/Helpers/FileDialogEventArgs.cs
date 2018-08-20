@@ -13,11 +13,13 @@ namespace WHampson.Gta3CarGenEditor.Helpers
         public FileDialogEventArgs(FileDialogType dialogType,
             string title = null,
             string filter = null,
+            string fileName = null,
             Action<bool?, FileDialogEventArgs> resultAction = null)
         {
             DialogType = dialogType;
             Title = title;
             Filter = filter;
+            FileName = fileName;
             ResultAction = resultAction;
         }
 
@@ -68,6 +70,7 @@ namespace WHampson.Gta3CarGenEditor.Helpers
 
             dialog.Title = Title;
             dialog.Filter = Filter;
+            dialog.FileName = FileName;
 
             bool? result;
             if (owner == null) {
@@ -83,11 +86,11 @@ namespace WHampson.Gta3CarGenEditor.Helpers
 
             ResultAction?.Invoke(result, this);
         }
+    }
 
-        public enum FileDialogType
-        {
-            OpenDialog,
-            SaveDialog
-        }
+    public enum FileDialogType
+    {
+        OpenDialog,
+        SaveDialog
     }
 }
