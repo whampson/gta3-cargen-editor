@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -415,7 +414,13 @@ namespace WHampson.Gta3CarGenEditor.Models
                 isPcOrXbox = (scrOffset == 0xC4 && ReadInt(data, 0x44) == UnknownConstant);
                 isPs2 = (scrOffset == 0xB8 && ReadInt(data, 0x04) == UnknownConstant);
 
-                int sizeOfBlock1 = ReadInt(data, ReadInt(data, 0x00) + 0x04);
+                int sizeOfBlock0 = ReadInt(data, 0x00);
+                if (sizeOfBlock0 > data.Length) {
+                    goto invalid_file;
+                }
+
+                int sizeOfBlock1 = ReadInt(data, sizeOfBlock0 + 0x04);
+
                 if (isPs2) {
                     return GamePlatform.PS2;
                 }
