@@ -1,21 +1,13 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WHampson.Gta3CarGenEditor.Helpers;
 using WHampson.Gta3CarGenEditor.Models;
 using WHampson.Gta3CarGenEditor.Properties;
-using static WHampson.Gta3CarGenEditor.Helpers.FileDialogEventArgs;
 
 namespace WHampson.Gta3CarGenEditor.ViewModels
 {
@@ -26,18 +18,26 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         private string m_mostRecentPath;
         private bool m_isShowingUnusedFields;
         private bool m_isFileModified;
+        private string m_windowTitle;
+        private string m_statusText;
 
         public MainViewModel()
         {
             m_carGenerators = new ObservableCollection<CarGenerator>();
             m_carGenerators.CollectionChanged += CarGenerators_CollectionChanged;
+            m_windowTitle = "GTA3 Car Generator Editor";
+            m_statusText = "No file opened.";
         }
 
-        #region Properties
+        #region Public Properties
         public SaveDataFile CurrentSaveData
         {
             get { return m_currentSaveData; }
-            set { m_currentSaveData = value; OnPropertyChanged(); }
+            set {
+                m_currentSaveData = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsFileOpen));
+            }
         }
 
         public ObservableCollection<CarGenerator> CarGenerators
@@ -68,18 +68,38 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             get { return m_isFileModified; }
             set { m_isFileModified = value; OnPropertyChanged(); }
         }
+
+        public string WindowTitle
+        {
+            get { return m_windowTitle; }
+            set { m_windowTitle = value; OnPropertyChanged(); }
+        }
+
+        public string StatusText
+        {
+            get { return m_statusText; }
+            set { m_statusText = value; OnPropertyChanged(); }
+        }
         #endregion
 
+        #region Private Functions
         private void FileOpen(string path)
         {
             CurrentSaveData = SaveDataFile.Load(path);
+            foreach (CarGenerator cg in CurrentSaveData.CarGenerators.CarGeneratorsArray) {
+                CarGenerators.Add(cg);
+            }
             MostRecentPath = path;
+            WindowTitle = "GTA3 Car Generators Editor - " + path;
+            StatusText = "File opened for edit.";
         }
 
         private void FileSave(string path)
         {
             CurrentSaveData.Store(path);
             MostRecentPath = path;
+            WindowTitle = "GTA3 Car Generators Editor - " + path;
+            StatusText = "File saved successfully.";
         }
 
         private void FileClose()
@@ -94,19 +114,46 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
         private void DoFileClose()
         {
-            OnMessageBoxRequested(new MessageBoxEventArgs("Closing file!!"));
+            CarGenerators.Clear();
             CurrentSaveData = null;
             IsFileModified = false;
+            WindowTitle = "GTA3 Car Generators Editor";
+            StatusText = "No file opened.";
         }
 
-        private void FileReload()
+        private void ZeroOutTimers()
         {
-            FileClose();
-
-            // Only re-open if user didn't cancel close
-            if (!IsFileOpen) {
-                FileOpen(MostRecentPath);
+            foreach (CarGenerator cg in CarGenerators) {
+                cg.Timer = 0;
             }
+        }
+
+        private void ImportCarGeneratorsGTA3Save(string path)
+        {
+            SaveDataFile saveData = SaveDataFile.Load(path);
+
+            OnMessageBoxRequested(new MessageBoxEventArgs("Import cargens savedata: " + path));
+            StatusText = "Imported car generators from " + path;
+        }
+
+        private void ImportCarGeneratorsCSV(string path)
+        {
+            OnMessageBoxRequested(new MessageBoxEventArgs("Import cargens CSV: " + path));
+            StatusText = "Imported car generators from " + path;
+        }
+
+        private void ExportCarGeneratorsGTA3Save(string path)
+        {
+            SaveDataFile saveData = SaveDataFile.Load(path);
+
+            OnMessageBoxRequested(new MessageBoxEventArgs("Export cargens savedata: " + path));
+            StatusText = "Exported car generators to " + path;
+        }
+
+        private void ExportCarGeneratorsCSV(string path)
+        {
+            OnMessageBoxRequested(new MessageBoxEventArgs("Export cargens CSV: " + path));
+            StatusText = "Exported car generators to " + path;
         }
 
         private void ApplicationExit()
@@ -125,27 +172,57 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
                 resultAction: FileClosePrompt_ResultAction));
         }
 
-        private void FileClosePrompt_ResultAction(MessageBoxResult result)
+        private void ShowGTA3SaveDataOpenDialog(Action<bool?, FileDialogEventArgs> resultAction)
         {
-            // Does the user want to save before closing?
-            switch (result) {
-                case MessageBoxResult.Yes:
-                    FileSave(MostRecentPath);
-                    DoFileClose();
-                    break;
-                case MessageBoxResult.No:
-                    DoFileClose();
-                    break;
-            }
+            OnFileDialogRequested(new FileDialogEventArgs(
+                FileDialogType.OpenDialog,
+                filter: "GTA3 Save Data (*.b)|*.b|All Files (*.*)|*.*",
+                title: "Open...",
+                resultAction: resultAction));
         }
+
+        private void ShowGTA3SaveDataSaveDialog(Action<bool?, FileDialogEventArgs> resultAction)
+        {
+            OnFileDialogRequested(new FileDialogEventArgs(
+                FileDialogType.SaveDialog,
+                fileName: Path.GetFileName(MostRecentPath),
+                filter: "GTA3 Save Data (*.b)|*.b|All Files (*.*)|*.*",
+                title: "Save As...",
+                resultAction: resultAction));
+        }
+
+        private void ShowCSVOpenDialog(Action<bool?, FileDialogEventArgs> resultAction)
+        {
+            OnFileDialogRequested(new FileDialogEventArgs(
+                FileDialogType.OpenDialog,
+                filter: "CSV (comma-delimited) (*.csv)|*.csv|All Files (*.*)|*.*",
+                resultAction: resultAction));
+        }
+
+        private void ShowCSVSaveDialog(Action<bool?, FileDialogEventArgs> resultAction)
+        {
+            OnFileDialogRequested(new FileDialogEventArgs(
+                FileDialogType.SaveDialog,
+                filter: "CSV (comma-delimited) (*.csv)|*.csv|All Files (*.*)|*.*",
+                resultAction: resultAction));
+        }
+
+        #endregion
 
         #region Commands
         public ICommand FileOpenCommand
         {
-            get {
-                return new RelayCommand<string>(
-                    (x) => OnFileDialogRequested(
-                        new FileDialogEventArgs(FileDialogType.OpenDialog, resultAction: FileDialog_ResultAction)));
+            get { return new RelayCommand(ExecuteFileOpenCommand); }
+        }
+
+        private void ExecuteFileOpenCommand()
+        {
+            if (IsFileOpen) {
+                FileClose();
+            }
+
+            if (!IsFileOpen) {
+                ShowGTA3SaveDataOpenDialog(OpenSaveGTA3SaveDataDialog_ResultAction);
             }
         }
 
@@ -154,15 +231,10 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             get { return new RelayCommand(FileClose, () => IsFileOpen); }
         }
 
-        public ICommand FileReloadCommand
-        {
-            get { return new RelayCommand(FileReload, () => IsFileOpen); }
-        }
-
         public ICommand FileSaveCommand
         {
             get {
-                return new RelayCommand<string>(
+                return new RelayCommand<Action<bool?, FileDialogEventArgs>>(
                     (x) => FileSave(MostRecentPath),
                     (x) => IsFileOpen);
             }
@@ -171,10 +243,103 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         public ICommand FileSaveAsCommand
         {
             get {
-                return new RelayCommand<string>(
-                    (x) => OnFileDialogRequested(
-                        new FileDialogEventArgs(FileDialogType.SaveDialog, resultAction: FileDialog_ResultAction)),
+                return new RelayCommand<Action<bool?, FileDialogEventArgs>>(
+                    (x) => ShowGTA3SaveDataSaveDialog(OpenSaveGTA3SaveDataDialog_ResultAction),
                     (x) => IsFileOpen);
+            }
+        }
+
+        public ICommand ImportFromSaveDataCommand
+        {
+            get {
+                return new RelayCommand<Action<bool?, FileDialogEventArgs>>(
+                    (x) => ExecuteImportToSaveDataCommand(),
+                    (x) => IsFileOpen);
+            }
+        }
+
+        private void ExecuteImportToSaveDataCommand()
+        {
+            OnMessageBoxRequested(new MessageBoxEventArgs(
+                "Select the file you want to import car generators from. The current set of car generators will be overwritten.", 
+                "Import Car Generators",
+                icon: MessageBoxImage.Information));
+
+            ShowGTA3SaveDataOpenDialog(ImportCarGeneratorsGTA3SaveDialog_ResultAction);
+        }
+
+        public ICommand ImportFromCSVCommand
+        {
+            get {
+                return new RelayCommand<Action<bool?, FileDialogEventArgs>>(
+                    (x) => ShowCSVOpenDialog(ImportExportCarGeneratorsCSVDialog_ResultAction),
+                    (x) => IsFileOpen);
+            }
+        }
+
+        public ICommand ExportToSaveDataCommand
+        {
+            get {
+                return new RelayCommand(ExecuteExportToSaveDataCommand, () => IsFileOpen);
+            }
+        }
+
+        private void ExecuteExportToSaveDataCommand()
+        {
+            OnMessageBoxRequested(new MessageBoxEventArgs(
+                "Select the file you want to export the current set of car generators to. The car generators in that file will be overwritten.",
+                "Export Car Generators",
+                icon: MessageBoxImage.Information));
+
+            ShowGTA3SaveDataOpenDialog(ExportCarGeneratorsGTA3SaveDialog_ResultAction);
+        }
+
+        public ICommand ExportToCSVCommand
+        {
+            get {
+                return new RelayCommand<Action<bool?, FileDialogEventArgs>>(
+                    (x) => ShowCSVSaveDialog(ImportExportCarGeneratorsCSVDialog_ResultAction),
+                    (x) => IsFileOpen);
+            }
+        }
+
+        public ICommand ApplicationExitCommand
+        {
+            get { return new RelayCommand(ApplicationExit); }
+        }
+
+        public ICommand EditMetadataCommand
+        {
+            get {
+                return new RelayCommand(
+                    () => OnMessageBoxRequested(new MessageBoxEventArgs("Edit metadata")),
+                    () => IsFileOpen);
+            }
+        }
+
+        public ICommand ZeroOutTimersCommand
+        {
+            get { return new RelayCommand(ZeroOutTimers, () => IsFileOpen); }
+        }
+
+        public ICommand ShowUnusedFieldsCommand
+        {
+            get { return new RelayCommand(
+                () => IsShowingUnusedFields = !IsShowingUnusedFields,
+                () => IsFileOpen);
+            }
+        }
+
+        public ICommand ShowAboutDialogCommand
+        {
+            get {
+                return new RelayCommand(
+                    () => OnMessageBoxRequested(
+                        new MessageBoxEventArgs(
+                            "About this app...",
+                            "About",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information)));
             }
         }
         #endregion
@@ -203,18 +368,72 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             IsFileModified = true;
         }
 
-        public void FileDialog_ResultAction(bool? dialogResult, FileDialogEventArgs e)
+        private void FileClosePrompt_ResultAction(MessageBoxResult result)
         {
+            // Does the user want to save before closing?
+            switch (result) {
+                case MessageBoxResult.Yes:
+                    FileSave(MostRecentPath);
+                    DoFileClose();
+                    break;
+                case MessageBoxResult.No:
+                    DoFileClose();
+                    break;
+            }
+        }
+
+        public void OpenSaveGTA3SaveDataDialog_ResultAction(bool? dialogResult, FileDialogEventArgs e)
+        {
+            // Ignore if anything other than "OK" pressed
             if (dialogResult != true) {
                 return;
             }
 
+            // Open or Save based on dialog type
             switch (e.DialogType) {
                 case FileDialogType.OpenDialog:
                     FileOpen(e.FileName);
                     break;
                 case FileDialogType.SaveDialog:
                     FileSave(e.FileName);
+                    break;
+            }
+        }
+
+        public void ImportCarGeneratorsGTA3SaveDialog_ResultAction(bool? dialogResult, FileDialogEventArgs e)
+        {
+            // Ignore if anything other than "OK" pressed
+            if (dialogResult != true) {
+                return;
+            }
+
+            ImportCarGeneratorsGTA3Save(e.FileName);
+        }
+
+        public void ExportCarGeneratorsGTA3SaveDialog_ResultAction(bool? dialogResult, FileDialogEventArgs e)
+        {
+            // Ignore if anything other than "OK" pressed
+            if (dialogResult != true) {
+                return;
+            }
+
+            ExportCarGeneratorsGTA3Save(e.FileName);
+        }
+
+        public void ImportExportCarGeneratorsCSVDialog_ResultAction(bool? dialogResult, FileDialogEventArgs e)
+        {
+            // Ignore if anything other than "OK" pressed
+            if (dialogResult != true) {
+                return;
+            }
+
+            // Open or Save based on dialog type
+            switch (e.DialogType) {
+                case FileDialogType.OpenDialog:
+                    ImportCarGeneratorsCSV(e.FileName);
+                    break;
+                case FileDialogType.SaveDialog:
+                    ExportCarGeneratorsCSV(e.FileName);
                     break;
             }
         }
@@ -236,214 +455,4 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         }
         #endregion
     }
-
-    //public class MainViewModel : ObservableObject
-    //{
-    //    private SaveDataFile _saveDataFile;
-    //    private string _saveDataFilePath;
-    //    private ObservableCollection<CarGenerator> _carGens;
-    //    private bool _showUnused;
-
-    //    public MainViewModel()
-    //    {
-    //        CarGenerators = new ObservableCollection<CarGenerator>();
-    //        CarGenerators.CollectionChanged += CarGenerators_CollectionChanged;
-    //    }
-
-    //    public SaveDataFile SaveDataFile
-    //    {
-    //        get {
-    //            return _saveDataFile;
-    //        }
-
-    //        set {
-    //            _saveDataFile = value;
-    //            if (_saveDataFile == null) {
-    //                CarGenerators = null;
-    //            }
-    //            else {
-    //                foreach (CarGenerator cg in SaveDataFile.CarGenerators.CarGeneratorsArray) {
-    //                    CarGenerators.Add(cg);
-    //                }
-    //            }
-
-    //            OnPropertyChanged();
-    //        }
-    //    }
-
-    //    private void CarGenerators_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-    //    {
-    //        if (e.NewItems != null) {
-    //            foreach (CarGenerator cg in e.NewItems) {
-    //                cg.PropertyChanged += Cg_PropertyChanged;
-    //            }
-    //        }
-
-    //        if (e.OldItems != null) {
-    //            foreach (CarGenerator cg in e.OldItems) {
-    //                cg.PropertyChanged -= Cg_PropertyChanged;
-    //            }
-    //        }
-    //    }
-
-    //    private void Cg_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-    //    {
-    //        OnMessageBoxRequested(new MessageBoxEventArgs(null, "Something changed!"));
-    //    }
-
-    //    public string SaveDataFilePath
-    //    {
-    //        get { return _saveDataFilePath; }
-    //        set { _saveDataFilePath = value; OnPropertyChanged(); }
-    //    }
-
-    //    public ObservableCollection<CarGenerator> CarGenerators
-    //    {
-    //        get { return _carGens; }
-    //        set { _carGens = value; OnPropertyChanged(); }
-    //    }
-
-    //    public bool IsEditingFile
-    //    {
-    //        get { return _saveDataFile != null; }
-    //    }
-
-    //    public bool ShowUnused
-    //    {
-    //        get { return _showUnused; }
-    //        set { _showUnused = value; OnPropertyChanged(); }
-    //    }
-
-    //    //#region Commands
-    //    //public ICommand OpenFile
-    //    //{
-    //    //    get {
-    //    //        return new RelayCommand(OpenFile_Execute);
-    //    //    }
-    //    //}
-
-    //    //private void OpenFile_Execute()
-    //    //{
-    //    //    // TODO: this should be invoked by the view
-    //    //    OpenFileDialog diag = new OpenFileDialog()
-    //    //    {
-    //    //        CheckFileExists = true,
-    //    //        Multiselect = false,
-    //    //        Filter = "GTA3 Save Data Files (*.b)|*.b|All Files (*.*)|*.*"
-    //    //    };
-
-    //    //    bool? fileSelected = diag.ShowDialog();
-    //    //    if (fileSelected !=true) {
-    //    //        return;
-    //    //    }
-
-    //    //    SaveDataFile = SaveDataFile.Load(diag.FileName);
-    //    //    SaveDataFilePath = diag.FileName;
-    //    //}
-
-    //    //public ICommand CloseFile
-    //    //{
-    //    //    get {
-    //    //        return new RelayCommand(CloseFile_Execute, CloseFile_CanExecute);
-    //    //    }
-    //    //}
-
-    //    //private bool CloseFile_CanExecute()
-    //    //{
-    //    //    return IsEditingFile;
-    //    //}
-
-    //    //private void CloseFile_Execute()
-    //    //{
-    //    //    // TODO: prompt user to save
-    //    //    SaveDataFile = null;
-    //    //}
-
-    //    //public ICommand SaveFile
-    //    //{
-    //    //    get {
-    //    //        return new RelayCommand(SaveFile_Execute, SaveFile_CanExecute);
-    //    //    }
-    //    //}
-
-    //    //private bool SaveFile_CanExecute()
-    //    //{
-    //    //    return IsEditingFile;
-    //    //}
-
-    //    //private void SaveFile_Execute()
-    //    //{
-    //    //    uint numCarGens = 0;
-    //    //    foreach (CarGenerator cg in CarGenerators) {
-    //    //        if (cg.Model != VehicleModel.None) {
-    //    //            numCarGens++;
-    //    //        }
-    //    //    }
-
-    //    //    SaveDataFile.CarGenerators.CarGeneratorsInfo.NumberOfCarGenerators = numCarGens;
-    //    //    SaveDataFile.CarGenerators.CarGeneratorsArray = CarGenerators.ToArray();
-    //    //    SaveDataFile.Store(SaveDataFilePath);
-    //    //}
-
-    //    //public ICommand SaveFileAs
-    //    //{
-    //    //    get {
-    //    //        return new RelayCommand(SaveFileAs_Execute, SaveFileAs_CanExecute);
-    //    //    }
-    //    //}
-
-    //    //private bool SaveFileAs_CanExecute()
-    //    //{
-    //    //    return IsEditingFile;
-    //    //}
-
-    //    //private void SaveFileAs_Execute()
-    //    //{
-    //    //    // TODO: this should be invoked by the view
-    //    //    SaveFileDialog diag = new SaveFileDialog
-    //    //    {
-    //    //        Filter = "All Files (*.*)|*.*"
-    //    //    };
-
-    //    //    bool? fileSelected = diag.ShowDialog();
-    //    //    if (fileSelected != true) {
-    //    //        return;
-    //    //    }
-
-    //    //    SaveDataFilePath = diag.FileName;
-    //    //    SaveFile.Execute(null);
-    //    //}
-
-    //    //public ICommand ExitApplication
-    //    //{
-    //    //    get {
-    //    //        return new RelayCommand(ExitApplication_Execute);
-    //    //    }
-    //    //}
-
-    //    //private void ExitApplication_Execute()
-    //    //{
-    //    //    Application.Current.MainWindow.Close();
-    //    //}
-
-    //    //public ICommand AboutApplication
-    //    //{
-    //    //    get {
-    //    //        return new RelayCommand(AboutApplication_Execute);
-    //    //    }
-    //    //}
-
-    //    //private void AboutApplication_Execute()
-    //    //{
-    //    //    OnMessageBoxRequested(new MessageBoxEventArgs(null, "AboutApplication"));
-    //    //}
-    //    //#endregion
-
-    //    public event EventHandler<MessageBoxEventArgs> MessageBoxRequested;
-
-    //    protected void OnMessageBoxRequested(MessageBoxEventArgs e)
-    //    {
-    //        MessageBoxRequested?.Invoke(this, e);
-    //    }
-    //}
 }

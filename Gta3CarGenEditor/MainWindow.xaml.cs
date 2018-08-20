@@ -12,15 +12,9 @@ namespace WHampson.Gta3CarGenEditor
         public MainWindow()
         {
             InitializeComponent();
-        }
 
-        public MainWindow(MainViewModel vm)
-        {
-            ViewModel = vm;
-            vm.MessageBoxRequested += ViewModel_MessageBoxRequested;
-            vm.FileDialogRequested += ViewModel_FileDialogRequested;
-
-            InitializeComponent();
+            ViewModel.MessageBoxRequested += ViewModel_MessageBoxRequested;
+            ViewModel.FileDialogRequested += ViewModel_FileDialogRequested;
         }
 
         public MainViewModel ViewModel

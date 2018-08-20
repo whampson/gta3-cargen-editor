@@ -3,86 +3,133 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:mod="clr-namespace:WHampson.Gta3CarGenEditor.Models"
+        xmlns:m="clr-namespace:WHampson.Gta3CarGenEditor.Models"
+        xmlns:vm="clr-namespace:WHampson.Gta3CarGenEditor.ViewModels"
         xmlns:conv="clr-namespace:WHampson.Gta3CarGenEditor.Converters"
         xmlns:prop="clr-namespace:WHampson.Gta3CarGenEditor.Properties"
         xmlns:local="clr-namespace:WHampson.Gta3CarGenEditor"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="GTA3 Car Generator Editor" Height="550" Width="900"
+        Title="{Binding WindowTitle}" Height="550" Width="900"
         Closing="Window_Closing">
 
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
     <Window.Resources>
-        <ObjectDataProvider x:Key="VehicleEnumData"
+        <!-- VehicleModel enum values -->
+        <ObjectDataProvider x:Key="VehicleModelEnumData"
                             MethodName="GetValues"
                             ObjectType="{x:Type sys:Enum}">
             <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="mod:VehicleModel"/>
+                <x:Type TypeName="m:VehicleModel"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        
+        <!-- Converters -->
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <conv:EnumDescriptionConverter x:Key="EnumDescriptionConverter"/>
         <conv:Vector3dToStringConverter x:Key="Vector3dToStringConverter"/>
     </Window.Resources>
 
     <Window.InputBindings>
-        <KeyBinding Command="{Binding OpenFile}"
+        <KeyBinding Command="{Binding FileOpenCommand}"
                     Key="O" Modifiers="Ctrl"/>
-        <KeyBinding Command="{Binding CloseFile}"
+        <KeyBinding Command="{Binding FileCloseCommand}"
                     Key="W" Modifiers="Ctrl"/>
-        <KeyBinding Command="{Binding SaveFile}"
+        <KeyBinding Command="{Binding FileSaveCommand}"
                     Key="S" Modifiers="Ctrl"/>
-        <KeyBinding Command="{Binding SaveFileAs}"
+        <KeyBinding Command="{Binding FileSaveAsCommand}"
                     Key="S" Modifiers="Ctrl+Shift"/>
-        <KeyBinding Command="{Binding ExitApplication}"
+        <KeyBinding Command="{Binding ImportFromSaveDataCommand}"
+                    Key="I" Modifiers="Ctrl"/>
+        <KeyBinding Command="{Binding ImportFromCSVCommand}"
+                    Key="I" Modifiers="Ctrl+Shift"/>
+        <KeyBinding Command="{Binding ExportToSaveDataCommand}"
+                    Key="E" Modifiers="Ctrl"/>
+        <KeyBinding Command="{Binding ExportToCSVCommand}"
+                    Key="E" Modifiers="Ctrl+Shift"/>
+        <KeyBinding Command="{Binding ApplicationExitCommand}"
                     Key="F4" Modifiers="Alt"/>
-        <KeyBinding Command="{Binding AboutApplication}"
+        <KeyBinding Command="{Binding EditMetadataCommand}"
+                    Key="M" Modifiers="Ctrl"/>
+        <KeyBinding Command="{Binding ZeroOutTimersCommand}"
+                    Key="T" Modifiers="Ctrl"/>
+        <KeyBinding Command="{Binding ShowUnusedFieldsCommand}"
+                    Key="U" Modifiers="Ctrl"/>
+        <KeyBinding Command="{Binding ShowAboutDialogCommand}"
                     Key="F1"/>
     </Window.InputBindings>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
         <DockPanel>
+            <!-- Menu bar -->
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Command="{Binding OpenFile}"
+                    <MenuItem Command="{Binding FileOpenCommand}"
                               Header="_Open..."
                               InputGestureText="Ctrl+O"/>
-                    <MenuItem Command="{Binding CloseFile}"
+                    <MenuItem Command="{Binding FileCloseCommand}"
                               Header="_Close"
                               InputGestureText="Ctrl+W"/>
                     <Separator/>
-                    <MenuItem Header="Reload"/>
-                    <Separator/>
-                    <MenuItem Command="{Binding SaveFile}"
+                    <MenuItem Command="{Binding FileSaveCommand}"
                               Header="_Save"
                               InputGestureText="Ctrl+S"/>
-                    <MenuItem Command="{Binding SaveFileAs}"
+                    <MenuItem Command="{Binding FileSaveAsCommand}"
                               Header="Save _As..."
                               InputGestureText="Ctrl+Shift+S"/>
                     <Separator/>
-                    <MenuItem Header="Import Car Generators..."/>
-                    <MenuItem Header="Export Car Generators..."/>
+                    <MenuItem Header="_Import">
+                        <MenuItem Command="{Binding ImportFromSaveDataCommand}"
+                                  Header="Car Generators from GTA3 _Save..."
+                                  InputGestureText="Ctrl+I"/>
+                        <MenuItem Command="{Binding ImportFromCSVCommand}"
+                                  Header="Car Generators from _CSV..."
+                                  InputGestureText="Ctrl+Shift+I"/>
+                    </MenuItem>
+                    <MenuItem Header="_Export">
+                        <MenuItem Command="{Binding ExportToSaveDataCommand}"
+                                  Header="Car Generators to GTA3 _Save..."
+                                  InputGestureText="Ctrl+E"/>
+                        <MenuItem Command="{Binding ExportToCSVCommand}"
+                                  Header="Car Generators to _CSV..."
+                                  InputGestureText="Ctrl+Shift+E"/>
+                    </MenuItem>
                     <Separator/>
-                    <MenuItem Header="Transfer Car Generators..."/>
-                    <Separator/>
-                    <MenuItem Command="{Binding ExitApplication}"
+                    <MenuItem Command="{Binding ApplicationExitCommand}"
                               Header="E_xit"
                               InputGestureText="Alt+F4"/>
                 </MenuItem>
                 <MenuItem Header="_Edit">
-                    <MenuItem Header="_Zero Out Timers"/>
+                    <MenuItem Command="{Binding EditMetadataCommand}"
+                              Header="Edit _Metadata..."
+                              InputGestureText="Ctrl+M"/>
+                    <Separator/>
+                    <MenuItem Command="{Binding ZeroOutTimersCommand}"
+                              Header="_Zero Out Timers"
+                              InputGestureText="Ctrl+T"/>
                 </MenuItem>
                 <MenuItem Header="_View">
-                    <MenuItem Header="Show _Unused Fields"
-                              IsCheckable="True"
-                              IsChecked="{Binding ShowUnused}"/>
+                    <MenuItem Command="{Binding ShowUnusedFieldsCommand}"
+                              Header="Show _Unused Fields"
+                              InputGestureText="Ctrl+U"
+                              IsChecked="{Binding IsShowingUnusedFields}"/>
                 </MenuItem>
                 <MenuItem Header="_Help">
-                    <MenuItem Command="{Binding AboutApplication}"
+                    <MenuItem Command="{Binding ShowAboutDialogCommand}"
                               Header="_About"
                               InputGestureText="F1"/>
                 </MenuItem>
             </Menu>
             
+            <!-- Car generators table -->
             <DataGrid ItemsSource="{Binding CarGenerators}"
                       AutoGenerateColumns="False"
                       CanUserReorderColumns="True"
@@ -104,7 +151,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                         <DataGridTemplateColumn.CellEditingTemplate>
                             <DataTemplate>
-                                <ComboBox ItemsSource="{Binding Source={StaticResource VehicleEnumData}, Mode=OneWay}"
+                                <ComboBox ItemsSource="{Binding Source={StaticResource VehicleModelEnumData}, Mode=OneWay}"
                                           SelectedItem="{Binding Model, UpdateSourceTrigger=PropertyChanged}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
@@ -130,13 +177,13 @@
                         </DataGridTemplateColumn.CellTemplate>
                         <DataGridTemplateColumn.CellEditingTemplate>
                             <DataTemplate>
-                                <TextBox Text="{Binding Location, Converter={StaticResource Vector3dToStringConverter}}"/>
+                                <TextBox Text="{Binding Location, Converter={StaticResource Vector3dToStringConverter}, UpdateSourceTrigger=PropertyChanged}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
 
                     <DataGridTextColumn Header="Heading"
-                                        Binding="{Binding Heading}">
+                                        Binding="{Binding Heading, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -146,7 +193,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn Header="Color 1"
-                                        Binding="{Binding PrimaryColorId}">
+                                        Binding="{Binding Color1, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -156,7 +203,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn Header="Color 2"
-                                        Binding="{Binding SecondaryColorId}">
+                                        Binding="{Binding Color2, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -166,7 +213,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn Header="Alarm Chance"
-                                        Binding="{Binding AlarmChance, ValidatesOnDataErrors=True, NotifyOnValidationError=False}">
+                                        Binding="{Binding AlarmChance, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -176,7 +223,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn Header="Locked Chance"
-                                        Binding="{Binding LockedChance}">
+                                        Binding="{Binding LockedChance, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -186,7 +233,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn Header="Spawn Count"
-                                        Binding="{Binding SpawnCount}">
+                                        Binding="{Binding SpawnCount, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -206,7 +253,7 @@
                     </DataGridCheckBoxColumn>
 
                     <DataGridTextColumn Header="Min. Spawn Delay"
-                                        Binding="{Binding MinSpawnDelay}">
+                                        Binding="{Binding MinSpawnDelay, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -216,7 +263,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn Header="Max. Spawn Delay"
-                                        Binding="{Binding MaxSpawnDelay}">
+                                        Binding="{Binding MaxSpawnDelay, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -237,5 +284,35 @@
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
+
+         <!-- Status bar -->
+        <StatusBar Grid.Row="1" Background="White">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="0" HorizontalContentAlignment="Left">
+                <TextBlock Text="{Binding StatusText}"/>
+            </StatusBarItem>
+            <Separator Grid.Column="1"/>
+            <StatusBarItem Grid.Column="2" HorizontalContentAlignment="Center">
+                <TextBlock Text="Modified"
+                           Visibility="{Binding IsFileModified, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StatusBarItem>
+            <Separator Grid.Column="3"/>
+            <StatusBarItem Grid.Column="4" HorizontalContentAlignment="Center">
+                <TextBlock Text="{Binding CurrentSaveData.FileType, Converter={StaticResource EnumDescriptionConverter}}"
+                           Visibility="{Binding IsFileOpen, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>
