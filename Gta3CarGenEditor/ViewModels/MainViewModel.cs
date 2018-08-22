@@ -217,6 +217,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
         private void ExecuteFileOpenCommand()
         {
+            // TODO: don't actually close until user has gone through with selecting file
             if (IsFileOpen) {
                 FileClose();
             }
@@ -324,10 +325,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
         public ICommand ShowUnusedFieldsCommand
         {
-            get { return new RelayCommand(
-                () => IsShowingUnusedFields = !IsShowingUnusedFields,
-                () => IsFileOpen);
-            }
+            get { return new RelayCommand(() => IsShowingUnusedFields = !IsShowingUnusedFields); }
         }
 
         public ICommand ShowAboutDialogCommand
