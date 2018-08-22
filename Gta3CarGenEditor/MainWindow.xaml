@@ -133,7 +133,7 @@
             <FrameworkElement x:Name="ProxyElement" Visibility="Collapsed"/>
 
             <!-- Car generators table -->
-            <DataGrid ItemsSource="{Binding CarGenerators}"
+            <DataGrid ItemsSource="{Binding CarGeneratorsList}"
                       AutoGenerateColumns="False"
                       CanUserReorderColumns="True"
                       CanUserSortColumns="True"
