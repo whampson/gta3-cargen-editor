@@ -26,7 +26,7 @@
                 <x:Type TypeName="m:VehicleModel"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-        
+
         <!-- Converters -->
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <conv:EnumDescriptionConverter x:Key="EnumDescriptionConverter"/>
@@ -128,7 +128,9 @@
                               InputGestureText="F1"/>
                 </MenuItem>
             </Menu>
-            
+
+            <FrameworkElement x:Name="ProxyElement" Visibility="Collapsed"/>
+
             <!-- Car generators table -->
             <DataGrid ItemsSource="{Binding CarGenerators}"
                       AutoGenerateColumns="False"
@@ -136,7 +138,9 @@
                       CanUserSortColumns="True"
                       CanUserAddRows="False"
                       CanUserDeleteRows="False">
+
                 <DataGrid.Columns>
+                    <!-- Model ID -->
                     <DataGridTemplateColumn Header="Vehicle" SortMemberPath="Model" CanUserSort="True">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style>
@@ -163,6 +167,7 @@
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
 
+                    <!-- Location -->
                     <DataGridTemplateColumn Header="Location">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style>
@@ -182,6 +187,7 @@
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
 
+                    <!-- Heading -->
                     <DataGridTextColumn Header="Heading"
                                         Binding="{Binding Heading, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
@@ -192,6 +198,7 @@
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
+                    <!-- Color 1 -->
                     <DataGridTextColumn Header="Color 1"
                                         Binding="{Binding Color1, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
@@ -202,6 +209,7 @@
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
+                    <!-- Color 2 -->
                     <DataGridTextColumn Header="Color 2"
                                         Binding="{Binding Color2, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
@@ -212,6 +220,7 @@
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
+                    <!-- Alarm -->
                     <DataGridTextColumn Header="Alarm Chance"
                                         Binding="{Binding AlarmChance, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
@@ -222,6 +231,7 @@
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
+                    <!-- Door Lock -->
                     <DataGridTextColumn Header="Locked Chance"
                                         Binding="{Binding LockedChance, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
@@ -232,6 +242,8 @@
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
+                    <!-- Spawn Count -->
+                    <!-- TODO: change to "Enabled" -->
                     <DataGridTextColumn Header="Spawn Count"
                                         Binding="{Binding SpawnCount, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
@@ -242,36 +254,7 @@
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
-                    <DataGridCheckBoxColumn Header="Force Spawn"
-                                        Binding="{Binding ForceSpawn, UpdateSourceTrigger=PropertyChanged}">
-                        <DataGridCheckBoxColumn.HeaderStyle>
-                            <Style>
-                                <Setter Property="ToolTipService.ToolTip"
-                                        Value="Forces the vehicle to spawn more readily."/>
-                            </Style>
-                        </DataGridCheckBoxColumn.HeaderStyle>
-                    </DataGridCheckBoxColumn>
-
-                    <DataGridTextColumn Header="Min. Spawn Delay"
-                                        Binding="{Binding MinSpawnDelay, UpdateSourceTrigger=PropertyChanged}">
-                        <DataGridTextColumn.HeaderStyle>
-                            <Style>
-                                <Setter Property="ToolTipService.ToolTip"
-                                        Value="The minimum time to wait before respawning the vehicle after it has been stolen."/>
-                            </Style>
-                        </DataGridTextColumn.HeaderStyle>
-                    </DataGridTextColumn>
-
-                    <DataGridTextColumn Header="Max. Spawn Delay"
-                                        Binding="{Binding MaxSpawnDelay, UpdateSourceTrigger=PropertyChanged}">
-                        <DataGridTextColumn.HeaderStyle>
-                            <Style>
-                                <Setter Property="ToolTipService.ToolTip"
-                                        Value="The maximum time to wait before respawning the vehicle after it has been stolen."/>
-                            </Style>
-                        </DataGridTextColumn.HeaderStyle>
-                    </DataGridTextColumn>
-
+                    <!-- Timer -->
                     <DataGridTextColumn Header="Timer"
                                         Binding="{Binding Timer, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
@@ -281,6 +264,139 @@
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
+
+                    <!-- Force Spawn -->
+                    <DataGridCheckBoxColumn Header="Force Spawn"
+                                            Binding="{Binding ForceSpawn, UpdateSourceTrigger=PropertyChanged}"
+                                            Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                        <DataGridCheckBoxColumn.HeaderStyle>
+                            <Style>
+                                <Setter Property="ToolTipService.ToolTip"
+                                        Value="Forces the vehicle to spawn more readily.&#x0a;It is unclear whether this field has any effect in-game."/>
+                            </Style>
+                        </DataGridCheckBoxColumn.HeaderStyle>
+                    </DataGridCheckBoxColumn>
+
+                    <!-- Min. Spawn Delay -->
+                    <DataGridTextColumn Header="Min. Spawn Delay"
+                                        Binding="{Binding MinSpawnDelay, UpdateSourceTrigger=PropertyChanged}"
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style>
+                                <Setter Property="ToolTipService.ToolTip"
+                                        Value="The minimum time to wait before respawning the vehicle after it has been stolen.&#x0a;Setting this field does nothing as the game always waits 60000ms before re-spawning the vehicle."/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
+
+                    <!-- Max. Spawn Delay -->
+                    <DataGridTextColumn Header="Max. Spawn Delay"
+                                        Binding="{Binding MaxSpawnDelay, UpdateSourceTrigger=PropertyChanged}"
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style>
+                                <Setter Property="ToolTipService.ToolTip"
+                                        Value="The maximum time to wait before respawning the vehicle after it has been stolen.&#x0a;Setting this field does nothing as the game always waits 60000ms before re-spawning the vehicle."/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
+
+                    <!-- Has Recently Been Stolen -->
+                    <DataGridCheckBoxColumn Header="Recently Stolen"
+                                            Binding="{Binding HasRecentlyBeenStolen, UpdateSourceTrigger=PropertyChanged}"
+                                            Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                        <DataGridCheckBoxColumn.HeaderStyle>
+                            <Style>
+                                <Setter Property="ToolTipService.ToolTip"
+                                        Value="Indicates whether the vehicle has been stolen and is waiting to re-spawn.&#x0a;Setting this field has no effect."/>
+                            </Style>
+                        </DataGridCheckBoxColumn.HeaderStyle>
+                    </DataGridCheckBoxColumn>
+
+                    <!-- Unknown2C -->
+                    <DataGridTextColumn Header="Unknown2C"
+                                        Binding="{Binding Unknown2C, UpdateSourceTrigger=PropertyChanged}"
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style>
+                                <Setter Property="ToolTipService.ToolTip"
+                                        Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
+
+                    <!-- Unknown30 -->
+                    <DataGridTextColumn Header="Unknown30"
+                                        Binding="{Binding Unknown30, UpdateSourceTrigger=PropertyChanged}"
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style>
+                                <Setter Property="ToolTipService.ToolTip"
+                                        Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
+
+                    <!-- Unknown34 -->
+                    <DataGridTextColumn Header="Unknown34"
+                                        Binding="{Binding Unknown34, UpdateSourceTrigger=PropertyChanged}"
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style>
+                                <Setter Property="ToolTipService.ToolTip"
+                                        Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
+
+                    <!-- Unknown38 -->
+                    <DataGridTextColumn Header="Unknown38"
+                                        Binding="{Binding Unknown38, UpdateSourceTrigger=PropertyChanged}"
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style>
+                                <Setter Property="ToolTipService.ToolTip"
+                                        Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
+
+                    <!-- Unknown3C -->
+                    <DataGridTextColumn Header="Unknown3C"
+                                        Binding="{Binding Unknown3C, UpdateSourceTrigger=PropertyChanged}"
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style>
+                                <Setter Property="ToolTipService.ToolTip"
+                                        Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
+
+                    <!-- Unknown40 -->
+                    <DataGridTextColumn Header="Unknown40"
+                                        Binding="{Binding Unknown40, UpdateSourceTrigger=PropertyChanged}"
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style>
+                                <Setter Property="ToolTipService.ToolTip"
+                                        Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
+
+                    <!-- Unknown44 -->
+                    <DataGridTextColumn Header="Unknown44"
+                                        Binding="{Binding Unknown44, UpdateSourceTrigger=PropertyChanged}"
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style>
+                                <Setter Property="ToolTipService.ToolTip"
+                                        Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
+
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
@@ -300,19 +416,23 @@
                     </Grid>
                 </ItemsPanelTemplate>
             </StatusBar.ItemsPanel>
+
             <StatusBarItem Grid.Column="0" HorizontalContentAlignment="Left">
                 <TextBlock Text="{Binding StatusText}"/>
             </StatusBarItem>
             <Separator Grid.Column="1"/>
+
             <StatusBarItem Grid.Column="2" HorizontalContentAlignment="Center">
                 <TextBlock Text="Modified"
                            Visibility="{Binding IsFileModified, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </StatusBarItem>
             <Separator Grid.Column="3"/>
+
             <StatusBarItem Grid.Column="4" HorizontalContentAlignment="Center">
                 <TextBlock Text="{Binding CurrentSaveData.FileType, Converter={StaticResource EnumDescriptionConverter}}"
                            Visibility="{Binding IsFileOpen, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </StatusBarItem>
+
         </StatusBar>
     </Grid>
 </Window>
