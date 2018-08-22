@@ -29,6 +29,7 @@
 
         <!-- Converters -->
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <conv:SpawnCountToBooleanConverter x:Key="SpawnCountToBooleanConverter"/>
         <conv:EnumDescriptionConverter x:Key="EnumDescriptionConverter"/>
         <conv:Vector3dToStringConverter x:Key="Vector3dToStringConverter"/>
     </Window.Resources>
@@ -242,17 +243,16 @@
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
-                    <!-- Spawn Count -->
-                    <!-- TODO: change to "Enabled" -->
-                    <DataGridTextColumn Header="Spawn Count"
-                                        Binding="{Binding SpawnCount, UpdateSourceTrigger=PropertyChanged}">
-                        <DataGridTextColumn.HeaderStyle>
+                    <!-- Can Spawn -->
+                    <DataGridCheckBoxColumn Header="Can Spawn"
+                                        Binding="{Binding SpawnCount, Converter={StaticResource SpawnCountToBooleanConverter}, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGridCheckBoxColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="Number of times to spawn this vehicle.&#x0a;A value of -1 or a value greater than 100 will cause the vehicle to spawn infinitely many times."/>
+                                        Value="Specifies whether the vehicle will spawn in the game world, effectively enabling or disabling the car generator."/>
                             </Style>
-                        </DataGridTextColumn.HeaderStyle>
-                    </DataGridTextColumn>
+                        </DataGridCheckBoxColumn.HeaderStyle>
+                    </DataGridCheckBoxColumn>
 
                     <!-- Timer -->
                     <DataGridTextColumn Header="Timer"
