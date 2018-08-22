@@ -40,7 +40,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             }
         }
 
-        public ObservableCollection<CarGenerator> CarGenerators
+        public ObservableCollection<CarGenerator> CarGeneratorsList
         {
             get { return m_carGenerators; }
             set { m_carGenerators = value; OnPropertyChanged(); }
@@ -91,9 +91,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
             if (!IsFileOpen) {
                 CurrentSaveData = SaveDataFile.Load(path);
-                foreach (CarGenerator cg in CurrentSaveData.CarGenerators.CarGeneratorsArray) {
-                    CarGenerators.Add(cg);
-                }
+                PopulateCarGeneratorsList();
                 MostRecentPath = path;
                 WindowTitle = "GTA3 Car Generators Editor - " + path;
                 StatusText = "File opened for edit.";
@@ -121,7 +119,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
         private void DoFileClose()
         {
-            CarGenerators.Clear();
+            ClearCarGeneratorsList();
             CurrentSaveData = null;
             IsFileModified = false;
             WindowTitle = "GTA3 Car Generators Editor";
@@ -130,18 +128,44 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
         private void ZeroOutTimers()
         {
-            foreach (CarGenerator cg in CarGenerators) {
+            foreach (CarGenerator cg in CarGeneratorsList) {
                 cg.Timer = 0;
             }
         }
 
+        private void PopulateCarGeneratorsList()
+        {
+            foreach (CarGenerator cg in CurrentSaveData.CarGenerators.CarGeneratorsArray) {
+                CarGeneratorsList.Add(cg);
+            }
+        }
+
+        private void ClearCarGeneratorsList()
+        {
+            CarGeneratorsList.Clear();
+        }
+
         private void ImportCarGeneratorsGTA3Save(string path)
         {
+            // Load other file
             SaveDataFile saveData = SaveDataFile.Load(path);
 
-            // TODO: implement
-            OnMessageBoxRequested(new MessageBoxEventArgs("Import cargens savedata: " + path));
+            // Replace car generators
+            CurrentSaveData.CarGenerators = saveData.CarGenerators;
+
+            // Show success message
+            OnMessageBoxRequested(new MessageBoxEventArgs(
+                "Car generators imported successfully!",
+                "Success",
+                icon: MessageBoxImage.Information));
+
+            // Refresh table
+            ClearCarGeneratorsList();
+            PopulateCarGeneratorsList();
+
+            // Update status
             StatusText = "Imported car generators from " + path;
+            IsFileModified = true;
         }
 
         private void ImportCarGeneratorsCSV(string path)
@@ -153,10 +177,22 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
         private void ExportCarGeneratorsGTA3Save(string path)
         {
+            // Load other file
             SaveDataFile saveData = SaveDataFile.Load(path);
 
-            // TODO: implement
-            OnMessageBoxRequested(new MessageBoxEventArgs("Export cargens savedata: " + path));
+            // Replace car generators
+            saveData.CarGenerators = CurrentSaveData.CarGenerators;
+
+            // Store other file
+            saveData.Store(path);
+
+            // Show success message
+            OnMessageBoxRequested(new MessageBoxEventArgs(
+                "Car generators exported successfully!",
+                "Success",
+                icon: MessageBoxImage.Information));
+
+            // Update status
             StatusText = "Exported car generators to " + path;
         }
 
@@ -217,7 +253,6 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
                 filter: "CSV (comma-delimited) (*.csv)|*.csv|All Files (*.*)|*.*",
                 resultAction: resultAction));
         }
-
         #endregion
 
         #region Commands
