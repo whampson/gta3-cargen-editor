@@ -345,7 +345,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                     return Deserialize<SaveDataFileIOS>(data);
                 case GamePlatform.PC:
                     return Deserialize<SaveDataFilePC>(data);
-                case GamePlatform.PS2:
+                case GamePlatform.PlayStation2:
                     return Deserialize<SaveDataFilePS2>(data);
                 case GamePlatform.Xbox:
                     return Deserialize<SaveDataFileXbox>(data);
@@ -422,7 +422,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                 int sizeOfBlock1 = ReadInt(data, sizeOfBlock0 + 0x04);
 
                 if (isPs2) {
-                    return GamePlatform.PS2;
+                    return GamePlatform.PlayStation2;
                 }
                 else if (isMobile) {
                     if (sizeOfBlock1 == 0x064C) {

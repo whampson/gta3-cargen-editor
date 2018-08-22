@@ -14,7 +14,7 @@ namespace WHampson.Gta3CarGenEditor.Models
         PC,
 
         [Description("PlayStation 2")]
-        PS2,
+        PlayStation2,
 
         [Description("Xbox")]
         Xbox

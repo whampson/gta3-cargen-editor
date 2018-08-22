@@ -11,7 +11,7 @@ namespace WHampson.Gta3CarGenEditor.Models
         private const int SizeOfSimpleVars = 0xB0;
 
         public SaveDataFilePS2()
-            : base(GamePlatform.PS2)
+            : base(GamePlatform.PlayStation2)
         {
             m_simpleVars.Data = new byte[SizeOfSimpleVars];
         }
