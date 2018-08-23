@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using WHampson.Gta3CarGenEditor.Helpers;
 using WHampson.Gta3CarGenEditor.ViewModels;
+using WHampson.Gta3CarGenEditor.Views;
 
 namespace WHampson.Gta3CarGenEditor
 {
@@ -15,6 +16,7 @@ namespace WHampson.Gta3CarGenEditor
 
             ViewModel.MessageBoxRequested += ViewModel_MessageBoxRequested;
             ViewModel.FileDialogRequested += ViewModel_FileDialogRequested;
+            ViewModel.EditMetadataDialogRequested += ViewModel_EditMetadataDialogRequested;
         }
 
         public MainViewModel ViewModel
@@ -31,6 +33,15 @@ namespace WHampson.Gta3CarGenEditor
         private void ViewModel_FileDialogRequested(object sender, FileDialogEventArgs e)
         {
             e.ShowDialog(this);
+        }
+
+        private void ViewModel_EditMetadataDialogRequested(object sender, MetadataDialogEventArgs e)
+        {
+            MetadataWindow w = new MetadataWindow(new MetadataViewModel(e.Metadata))
+            {
+                Owner = this
+            };
+            w.ShowDialog();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
