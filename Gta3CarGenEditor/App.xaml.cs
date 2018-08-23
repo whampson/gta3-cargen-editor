@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WHampson.Gta3CarGenEditor.Views;
 
 namespace WHampson.Gta3CarGenEditor
 {

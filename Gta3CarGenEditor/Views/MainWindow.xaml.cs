@@ -1,9 +1,8 @@
 ﻿using System.Windows;
 using WHampson.Gta3CarGenEditor.Events;
 using WHampson.Gta3CarGenEditor.ViewModels;
-using WHampson.Gta3CarGenEditor.Views;
 
-namespace WHampson.Gta3CarGenEditor
+namespace WHampson.Gta3CarGenEditor.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
