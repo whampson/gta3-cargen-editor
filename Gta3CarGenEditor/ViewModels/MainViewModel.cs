@@ -159,6 +159,18 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             CarGeneratorsList.Clear();
         }
 
+        private uint GetNumberOfCarGenerators()
+        {
+            uint count = 0;
+            foreach (CarGenerator cg in CarGeneratorsList) {
+                if (cg.Model != VehicleModel.None) {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
         private void ImportCarGeneratorsGTA3Save(string path)
         {
             // Load other file
@@ -401,7 +413,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             // Register property changed listener on each new element
             if (e.NewItems != null) {
                 foreach (CarGenerator cg in e.NewItems) {
-                    cg.PropertyChanged += CarGenerator_PropertyChanged; ;
+                    cg.PropertyChanged += CarGenerator_PropertyChanged;
                 }
             }
 
@@ -417,6 +429,11 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         {
             // Detect when a change was made to individual car generators
             IsFileModified = true;
+
+            // Update car generator count in metadata
+            if (e.PropertyName == nameof(CarGenerator.Model)) {
+                m_metadata.NumberOfCarGenerators = GetNumberOfCarGenerators();
+            }
         }
 
         private void FileClosePrompt_ResultAction(MessageBoxResult result)
