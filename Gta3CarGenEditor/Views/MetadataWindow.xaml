@@ -1,0 +1,101 @@
+﻿<Window x:Class="WHampson.Gta3CarGenEditor.Views.MetadataWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:WHampson.Gta3CarGenEditor.ViewModels"
+        xmlns:local="clr-namespace:WHampson.Gta3CarGenEditor.Views"
+        mc:Ignorable="d"
+        Title="Edit Metadata"
+        Height="200" Width="400"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
+    
+    <!-- TODO: textbox select all on focus -->
+
+    <Window.Resources>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+        </Style>
+    </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Key="Esc" Command="{Binding CancelCommand}"/>
+        <KeyBinding Key="Return" Command="{Binding OkCommand}"/>
+    </Window.InputBindings>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        
+            <Label Grid.Column="0" Grid.Row="0"
+                   Content="Number of car generators:"
+                   Style="{StaticResource LabelStyle}"/>
+            <Label Grid.Column="0" Grid.Row="1"
+                   Content="Number of active car generators:"
+                   Style="{StaticResource LabelStyle}"/>
+            <Label Grid.Column="0" Grid.Row="2"
+                   Content="Process counter:"
+                   Style="{StaticResource LabelStyle}"/>
+            <Label Grid.Column="0" Grid.Row="3"
+                   Content="Generate if player is close counter:"
+                   Style="{StaticResource LabelStyle}"/>
+
+            <TextBox Grid.Column="1" Grid.Row="0"
+                     Name="txtTotalCount"
+                     Text="{Binding Metadata.NumberOfCarGenerators, UpdateSourceTrigger=Explicit}"
+                     Style="{StaticResource TextBoxStyle}"/>
+            <TextBox Grid.Column="1" Grid.Row="1"
+                     Name="txtActiveCount"
+                     Text="{Binding Metadata.NumberOfActiveCarGenerators, UpdateSourceTrigger=Explicit}"
+                     Style="{StaticResource TextBoxStyle}"/>
+            <TextBox Grid.Column="1" Grid.Row="2"
+                     Name="txtProcessCount"
+                     Text="{Binding Metadata.ProcessCount, UpdateSourceTrigger=Explicit}"
+                     Style="{StaticResource TextBoxStyle}"/>
+            <TextBox Grid.Column="1" Grid.Row="3"
+                     Name="txtIsCloseCount"
+                     Text="{Binding Metadata.GenerateEvenIfPlayerIsCloseCounter, UpdateSourceTrigger=Explicit}"
+                     Style="{StaticResource TextBoxStyle}"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="2"
+                    Content="Cancel"
+                    Command="{Binding CancelCommand}"
+                    Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="3"
+                    Content="OK"
+                    Command="{Binding OkCommand}"
+                    Style="{StaticResource ButtonStyle}"/>
+        </Grid>
+    </Grid>
+</Window>
