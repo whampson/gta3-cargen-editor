@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using WHampson.Gta3CarGenEditor.Events;
 using WHampson.Gta3CarGenEditor.Helpers;
 using WHampson.Gta3CarGenEditor.Models;
 

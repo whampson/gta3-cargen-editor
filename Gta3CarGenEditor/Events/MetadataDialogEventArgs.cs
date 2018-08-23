@@ -1,7 +1,7 @@
 ﻿using System;
 using WHampson.Gta3CarGenEditor.Models;
 
-namespace WHampson.Gta3CarGenEditor.Helpers
+namespace WHampson.Gta3CarGenEditor.Events
 {
     /// <summary>
     /// Parameters for opening a MetadataWindow.

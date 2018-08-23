@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WHampson.Gta3CarGenEditor.Helpers
+namespace WHampson.Gta3CarGenEditor.Events
 {
     /// <summary>
     /// Parameters for closing a dialog window from an event.

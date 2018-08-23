@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows;
+using WHampson.Gta3CarGenEditor.Helpers;
 
-namespace WHampson.Gta3CarGenEditor.Helpers
+namespace WHampson.Gta3CarGenEditor.Events
 {
     /// <summary>
     /// Parameters for opening a <see cref="MessageBoxEx"/> from an event.

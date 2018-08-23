@@ -62,11 +62,11 @@
     <Compile Include="Converters\SpawnCountToBooleanConverter.cs" />
     <Compile Include="Converters\Vector3dToStringConverter.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Helpers\DialogCloseEventArgs.cs" />
-    <Compile Include="Helpers\FileDialogEventArgs.cs" />
-    <Compile Include="Helpers\MessageBoxEventArgs.cs" />
+    <Compile Include="Events\DialogCloseEventArgs.cs" />
+    <Compile Include="Events\FileDialogEventArgs.cs" />
+    <Compile Include="Events\MessageBoxEventArgs.cs" />
     <Compile Include="Helpers\MessageBoxEx.cs" />
-    <Compile Include="Helpers\MetadataDialogEventArgs.cs" />
+    <Compile Include="Events\MetadataDialogEventArgs.cs" />
     <Compile Include="Helpers\ObservableObject.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\SerializableObject.cs" />
