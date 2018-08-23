@@ -10,7 +10,8 @@
         xmlns:local="clr-namespace:WHampson.Gta3CarGenEditor"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="{Binding WindowTitle}" Height="550" Width="900"
+        Title="{Binding WindowTitle}"
+        Height="550" Width="900"
         Closing="Window_Closing">
 
     <Window.DataContext>
