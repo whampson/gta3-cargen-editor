@@ -131,6 +131,7 @@
                 </MenuItem>
             </Menu>
 
+            <!-- Needed to allow for certain columns to be hidden via a button -->
             <FrameworkElement x:Name="ProxyElement" Visibility="Collapsed"/>
 
             <!-- Car generators table -->
@@ -175,6 +176,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="The vehicle's location in the game world."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTemplateColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
@@ -196,6 +198,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="The vehicle's spawn direction in degrees.&#x0a;0 degrees is due north."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
@@ -207,6 +210,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="The vehicle's primary color.&#x0a;Use -1 for a random color. See carcols.dat for color definitions."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
@@ -218,6 +222,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="The vehicle's secondary color.&#x0a;Use -1 for a random color. See carcols.dat for color definitions."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
@@ -229,6 +234,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="Percent chance that the vehicle will spawn with an alarm."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
@@ -240,6 +246,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="Percent chance that the vehicle will spawn with locked doors."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
@@ -251,6 +258,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="Specifies whether the vehicle will spawn in the game world, effectively enabling or disabling the car generator."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridCheckBoxColumn.HeaderStyle>
                     </DataGridCheckBoxColumn>
@@ -262,6 +270,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="The game timer when the car is generated.&#x0a;If the vehicle is not spawning, try setting this to 0."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
@@ -274,6 +283,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="Forces the vehicle to spawn more readily.&#x0a;It is unclear whether this field has any effect in-game."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridCheckBoxColumn.HeaderStyle>
                     </DataGridCheckBoxColumn>
@@ -286,6 +296,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="The minimum time to wait before respawning the vehicle after it has been stolen.&#x0a;Setting this field does nothing as the game always waits 60000ms before re-spawning the vehicle."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
@@ -298,6 +309,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="The maximum time to wait before respawning the vehicle after it has been stolen.&#x0a;Setting this field does nothing as the game always waits 60000ms before re-spawning the vehicle."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
@@ -310,6 +322,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="Indicates whether the vehicle has been stolen and is waiting to re-spawn.&#x0a;Setting this field has no effect."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridCheckBoxColumn.HeaderStyle>
                     </DataGridCheckBoxColumn>
@@ -322,6 +335,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
@@ -334,6 +348,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
@@ -346,6 +361,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
@@ -358,6 +374,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
@@ -370,6 +387,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
@@ -382,6 +400,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
@@ -394,6 +413,7 @@
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
                                         Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
