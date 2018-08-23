@@ -47,8 +47,10 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
                     PopulateCarGeneratorsList();
                 }
                 else {
-                    m_metadata.PropertyChanged -= CarGenerators_PropertyChanged;
-                    m_metadata = null;
+                    if (m_metadata != null) {
+                        m_metadata.PropertyChanged -= CarGenerators_PropertyChanged;
+                        m_metadata = null;
+                    }
                     ClearCarGeneratorsList();
                 }
                 OnPropertyChanged();
@@ -105,21 +107,66 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
                 FileClose();
             }
 
-            if (!IsFileOpen) {
-                CurrentSaveData = SaveDataFile.Load(path);
-                MostRecentPath = path;
-                WindowTitle = "GTA3 Car Generators Editor - " + path;
-                StatusText = "File opened for edit.";
+            if (IsFileOpen) {
+                return;
             }
+
+            SaveDataFile saveData = LoadSaveData(path);
+            if (saveData == null) {
+                return;
+            }
+
+            CurrentSaveData = saveData;
+            MostRecentPath = path;
+            WindowTitle = "GTA3 Car Generators Editor - " + path;
+            StatusText = "File opened for edit.";
+        }
+
+        private SaveDataFile LoadSaveData(string path)
+        {
+            SaveDataFile saveData = null;
+            try {
+                saveData = SaveDataFile.Load(path);
+            }
+            catch (IOException ex) {
+                ShowErrorDialog(ex.Message);
+            }
+            catch (InvalidDataException ex) {
+                ShowErrorDialog(ex.Message);
+            }
+
+            return saveData;
         }
 
         private void FileSave(string path)
         {
-            CurrentSaveData.Store(path);
+            bool result = WriteSaveData(CurrentSaveData, path);
+            if (!result) {
+                return;
+            }
+
             MostRecentPath = path;
             WindowTitle = "GTA3 Car Generators Editor - " + path;
             StatusText = "File saved successfully.";
             IsFileModified = false;
+        }
+
+        private bool WriteSaveData(SaveDataFile saveData, string path)
+        {
+            bool result = false;
+
+            try {
+                saveData.Store(path);
+                result = true;
+            }
+            catch (IOException ex) {
+                ShowErrorDialog(ex.Message);
+            }
+            catch (InvalidDataException ex) {
+                ShowErrorDialog(ex.Message);
+            }
+
+            return result;
         }
 
         private void FileClose()
@@ -174,7 +221,10 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         private void ImportCarGeneratorsGTA3Save(string path)
         {
             // Load other file
-            SaveDataFile saveData = SaveDataFile.Load(path);
+            SaveDataFile saveData = LoadSaveData(path);
+            if (saveData == null) {
+                return;
+            }
 
             // Replace car generators
             CurrentSaveData.CarGenerators = saveData.CarGenerators;
@@ -204,13 +254,18 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         private void ExportCarGeneratorsGTA3Save(string path)
         {
             // Load other file
-            SaveDataFile saveData = SaveDataFile.Load(path);
+            SaveDataFile saveData = LoadSaveData(path);
+            if (saveData == null) {
+                return;
+            }
 
             // Replace car generators
             saveData.CarGenerators = CurrentSaveData.CarGenerators;
 
             // Store other file
-            saveData.Store(path);
+            if (!WriteSaveData(saveData, path)) {
+                return;
+            }
 
             // Show success message
             OnMessageBoxRequested(new MessageBoxEventArgs(
@@ -279,6 +334,15 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
                 filter: "CSV (comma-delimited) (*.csv)|*.csv|All Files (*.*)|*.*",
                 resultAction: resultAction));
         }
+
+        private void ShowErrorDialog(string message)
+        {
+            OnMessageBoxRequested(new MessageBoxEventArgs(
+                message,
+                "Error",
+                icon: MessageBoxImage.Error));
+        }
+
         #endregion
 
         #region Commands
