@@ -14,8 +14,6 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 {
     public class MainViewModel : ObservableObject
     {
-        // TODO: register property changed listener for metadata fields
-
         #region Private Fields
         private SaveDataFile m_currentSaveData;
         private ObservableCollection<CarGenerator> m_carGenerators;
@@ -45,9 +43,11 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
                 m_currentSaveData = value;
                 if (m_currentSaveData != null) {
                     m_metadata = m_currentSaveData.CarGenerators.CarGeneratorsInfo;
+                    m_metadata.PropertyChanged += CarGenerators_PropertyChanged;
                     PopulateCarGeneratorsList();
                 }
                 else {
+                    m_metadata.PropertyChanged -= CarGenerators_PropertyChanged;
                     m_metadata = null;
                     ClearCarGeneratorsList();
                 }
@@ -413,19 +413,19 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             // Register property changed listener on each new element
             if (e.NewItems != null) {
                 foreach (CarGenerator cg in e.NewItems) {
-                    cg.PropertyChanged += CarGenerator_PropertyChanged;
+                    cg.PropertyChanged += CarGenerators_PropertyChanged;
                 }
             }
 
             // Unregister property changed listener on each to-be-removed element
             if (e.OldItems != null) {
                 foreach (CarGenerator cg in e.OldItems) {
-                    cg.PropertyChanged -= CarGenerator_PropertyChanged;
+                    cg.PropertyChanged -= CarGenerators_PropertyChanged;
                 }
             }
         }
 
-        private void CarGenerator_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void CarGenerators_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             // Detect when a change was made to individual car generators
             IsFileModified = true;
