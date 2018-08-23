@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using WHampson.Gta3CarGenEditor.Events;
 using WHampson.Gta3CarGenEditor.ViewModels;
