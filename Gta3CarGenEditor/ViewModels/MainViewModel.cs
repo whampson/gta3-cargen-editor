@@ -13,14 +13,20 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 {
     public class MainViewModel : ObservableObject
     {
+        // TODO: register property changed listener for metadata fields
+
+        #region Private Fields
         private SaveDataFile m_currentSaveData;
         private ObservableCollection<CarGenerator> m_carGenerators;
+        private CarGeneratorsInfo m_metadata;
         private string m_mostRecentPath;
         private bool m_isShowingUnusedFields;
         private bool m_isFileModified;
         private string m_windowTitle;
         private string m_statusText;
+        #endregion
 
+        #region Constructors
         public MainViewModel()
         {
             m_carGenerators = new ObservableCollection<CarGenerator>();
@@ -28,6 +34,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             m_windowTitle = "GTA3 Car Generator Editor";
             m_statusText = "No file opened.";
         }
+        #endregion
 
         #region Public Properties
         public SaveDataFile CurrentSaveData
@@ -35,6 +42,14 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             get { return m_currentSaveData; }
             set {
                 m_currentSaveData = value;
+                if (m_currentSaveData != null) {
+                    m_metadata = m_currentSaveData.CarGenerators.CarGeneratorsInfo;
+                    PopulateCarGeneratorsList();
+                }
+                else {
+                    m_metadata = null;
+                    ClearCarGeneratorsList();
+                }
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(IsFileOpen));
             }
@@ -91,7 +106,6 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
             if (!IsFileOpen) {
                 CurrentSaveData = SaveDataFile.Load(path);
-                PopulateCarGeneratorsList();
                 MostRecentPath = path;
                 WindowTitle = "GTA3 Car Generators Editor - " + path;
                 StatusText = "File opened for edit.";
@@ -119,7 +133,6 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
         private void DoFileClose()
         {
-            ClearCarGeneratorsList();
             CurrentSaveData = null;
             IsFileModified = false;
             WindowTitle = "GTA3 Car Generators Editor";
@@ -348,10 +361,10 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
         public ICommand EditMetadataCommand
         {
-            // TODO: create dialog
             get {
                 return new RelayCommand(
-                    () => OnMessageBoxRequested(new MessageBoxEventArgs("Edit metadata")),
+                    () => OnEditMetadataDialogRequested(
+                        new MetadataDialogEventArgs(m_metadata)),
                     () => IsFileOpen);
             }
         }
@@ -478,17 +491,21 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
         #region Custom Events
         public event EventHandler<MessageBoxEventArgs> MessageBoxRequested;
-
         protected void OnMessageBoxRequested(MessageBoxEventArgs e)
         {
             MessageBoxRequested?.Invoke(this, e);
         }
 
         public event EventHandler<FileDialogEventArgs> FileDialogRequested;
-
         protected void OnFileDialogRequested(FileDialogEventArgs e)
         {
             FileDialogRequested?.Invoke(this, e);
+        }
+
+        public event EventHandler<MetadataDialogEventArgs> EditMetadataDialogRequested;
+        protected void OnEditMetadataDialogRequested(MetadataDialogEventArgs e)
+        {
+            EditMetadataDialogRequested?.Invoke(this, e);
         }
         #endregion
     }
