@@ -9,6 +9,8 @@ using WHampson.Gta3CarGenEditor.Properties;
 
 namespace WHampson.Gta3CarGenEditor.Models
 {
+    // TODO: support variable amount of padding blocks
+
     /// <summary>
     /// Represents a Grand Theft Auto III save data file.
     /// </summary>
