@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using WHampson.Gta3CarGenEditor.Events;
 using WHampson.Gta3CarGenEditor.ViewModels;
 
@@ -43,7 +44,7 @@ namespace WHampson.Gta3CarGenEditor.Views
             w.ShowDialog();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
             // Close current file
             if (ViewModel.IsFileOpen) {
