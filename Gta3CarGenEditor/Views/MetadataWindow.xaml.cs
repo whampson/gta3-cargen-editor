@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using WHampson.Gta3CarGenEditor.Events;
 using WHampson.Gta3CarGenEditor.ViewModels;
 
@@ -40,6 +41,23 @@ namespace WHampson.Gta3CarGenEditor.Views
                 UpdateBindingSources();
             }
             Close();
+        }
+
+        private void TextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (sender is TextBox txt) {
+                txt.SelectAll();
+            }
+        }
+
+        private void TextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is TextBox txt) {
+                if (!txt.IsKeyboardFocusWithin) {
+                    e.Handled = true;
+                    txt.Focus();
+                }
+            }
         }
     }
 }
