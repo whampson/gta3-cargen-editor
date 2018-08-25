@@ -8,13 +8,19 @@ namespace WHampson.Gta3CarGenEditor.Models
 {
     public class CarGeneratorsData : SerializableObject
     {
+        /// <summary>
+        /// The number of car generators stored in a GTA3 save.
+        /// This value cannot be changed as it is imposed by the GTA3 executable.
+        /// </summary>
+        public const int NumberOfCarGenerators = 160;
+
         private CarGeneratorsInfo m_carGeneratorsInfo;
         private CarGenerator[] m_carGeneratorsArray;
 
         public CarGeneratorsData()
         {
             m_carGeneratorsInfo = new CarGeneratorsInfo();
-            m_carGeneratorsArray = new CarGenerator[0];
+            m_carGeneratorsArray = new CarGenerator[NumberOfCarGenerators];
         }
 
         public CarGeneratorsInfo CarGeneratorsInfo
@@ -48,7 +54,7 @@ namespace WHampson.Gta3CarGenEditor.Models
 
                 // Create car generators array
                 carGenSize = r.ReadInt32();
-                m_carGeneratorsArray = new CarGenerator[carGenSize / CarGenerator.SizeOfCarGenerator];
+                m_carGeneratorsArray = new CarGenerator[NumberOfCarGenerators];
                 totalBytesRead += 4;
 
                 // Read car generators array
