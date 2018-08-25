@@ -79,11 +79,35 @@ namespace WHampson.Gta3CarGenEditor.Helpers
         }
 
         /// <summary>
-        /// Creates a <see cref="CarGenerator"/> object from a row in
-        /// the CSV file.
+        /// Writes an array of <see cref="CarGenerator"/>s to a CSV file.
         /// </summary>
-        /// <param name="fields"></param>
-        /// <returns></returns>
+        /// <param name="carGenerators">The car generators to write.</param>
+        /// <param name="path">the path to the CSV file.</param>
+        public static void Write(CarGenerator[] carGenerators, string path)
+        {
+            using (StreamWriter s = new StreamWriter(path)) {
+                s.WriteLine(CreateCsvLine(ColumnNames));
+
+                foreach (CarGenerator carGen in carGenerators) {
+                    string[] fields = SerializeCarGenerator(carGen);
+                    s.WriteLine(CreateCsvLine(fields));
+                }
+            }
+        }
+
+        private static string CreateCsvLine(string[] fields)
+        {
+            string line = "";
+            for (int i = 0; i < fields.Length; i++) {
+                line += fields[i];
+                if (i < fields.Length - 1) {
+                    line += ",";
+                }
+            }
+
+            return line;
+        }
+
         private static CarGenerator CreateCarGenerator(string[] fields)
         {
             int columnCount = fields.Length;
@@ -133,6 +157,36 @@ namespace WHampson.Gta3CarGenEditor.Helpers
                 Unknown40 = (float) parsedValues[21],
                 Unknown44 = (float) parsedValues[22],
             };
+        }
+
+        private static string[] SerializeCarGenerator(CarGenerator carGen)
+        {
+            string[] data = new string[NumColumns];
+            data[0] = ((uint) carGen.Model).ToString();
+            data[1] = carGen.Location.X.ToString();
+            data[2] = carGen.Location.Y.ToString();
+            data[3] = carGen.Location.Z.ToString();
+            data[4] = carGen.Heading.ToString();
+            data[5] = carGen.Color1.ToString();
+            data[6] = carGen.Color2.ToString();
+            data[7] = carGen.ForceSpawn.ToString();
+            data[8] = carGen.AlarmChance.ToString();
+            data[9] = carGen.LockedChance.ToString();
+            data[10] = carGen.MinSpawnDelay.ToString();
+            data[11] = carGen.MaxSpawnDelay.ToString();
+            data[12] = carGen.Timer.ToString();
+            data[13] = carGen.Unknown24.ToString();
+            data[14] = carGen.HasRecentlyBeenStolen.ToString();
+            data[15] = carGen.SpawnCount.ToString();
+            data[16] = carGen.Unknown2C.ToString();
+            data[17] = carGen.Unknown30.ToString();
+            data[18] = carGen.Unknown34.ToString();
+            data[19] = carGen.Unknown38.ToString();
+            data[20] = carGen.Unknown3C.ToString();
+            data[21] = carGen.Unknown40.ToString();
+            data[22] = carGen.Unknown44.ToString();
+
+            return data;
         }
 
         private static bool TryParseType(string s, Type t, out object result)
