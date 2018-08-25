@@ -37,6 +37,7 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -65,6 +66,7 @@
     <Compile Include="Events\DialogCloseEventArgs.cs" />
     <Compile Include="Events\FileDialogEventArgs.cs" />
     <Compile Include="Events\MessageBoxEventArgs.cs" />
+    <Compile Include="Helpers\CarGeneratorCsvHelper.cs" />
     <Compile Include="Helpers\MessageBoxEx.cs" />
     <Compile Include="Events\MetadataDialogEventArgs.cs" />
     <Compile Include="Helpers\ObservableObject.cs" />
