@@ -218,6 +218,11 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             return count;
         }
 
+        private void UpdateNumberOfCarGenerators()
+        {
+            m_metadata.NumberOfCarGenerators = GetNumberOfCarGenerators();
+        }
+
         private void ImportCarGeneratorsGTA3Save(string path)
         {
             // Load other file
@@ -228,12 +233,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
             // Replace car generators
             CurrentSaveData.CarGenerators = saveData.CarGenerators;
-
-            // Show success message
-            OnMessageBoxRequested(new MessageBoxEventArgs(
-                "Car generators imported successfully!",
-                "Success",
-                icon: MessageBoxImage.Information));
+            ShowImportSuccessDialog();
 
             // Refresh table
             ClearCarGeneratorsList();
@@ -246,9 +246,47 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
         private void ImportCarGeneratorsCSV(string path)
         {
-            // TODO: implement
-            OnMessageBoxRequested(new MessageBoxEventArgs("Import cargens CSV: " + path));
+            // Read car generators from CSV
+            CarGenerator[] imported;
+            try {
+                imported = CarGeneratorCsvHelper.Read(path);
+            }
+            catch (IOException ex) {
+                ShowErrorDialog(ex.Message);
+                return;
+            }
+            catch (InvalidDataException ex) {
+                ShowErrorDialog(ex.Message);
+                return;
+            }
+
+            // Ensure number of car generators equals the game's expected amount
+            int underBy = CarGeneratorsData.NumberOfCarGenerators - imported.Length;
+            Array.Resize(ref imported, CarGeneratorsData.NumberOfCarGenerators);
+            if (underBy > 0) {
+                // Fill padded values with default car generator
+                for (int i = 0; i < underBy; i++) {
+                    imported[imported.Length - i - 1] = new CarGenerator();
+                }
+            }
+            else if (underBy < 0) {
+                ShowImportCountExceededDialog(Math.Abs(underBy));
+            }
+
+            // Replace car generators
+            CurrentSaveData.CarGenerators.CarGeneratorsArray = imported;
+            ShowImportSuccessDialog();
+
+            // Refresh table
+            ClearCarGeneratorsList();
+            PopulateCarGeneratorsList();
+
+            // Update metadata
+            UpdateNumberOfCarGenerators();
+
+            // Update status
             StatusText = "Imported car generators from " + path;
+            IsFileModified = true;
         }
 
         private void ExportCarGeneratorsGTA3Save(string path)
@@ -259,28 +297,33 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
                 return;
             }
 
-            // Replace car generators
+            // Replace car generators in other file and store file
             saveData.CarGenerators = CurrentSaveData.CarGenerators;
-
-            // Store other file
             if (!WriteSaveData(saveData, path)) {
                 return;
             }
 
-            // Show success message
-            OnMessageBoxRequested(new MessageBoxEventArgs(
-                "Car generators exported successfully!",
-                "Success",
-                icon: MessageBoxImage.Information));
-
-            // Update status
+            ShowExportSuccessDialog();
             StatusText = "Exported car generators to " + path;
         }
 
         private void ExportCarGeneratorsCSV(string path)
         {
-            // TODO: implement
-            OnMessageBoxRequested(new MessageBoxEventArgs("Export cargens CSV: " + path));
+            CarGenerator[] data = CurrentSaveData.CarGenerators.CarGeneratorsArray;
+
+            try {
+                CarGeneratorCsvHelper.Write(data, path);
+            }
+            catch (IOException ex) {
+                ShowErrorDialog(ex.Message);
+                return;
+            }
+            catch (InvalidDataException ex) {
+                ShowErrorDialog(ex.Message);
+                return;
+            }
+
+            ShowExportSuccessDialog();
             StatusText = "Exported car generators to " + path;
         }
 
@@ -343,6 +386,57 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
                 icon: MessageBoxImage.Error));
         }
 
+        private void ShowImportSuccessDialog()
+        {
+            OnMessageBoxRequested(new MessageBoxEventArgs(
+                "Car generators imported successfully!",
+                "Success",
+                icon: MessageBoxImage.Information));
+        }
+
+        private void ShowExportSuccessDialog()
+        {
+            OnMessageBoxRequested(new MessageBoxEventArgs(
+                "Car generators exported successfully!",
+                "Success",
+                icon: MessageBoxImage.Information));
+        }
+
+        private void ShowImportInfoDialog()
+        {
+            OnMessageBoxRequested(new MessageBoxEventArgs(
+                "Select the file you want to import car generators from. The current set of car generators will be overwritten.",
+                "Import Car Generators",
+                icon: MessageBoxImage.Information));
+        }
+
+        private void ShowExportInfoDialog()
+        {
+            OnMessageBoxRequested(new MessageBoxEventArgs(
+                "Select the file you want to export the current set of car generators to. The car generators in that file will be overwritten.",
+                "Export Car Generators",
+                icon: MessageBoxImage.Information));
+        }
+
+        private void ShowImportCountExceededDialog(int overBy)
+        {
+            string msg = string.Format("The number of car generators imported exceeds the maximum amount by {0}. The extra car generators will be omitted.", overBy);
+            OnMessageBoxRequested(new MessageBoxEventArgs(
+                msg,
+                "Limit Exceeded",
+                icon: MessageBoxImage.Warning));
+        }
+
+        private void ShowAboutDialog()
+        {
+            // TODO: finish text
+            OnMessageBoxRequested(new MessageBoxEventArgs(
+                "About this app...",
+                "About",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information));
+        }
+
         #endregion
 
         #region Commands
@@ -381,18 +475,14 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         {
             get {
                 return new RelayCommand<Action<bool?, FileDialogEventArgs>>(
-                    (x) => ExecuteImportToSaveDataCommand(),
+                    (x) => ExecuteImportFromSaveDataCommand(),
                     (x) => IsFileOpen);
             }
         }
 
-        private void ExecuteImportToSaveDataCommand()
+        private void ExecuteImportFromSaveDataCommand()
         {
-            OnMessageBoxRequested(new MessageBoxEventArgs(
-                "Select the file you want to import car generators from. The current set of car generators will be overwritten.", 
-                "Import Car Generators",
-                icon: MessageBoxImage.Information));
-
+            ShowImportInfoDialog();
             ShowGTA3SaveDataOpenDialog(ImportCarGeneratorsGTA3SaveDialog_ResultAction);
         }
 
@@ -400,9 +490,15 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         {
             get {
                 return new RelayCommand<Action<bool?, FileDialogEventArgs>>(
-                    (x) => ShowCSVOpenDialog(ImportExportCarGeneratorsCSVDialog_ResultAction),
+                    (x) => ExecuteImportFromCSVCommand(),
                     (x) => IsFileOpen);
             }
+        }
+
+        private void ExecuteImportFromCSVCommand()
+        {
+            ShowImportInfoDialog();
+            ShowCSVOpenDialog(ImportExportCarGeneratorsCSVDialog_ResultAction);
         }
 
         public ICommand ExportToSaveDataCommand
@@ -414,11 +510,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
         private void ExecuteExportToSaveDataCommand()
         {
-            OnMessageBoxRequested(new MessageBoxEventArgs(
-                "Select the file you want to export the current set of car generators to. The car generators in that file will be overwritten.",
-                "Export Car Generators",
-                icon: MessageBoxImage.Information));
-
+            ShowExportInfoDialog();
             ShowGTA3SaveDataOpenDialog(ExportCarGeneratorsGTA3SaveDialog_ResultAction);
         }
 
@@ -458,16 +550,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
         public ICommand ShowAboutDialogCommand
         {
-            // TODO: finish text
-            get {
-                return new RelayCommand(
-                    () => OnMessageBoxRequested(
-                        new MessageBoxEventArgs(
-                            "About this app...",
-                            "About",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information)));
-            }
+            get { return new RelayCommand(ShowAboutDialog); }
         }
         #endregion
 
@@ -496,7 +579,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
             // Update car generator count in metadata
             if (e.PropertyName == nameof(CarGenerator.Model)) {
-                m_metadata.NumberOfCarGenerators = GetNumberOfCarGenerators();
+                UpdateNumberOfCarGenerators();
             }
         }
 
