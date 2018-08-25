@@ -18,14 +18,14 @@ namespace WHampson.Gta3CarGenEditor.Models
 
         public float Y
         {
-            get { return m_x; }
-            set { m_x = value; OnPropertyChanged(); }
+            get { return m_y; }
+            set { m_y = value; OnPropertyChanged(); }
         }
 
         public float Z
         {
-            get { return m_x; }
-            set { m_x = value; OnPropertyChanged(); }
+            get { return m_y; }
+            set { m_z = value; OnPropertyChanged(); }
         }
 
         protected override long DeserializeObject(Stream stream)
