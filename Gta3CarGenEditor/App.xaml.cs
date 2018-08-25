@@ -25,7 +25,7 @@ namespace WHampson.Gta3CarGenEditor
 
             MessageBoxEx.Show(
                 MainWindow,
-                string.Format("A fatal exception has occurred. The application will be terminated.\n\n{0}: {1}",
+                string.Format("A fatal exception has occurred. The application will be terminated.\n\n{0}: {1}\n\nPlease contact thehambone93@gmail.com about this error.",
                     e.Exception.GetType().Name, e.Exception.Message),
                 "Unhandled Exception",
                 MessageBoxButton.OK,
