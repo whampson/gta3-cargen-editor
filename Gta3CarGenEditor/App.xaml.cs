@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Threading;
 using WHampson.Gta3CarGenEditor.Helpers;
 using WHampson.Gta3CarGenEditor.Views;
@@ -30,7 +31,8 @@ namespace WHampson.Gta3CarGenEditor
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
 
-            Current.Shutdown(FatalErrorExitCode);
+            // Kill the process to bypass shutdown hooks
+            Process.GetCurrentProcess().Kill();
         }
     }
 }
