@@ -123,8 +123,9 @@ namespace WHampson.Gta3CarGenEditor.Helpers
 
             // Check model ID
             uint model = (uint) parsedValues[0];
-            if (model < VehicleModelMin || model > VehicleModelMax) {
-                throw new InvalidDataException("Invalid vehicle model ID.");
+            if (model != 0 && (model < VehicleModelMin || model > VehicleModelMax)) {
+                string msg = string.Format("Invalid vehicle model ID ({0}).", model);
+                throw new InvalidDataException(msg);
             }
 
             // Create CarGenerator object
