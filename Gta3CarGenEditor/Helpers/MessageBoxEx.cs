@@ -65,6 +65,10 @@ namespace WHampson.Gta3CarGenEditor.Helpers
 
         public static MessageBoxResult Show(Window owner, string text)
         {
+            if (owner == null) {
+                return Show(text);
+            }
+
             _owner = new WindowInteropHelper(owner).Handle;
             Initialize();
             return MessageBox.Show(owner, text);
@@ -72,6 +76,10 @@ namespace WHampson.Gta3CarGenEditor.Helpers
 
         public static MessageBoxResult Show(Window owner, string text, string caption)
         {
+            if (owner == null) {
+                return Show(text, caption);
+            }
+
             _owner = new WindowInteropHelper(owner).Handle;
             Initialize();
             return MessageBox.Show(owner, text, caption);
@@ -79,6 +87,10 @@ namespace WHampson.Gta3CarGenEditor.Helpers
 
         public static MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButton buttons)
         {
+            if (owner == null) {
+                return Show(text, caption, buttons);
+            }
+
             _owner = new WindowInteropHelper(owner).Handle;
             Initialize();
             return MessageBox.Show(owner, text, caption, buttons);
@@ -86,6 +98,10 @@ namespace WHampson.Gta3CarGenEditor.Helpers
 
         public static MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButton buttons, MessageBoxImage icon)
         {
+            if (owner == null) {
+                return Show(text, caption, buttons, icon);
+            }
+
             _owner = new WindowInteropHelper(owner).Handle;
             Initialize();
             return MessageBox.Show(owner, text, caption, buttons, icon);
@@ -93,6 +109,10 @@ namespace WHampson.Gta3CarGenEditor.Helpers
 
         public static MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButton buttons, MessageBoxImage icon, MessageBoxResult defResult)
         {
+            if (owner == null) {
+                return Show(text, caption, buttons, icon, defResult);
+            }
+
             _owner = new WindowInteropHelper(owner).Handle;
             Initialize();
             return MessageBox.Show(owner, text, caption, buttons, icon, defResult);
@@ -100,6 +120,10 @@ namespace WHampson.Gta3CarGenEditor.Helpers
 
         public static MessageBoxResult Show(Window owner, string text, string caption, MessageBoxButton buttons, MessageBoxImage icon, MessageBoxResult defResult, MessageBoxOptions options)
         {
+            if (owner == null) {
+                return Show(text, caption, buttons, icon, defResult, options);
+            }
+
             _owner = new WindowInteropHelper(owner).Handle;
             Initialize();
             return MessageBox.Show(owner, text, caption, buttons, icon, defResult, options);
