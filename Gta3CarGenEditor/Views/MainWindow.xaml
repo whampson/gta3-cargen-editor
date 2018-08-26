@@ -125,6 +125,9 @@
                               IsChecked="{Binding IsShowingUnusedFields}"/>
                 </MenuItem>
                 <MenuItem Header="_Help">
+                    <MenuItem Command="{Binding CheckForUpdatesCommand}"
+                              Header="Check for _Updates..."/>
+                    <Separator/>
                     <MenuItem Command="{Binding ShowAboutDialogCommand}"
                               Header="_About"
                               InputGestureText="F1"/>

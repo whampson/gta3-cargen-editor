@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
@@ -546,6 +547,14 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         public ICommand ShowUnusedFieldsCommand
         {
             get { return new RelayCommand(() => IsShowingUnusedFields = !IsShowingUnusedFields); }
+        }
+
+        public ICommand CheckForUpdatesCommand
+        {
+            get {
+                return new RelayCommand(
+                    () => Process.Start("https://github.com/whampson/gta3-cargen-editor/releases"));
+            }
         }
 
         public ICommand ShowAboutDialogCommand
