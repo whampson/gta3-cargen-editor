@@ -1,10 +1,11 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using WHampson.Gta3CarGenEditor.Helpers;
 
 namespace WHampson.Gta3CarGenEditor.Models
 {
-    public class Vector3d : SerializableObject
+    public class Vector3d : SerializableObject, IComparable, IComparable<Vector3d>
     {
         private float m_x;
         private float m_y;
@@ -24,8 +25,13 @@ namespace WHampson.Gta3CarGenEditor.Models
 
         public float Z
         {
-            get { return m_y; }
+            get { return m_z; }
             set { m_z = value; OnPropertyChanged(); }
+        }
+
+        public float Magnitude
+        {
+            get { return (float) Math.Sqrt((m_x * m_x) + (m_y * m_y) + (m_z * m_z)); }
         }
 
         protected override long DeserializeObject(Stream stream)
@@ -50,6 +56,22 @@ namespace WHampson.Gta3CarGenEditor.Models
             }
 
             return stream.Position - start;
+        }
+
+        public int CompareTo(object obj)
+        {
+            return CompareTo(obj as Vector3d);
+        }
+
+        public int CompareTo(Vector3d other)
+        {
+            if (other == null || Magnitude > other.Magnitude) {
+                return 1;
+            }
+            else if (Magnitude < other.Magnitude) {
+                return -1;
+            }
+            return 0;
         }
 
         public override string ToString()
