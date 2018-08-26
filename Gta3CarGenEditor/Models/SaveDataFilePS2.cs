@@ -44,8 +44,8 @@ namespace WHampson.Gta3CarGenEditor.Models
                     m_stats,
                     m_streaming,
                     m_pedTypes);
-                ReadDataBlock(stream, m_padding0);
-                ReadDataBlock(stream, m_padding1);
+                ReadPadding(stream);
+                r.ReadInt32();      // Checksum (ignored)
             }
 
             DeserializeDataBlocks();
@@ -83,8 +83,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                     m_stats,
                     m_streaming,
                     m_pedTypes);
-                WriteDataBlock(stream, m_padding0);
-                WriteDataBlock(stream, m_padding1);
+                WritePadding(stream);
                 w.Write(GetChecksum(stream));
             }
 

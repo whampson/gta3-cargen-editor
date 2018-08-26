@@ -9,8 +9,6 @@ using WHampson.Gta3CarGenEditor.Properties;
 
 namespace WHampson.Gta3CarGenEditor.Models
 {
-    // TODO: support variable amount of padding blocks,
-    //       max padding block size is 50000
     // TODO: ensure byte count is correct when (de)serialized
     //       should be a constant for each file type
 
@@ -49,8 +47,7 @@ namespace WHampson.Gta3CarGenEditor.Models
         protected DataBlock m_stats;
         protected DataBlock m_streaming;
         protected DataBlock m_pedTypes;
-        protected DataBlock m_padding0;
-        protected DataBlock m_padding1;
+        protected DataBlock[] m_padding;
 
         protected SaveDataFile(GamePlatform fileType)
         {
@@ -78,8 +75,7 @@ namespace WHampson.Gta3CarGenEditor.Models
             m_stats                 = new DataBlock();
             m_streaming             = new DataBlock();
             m_pedTypes              = new DataBlock() { Tag = PedTypesTag };
-            m_padding0              = new DataBlock();
-            m_padding1              = new DataBlock();
+            m_padding               = new DataBlock[0];
         }
 
         /// <summary>
@@ -218,6 +214,20 @@ namespace WHampson.Gta3CarGenEditor.Models
             return (int) (stream.Position - start);
         }
 
+        protected int ReadPadding(Stream stream)
+        {
+            int count = CountRemainingBlocks(stream);
+            int bytesRead = 0;
+
+            m_padding = new DataBlock[count];
+            for (int i = 0; i < count; i++) {
+                m_padding[i] = new DataBlock();
+                bytesRead += ReadDataBlock(stream, m_padding[i]);
+            }
+
+            return bytesRead;
+        }
+
         /// <summary>
         /// Writes the Data field of a <see cref="DataBlock"/> to
         /// a stream at the current position in accordance with the
@@ -311,6 +321,17 @@ namespace WHampson.Gta3CarGenEditor.Models
             return (int) (stream.Position - start);
         }
 
+        protected int WritePadding(Stream stream)
+        {
+            int bytesWritten = 0;
+
+            foreach (DataBlock blk in m_padding) {
+                bytesWritten += WriteDataBlock(stream, blk);
+            }
+
+            return bytesWritten;
+        }
+
         /// <summary>
         /// Computes the size of a <see cref="DataBlock"/> when serialized.
         /// </summary>
@@ -327,6 +348,24 @@ namespace WHampson.Gta3CarGenEditor.Models
             }
 
             return size;
+        }
+
+        protected int CountRemainingBlocks(Stream stream)
+        {
+            int count = 0;
+            long mark = stream.Position;
+
+            using (BinaryReader r = new BinaryReader(stream, Encoding.Default, true)) {
+                int blockSize = r.ReadInt32();
+                while (r.BaseStream.Length - r.BaseStream.Position - 1 > blockSize) {
+                    count++;
+                    r.BaseStream.Position += blockSize;
+                    blockSize = r.ReadInt32();
+                }
+            }
+
+            stream.Position = mark;
+            return count;
         }
 
         /// <summary>

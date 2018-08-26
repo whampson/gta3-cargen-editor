@@ -8,6 +8,7 @@ namespace WHampson.Gta3CarGenEditor.Models
     /// </summary>
     public class SaveDataFilePC : SaveDataFile
     {
+        private const int SizeOfFile = 0x3145C;
         private const int SizeOfSimpleVars = 0xBC;
 
         public SaveDataFilePC()
@@ -40,8 +41,8 @@ namespace WHampson.Gta3CarGenEditor.Models
                 ReadBigDataBlock(stream, m_stats);
                 ReadBigDataBlock(stream, m_streaming);
                 ReadBigDataBlock(stream, m_pedTypes);
-                ReadDataBlock(stream, m_padding0);
-                ReadDataBlock(stream, m_padding1);
+                ReadPadding(stream);
+                r.ReadInt32();      // Checksum (ignored)
             }
 
             DeserializeDataBlocks();
@@ -75,8 +76,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                 WriteBigDataBlock(stream, m_stats);
                 WriteBigDataBlock(stream, m_streaming);
                 WriteBigDataBlock(stream, m_pedTypes);
-                WriteDataBlock(stream, m_padding0);
-                WriteDataBlock(stream, m_padding1);
+                WritePadding(stream);
                 w.Write(GetChecksum(stream));
             }
 
