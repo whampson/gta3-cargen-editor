@@ -8,7 +8,6 @@ namespace WHampson.Gta3CarGenEditor.Models
     /// </summary>
     public class SaveDataFilePC : SaveDataFile
     {
-        private const int SizeOfFile = 0x3145C;
         private const int SizeOfSimpleVars = 0xBC;
 
         public SaveDataFilePC()

@@ -9,9 +9,6 @@ using WHampson.Gta3CarGenEditor.Properties;
 
 namespace WHampson.Gta3CarGenEditor.Models
 {
-    // TODO: ensure byte count is correct when (de)serialized
-    //       should be a constant for each file type
-
     /// <summary>
     /// Represents a Grand Theft Auto III save data file.
     /// </summary>
