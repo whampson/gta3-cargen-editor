@@ -47,6 +47,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
                     m_metadata = m_currentSaveData.CarGenerators.CarGeneratorsInfo;
                     m_metadata.PropertyChanged += CarGenerators_PropertyChanged;
                     PopulateCarGeneratorsList();
+                    OnResetRowOrderRequested();
                 }
                 else {
                     if (m_metadata != null) {
@@ -240,6 +241,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             // Refresh table
             ClearCarGeneratorsList();
             PopulateCarGeneratorsList();
+            OnResetRowOrderRequested();
 
             // Update status
             StatusText = "Imported car generators from " + path;
@@ -282,6 +284,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             // Refresh table
             ClearCarGeneratorsList();
             PopulateCarGeneratorsList();
+            OnResetRowOrderRequested();
 
             // Update metadata
             UpdateNumberOfCarGenerators();
@@ -457,7 +460,6 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             return string.Format("{0} (build {1})",
                 vInfo.ProductVersion, vInfo.FilePrivatePart);
         }
-
         #endregion
 
         #region Commands
@@ -567,6 +569,11 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         public ICommand ShowUnusedFieldsCommand
         {
             get { return new RelayCommand(() => IsShowingUnusedFields = !IsShowingUnusedFields); }
+        }
+
+        public ICommand ResetRowOrderCommand
+        {
+            get { return new RelayCommand(OnResetRowOrderRequested); }
         }
 
         public ICommand CheckForUpdatesCommand
@@ -700,6 +707,12 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         protected void OnEditMetadataDialogRequested(MetadataDialogEventArgs e)
         {
             EditMetadataDialogRequested?.Invoke(this, e);
+        }
+
+        public event EventHandler<EventArgs> ResetRowOrderRequested;
+        protected void OnResetRowOrderRequested()
+        {
+            ResetRowOrderRequested?.Invoke(this, new EventArgs());
         }
         #endregion
     }

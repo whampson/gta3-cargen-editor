@@ -1,5 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using WHampson.Gta3CarGenEditor.Events;
 using WHampson.Gta3CarGenEditor.ViewModels;
 
@@ -17,12 +20,24 @@ namespace WHampson.Gta3CarGenEditor.Views
             ViewModel.MessageBoxRequested += ViewModel_MessageBoxRequested;
             ViewModel.FileDialogRequested += ViewModel_FileDialogRequested;
             ViewModel.EditMetadataDialogRequested += ViewModel_EditMetadataDialogRequested;
+            ViewModel.ResetRowOrderRequested += ViewModel_ResetRowOrderRequested;
         }
 
         public MainViewModel ViewModel
         {
             get { return (MainViewModel) DataContext; }
             set { DataContext = value; }
+        }
+
+        private void ViewModel_ResetRowOrderRequested(object sender, EventArgs e)
+        {
+            ICollectionView view = CollectionViewSource.GetDefaultView(dataGrid.ItemsSource);
+            if (view != null) {
+                view.SortDescriptions.Clear();
+                foreach (DataGridColumn column in dataGrid.Columns) {
+                    column.SortDirection = null;
+                }
+            }
         }
 
         private void ViewModel_MessageBoxRequested(object sender, MessageBoxEventArgs e)

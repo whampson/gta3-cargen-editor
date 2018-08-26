@@ -60,6 +60,8 @@
                     Key="T" Modifiers="Ctrl"/>
         <KeyBinding Command="{Binding ShowUnusedFieldsCommand}"
                     Key="U" Modifiers="Ctrl"/>
+        <KeyBinding Command="{Binding ResetRowOrderCommand}"
+                    Key="R" Modifiers="Ctrl"/>
         <KeyBinding Command="{Binding ShowAboutDialogCommand}"
                     Key="F1"/>
     </Window.InputBindings>
@@ -123,6 +125,10 @@
                               Header="Show _Unused Fields"
                               InputGestureText="Ctrl+U"
                               IsChecked="{Binding IsShowingUnusedFields}"/>
+                    <Separator/>
+                    <MenuItem Command="{Binding ResetRowOrderCommand}"
+                              Header="_Reset Row Order"
+                              InputGestureText="Ctrl+R"/>
                 </MenuItem>
                 <MenuItem Header="_Help">
                     <MenuItem Command="{Binding CheckForUpdatesCommand}"
@@ -140,10 +146,11 @@
             <!-- Car generators table -->
             <DataGrid ItemsSource="{Binding CarGeneratorsList}"
                       AutoGenerateColumns="False"
-                      CanUserReorderColumns="True"
+                      CanUserReorderColumns="False"
                       CanUserSortColumns="True"
                       CanUserAddRows="False"
-                      CanUserDeleteRows="False">
+                      CanUserDeleteRows="False"
+                      Name="dataGrid">
 
                 <DataGrid.Columns>
                     <!-- Model ID -->
@@ -174,7 +181,7 @@
                     </DataGridTemplateColumn>
 
                     <!-- Location -->
-                    <DataGridTemplateColumn Header="Location">
+                    <DataGridTemplateColumn Header="Location" CanUserSort="True" SortMemberPath="Location">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
