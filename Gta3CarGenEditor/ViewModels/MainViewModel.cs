@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using WHampson.Gta3CarGenEditor.Events;
@@ -119,7 +120,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
             CurrentSaveData = saveData;
             MostRecentPath = path;
-            WindowTitle = "GTA3 Car Generators Editor - " + path;
+            WindowTitle = "GTA3 Car Generator Editor - " + path;
             StatusText = "File opened for edit.";
         }
 
@@ -147,7 +148,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             }
 
             MostRecentPath = path;
-            WindowTitle = "GTA3 Car Generators Editor - " + path;
+            WindowTitle = "GTA3 Car Generator Editor - " + path;
             StatusText = "File saved successfully.";
             IsFileModified = false;
         }
@@ -430,12 +431,31 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
         private void ShowAboutDialog()
         {
-            // TODO: finish text
+            string msg = string.Format("GTA3 Car Generator Editor\n" +
+                "by W. Hampson (a.k.a. thehambone)\n" +
+                "Version: {0}\n\n" +
+                "This tool allows you to edit the parked car generators in a GTA3 savegame. You can control the car that spawns, it's location, color, and more! You can also transfer car generators between saves on any platform.\n\n" +
+                "Special thanks to GTAKid667 for providing feedback and support during development.\n\n" +
+                "Copyright (C) 2018 W. Hampson. All rights reserved.",
+                GetVersionString());
+
             OnMessageBoxRequested(new MessageBoxEventArgs(
-                "About this app...",
+                msg,
                 "About",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information));
+        }
+
+        private string GetVersionString()
+        {
+            Assembly asm = Assembly.GetExecutingAssembly();
+            if (asm == null) {
+                return "(not available)";
+            }
+
+            FileVersionInfo vInfo = FileVersionInfo.GetVersionInfo(asm.Location);
+            return string.Format("{0} (build {1})",
+                vInfo.ProductVersion, vInfo.FilePrivatePart);
         }
 
         #endregion
