@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using WHampson.Gta3CarGenEditor.Helpers;
+using WHampson.Gta3CarGenEditor.Properties;
 
 namespace WHampson.Gta3CarGenEditor.Converters
 {
@@ -32,7 +33,7 @@ namespace WHampson.Gta3CarGenEditor.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotSupportedException("ConvertBack is not supported for this converter.");
+            throw new NotSupportedException(Resources.ConvertBackNotSupportedMessage);
         }
     }
 }

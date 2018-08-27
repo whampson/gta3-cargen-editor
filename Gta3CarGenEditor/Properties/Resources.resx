@@ -117,6 +117,75 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutDialogTitle" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AppAuthor" xml:space="preserve">
+    <value>Created by W. Hampson (a.k.a. thehambone)</value>
+  </data>
+  <data name="AppCopyright" xml:space="preserve">
+    <value>Copyright (C) 2018 W. Hampson. All rights reserved.</value>
+  </data>
+  <data name="AppDescriptionLong" xml:space="preserve">
+    <value>This tool allows you to edit the parked car generators in a GTA3 savegame. You can control the car that spawns, it's location, color, and more! You can also transfer car generators between saves on any platform.</value>
+  </data>
+  <data name="AppDescriptionShort" xml:space="preserve">
+    <value>A simple tool for editing parked car generators in a GTA3 savegame.</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>GTA3 Car Generator Editor</value>
+  </data>
+  <data name="AppSpecialThanks" xml:space="preserve">
+    <value>Special thanks to GTAKid667 for providing feedback and support during development.</value>
+  </data>
+  <data name="AppVersion" xml:space="preserve">
+    <value>Version: {0}</value>
+    <comment>{0} = app version and build number (see format below)</comment>
+  </data>
+  <data name="AppVersionError" xml:space="preserve">
+    <value>(not available)</value>
+  </data>
+  <data name="AppVersionFormat" xml:space="preserve">
+    <value>{0} (build {1})</value>
+    <comment>{0} = the assembly informational version; {1} = the build number</comment>
+  </data>
+  <data name="ConvertBackNotSupportedMessage" xml:space="preserve">
+    <value>ConvertBack is not supported for this converter.</value>
+  </data>
+  <data name="CsvFilter" xml:space="preserve">
+    <value>CSV (comma-delimited) (*.csv)|*.csv|All Files (*.*)|*.*</value>
+  </data>
+  <data name="ErrorDialogTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ExportInfoDialogMessage" xml:space="preserve">
+    <value>Select the file you want to export the current set of car generators to. The car generators in that file will be overwritten.</value>
+  </data>
+  <data name="ExportInfoDialogTitle" xml:space="preserve">
+    <value>Export Car Generators</value>
+  </data>
+  <data name="ExportSuccessDialogMessage" xml:space="preserve">
+    <value>Car generators exported successfully!</value>
+  </data>
+  <data name="Gta3SaveDataFilter" xml:space="preserve">
+    <value>GTA3 Save Data (*.b)|*.b|All Files (*.*)|*.*</value>
+  </data>
+  <data name="ImportInfoDialogMessage" xml:space="preserve">
+    <value>Select the file you want to import car generators from. The current set of car generators will be overwritten.</value>
+  </data>
+  <data name="ImportInfoDialogTitle" xml:space="preserve">
+    <value>Import Car Generators</value>
+  </data>
+  <data name="ImportLimitExceededDialogMessage" xml:space="preserve">
+    <value>The number of car generators imported exceeds the maximum amount by {0}. The extra car generators will be omitted.</value>
+    <comment>{0} = the amount over the limit</comment>
+  </data>
+  <data name="ImportLimitExceededDialogTitle" xml:space="preserve">
+    <value>Import Limit Exceeded</value>
+  </data>
+  <data name="ImportSuccessDialogMessage" xml:space="preserve">
+    <value>Car generators imported successfully!</value>
+  </data>
   <data name="IncorrectBlockSizeReadMessage" xml:space="preserve">
     <value>Incorrect block size read.</value>
   </data>
@@ -130,10 +199,61 @@
     <value>Incorrect block tag - '{0}'. Expecting '{1}'.</value>
     <comment>{0} = bad tag; {1} = expected tag</comment>
   </data>
+  <data name="InvalidColumnCountMessage" xml:space="preserve">
+    <value>Incorrect number of columns read.</value>
+  </data>
   <data name="InvalidFileMessage" xml:space="preserve">
     <value>Not a valid GTA3 save data file.</value>
   </data>
+  <data name="InvalidModelIdMessage" xml:space="preserve">
+    <value>Invalid vehicle model ID ({0}).</value>
+    <comment>{0} = the invalid model ID</comment>
+  </data>
+  <data name="MultipleCallsNotSupportedMessage" xml:space="preserve">
+    <value>Multiple calls are not supported.</value>
+  </data>
   <data name="OopsMessage" xml:space="preserve">
     <value>You weren't supposed to be able to get here, you know.</value>
+  </data>
+  <data name="OpenFileDialogTitle" xml:space="preserve">
+    <value>Open...</value>
+  </data>
+  <data name="SaveChangesPromptDialogMessage" xml:space="preserve">
+    <value>Do you want to save your changes?</value>
+  </data>
+  <data name="SaveChangesPromptDialogTitle" xml:space="preserve">
+    <value>Save Changes?</value>
+  </data>
+  <data name="SaveFileAsDialogTitle" xml:space="preserve">
+    <value>Save As...</value>
+  </data>
+  <data name="StatusExportSuccessful" xml:space="preserve">
+    <value>Exported car generators to {0}.</value>
+    <comment>{0} = path to file written</comment>
+  </data>
+  <data name="StatusExportUnsuccessful" xml:space="preserve">
+    <value>Failed to export car generators!</value>
+  </data>
+  <data name="StatusFileOpened" xml:space="preserve">
+    <value>File opened for edit.</value>
+  </data>
+  <data name="StatusImportSuccessful" xml:space="preserve">
+    <value>Imported car generators from {0}.</value>
+    <comment>{0} = path to imported file</comment>
+  </data>
+  <data name="StatusImportUnsuccessful" xml:space="preserve">
+    <value>Failed to import car generators!</value>
+  </data>
+  <data name="StatusNoFileOpened" xml:space="preserve">
+    <value>No file opened.</value>
+  </data>
+  <data name="StatusSaveSuccessful" xml:space="preserve">
+    <value>File saved successfully.</value>
+  </data>
+  <data name="StatusSaveUnsuccessful" xml:space="preserve">
+    <value>Failed to save file!</value>
+  </data>
+  <data name="SuccesDialogTitle" xml:space="preserve">
+    <value>Success</value>
   </data>
 </root>

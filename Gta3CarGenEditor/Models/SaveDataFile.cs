@@ -391,7 +391,10 @@ namespace WHampson.Gta3CarGenEditor.Models
                 case GamePlatform.Xbox:
                     return Deserialize<SaveDataFileXbox>(data);
                 default:
-                    throw new InvalidOperationException(Resources.OopsMessage);
+                    throw new InvalidOperationException(
+                        string.Format("{0} ({1})",
+                            Resources.OopsMessage,
+                            nameof(SaveDataFile)));
             }
         }
 
