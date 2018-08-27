@@ -152,8 +152,11 @@
   <data name="ConvertBackNotSupportedMessage" xml:space="preserve">
     <value>ConvertBack is not supported for this converter.</value>
   </data>
-  <data name="CsvFilter" xml:space="preserve">
-    <value>CSV (comma-delimited) (*.csv)|*.csv|All Files (*.*)|*.*</value>
+  <data name="DialogTitleOpenFile" xml:space="preserve">
+    <value>Open...</value>
+  </data>
+  <data name="DialogTitleSaveFileAs" xml:space="preserve">
+    <value>Save As...</value>
   </data>
   <data name="ErrorDialogTitle" xml:space="preserve">
     <value>Error</value>
@@ -167,10 +170,10 @@
   <data name="ExportSuccessDialogMessage" xml:space="preserve">
     <value>Car generators exported successfully!</value>
   </data>
-  <data name="FileMenuHeader" xml:space="preserve">
-    <value>_File</value>
+  <data name="FilterCsv" xml:space="preserve">
+    <value>CSV (comma-delimited) (*.csv)|*.csv|All Files (*.*)|*.*</value>
   </data>
-  <data name="Gta3SaveDataFilter" xml:space="preserve">
+  <data name="FilterGta3SaveData" xml:space="preserve">
     <value>GTA3 Save Data (*.b)|*.b|All Files (*.*)|*.*</value>
   </data>
   <data name="ImportInfoDialogMessage" xml:space="preserve">
@@ -212,23 +215,80 @@
     <value>Invalid vehicle model ID ({0}).</value>
     <comment>{0} = the invalid model ID</comment>
   </data>
+  <data name="MenuHeaderEdit" xml:space="preserve">
+    <value>_Edit</value>
+  </data>
+  <data name="MenuHeaderFile" xml:space="preserve">
+    <value>_File</value>
+  </data>
+  <data name="MenuHeaderHelp" xml:space="preserve">
+    <value>_Help</value>
+  </data>
+  <data name="MenuHeaderView" xml:space="preserve">
+    <value>_View</value>
+  </data>
+  <data name="MenuItemHeaderAbout" xml:space="preserve">
+    <value>_About</value>
+  </data>
+  <data name="MenuItemHeaderCarGensFromCsv" xml:space="preserve">
+    <value>Car Generators from _CSV...</value>
+  </data>
+  <data name="MenuItemHeaderCarGensFromSave" xml:space="preserve">
+    <value>Car Generators from GTA3 _Save...</value>
+  </data>
+  <data name="MenuItemHeaderCarGensToCsv" xml:space="preserve">
+    <value>Car Generators to _CSV...</value>
+  </data>
+  <data name="MenuItemHeaderCarGensToSave" xml:space="preserve">
+    <value>Car Generators to GTA3 _Save...</value>
+  </data>
+  <data name="MenuItemHeaderCheckForUpdates" xml:space="preserve">
+    <value>Check for _Updates</value>
+  </data>
+  <data name="MenuItemHeaderClose" xml:space="preserve">
+    <value>_Close</value>
+  </data>
+  <data name="MenuItemHeaderEditMetadata" xml:space="preserve">
+    <value>Edit _Metadata...</value>
+  </data>
+  <data name="MenuItemHeaderExit" xml:space="preserve">
+    <value>E_xit</value>
+  </data>
+  <data name="MenuItemHeaderExport" xml:space="preserve">
+    <value>_Export</value>
+  </data>
+  <data name="MenuItemHeaderImport" xml:space="preserve">
+    <value>_Import</value>
+  </data>
+  <data name="MenuItemHeaderOpen" xml:space="preserve">
+    <value>_Open...</value>
+  </data>
+  <data name="MenuItemHeaderResetRowOrder" xml:space="preserve">
+    <value>_Reset Row Order</value>
+  </data>
+  <data name="MenuItemHeaderSave" xml:space="preserve">
+    <value>_Save</value>
+  </data>
+  <data name="MenuItemHeaderSaveAs" xml:space="preserve">
+    <value>Save _As...</value>
+  </data>
+  <data name="MenuItemHeaderShowUnusedFields" xml:space="preserve">
+    <value>Show _Unused Fields</value>
+  </data>
+  <data name="MenuItemHeaderZeroOutTImers" xml:space="preserve">
+    <value>_Zero Out Timers</value>
+  </data>
   <data name="MultipleCallsNotSupportedMessage" xml:space="preserve">
     <value>Multiple calls are not supported.</value>
   </data>
   <data name="OopsMessage" xml:space="preserve">
     <value>You weren't supposed to be able to get here, you know.</value>
   </data>
-  <data name="OpenFileDialogTitle" xml:space="preserve">
-    <value>Open...</value>
-  </data>
   <data name="SaveChangesPromptDialogMessage" xml:space="preserve">
     <value>Do you want to save your changes?</value>
   </data>
   <data name="SaveChangesPromptDialogTitle" xml:space="preserve">
     <value>Save Changes?</value>
-  </data>
-  <data name="SaveFileAsDialogTitle" xml:space="preserve">
-    <value>Save As...</value>
   </data>
   <data name="StatusExportSuccessful" xml:space="preserve">
     <value>Exported car generators to {0}.</value>

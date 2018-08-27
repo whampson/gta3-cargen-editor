@@ -22,7 +22,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Strings {
+    public class Strings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WHampson.Gta3CarGenEditor.Resources.Strings", typeof(Strings).Assembly);
@@ -51,7 +51,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
-        internal static string AboutDialogTitle {
+        public static string AboutDialogTitle {
             get {
                 return ResourceManager.GetString("AboutDialogTitle", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Created by W. Hampson (a.k.a. thehambone).
         /// </summary>
-        internal static string AppAuthor {
+        public static string AppAuthor {
             get {
                 return ResourceManager.GetString("AppAuthor", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Copyright (C) 2018 W. Hampson. All rights reserved..
         /// </summary>
-        internal static string AppCopyright {
+        public static string AppCopyright {
             get {
                 return ResourceManager.GetString("AppCopyright", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to This tool allows you to edit the parked car generators in a GTA3 savegame. You can control the car that spawns, it&apos;s location, color, and more! You can also transfer car generators between saves on any platform..
         /// </summary>
-        internal static string AppDescriptionLong {
+        public static string AppDescriptionLong {
             get {
                 return ResourceManager.GetString("AppDescriptionLong", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to A simple tool for editing parked car generators in a GTA3 savegame..
         /// </summary>
-        internal static string AppDescriptionShort {
+        public static string AppDescriptionShort {
             get {
                 return ResourceManager.GetString("AppDescriptionShort", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to GTA3 Car Generator Editor.
         /// </summary>
-        internal static string AppName {
+        public static string AppName {
             get {
                 return ResourceManager.GetString("AppName", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Special thanks to GTAKid667 for providing feedback and support during development..
         /// </summary>
-        internal static string AppSpecialThanks {
+        public static string AppSpecialThanks {
             get {
                 return ResourceManager.GetString("AppSpecialThanks", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Version: {0}.
         /// </summary>
-        internal static string AppVersion {
+        public static string AppVersion {
             get {
                 return ResourceManager.GetString("AppVersion", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to (not available).
         /// </summary>
-        internal static string AppVersionError {
+        public static string AppVersionError {
             get {
                 return ResourceManager.GetString("AppVersionError", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} (build {1}).
         /// </summary>
-        internal static string AppVersionFormat {
+        public static string AppVersionFormat {
             get {
                 return ResourceManager.GetString("AppVersionFormat", resourceCulture);
             }
@@ -153,25 +153,34 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to ConvertBack is not supported for this converter..
         /// </summary>
-        internal static string ConvertBackNotSupportedMessage {
+        public static string ConvertBackNotSupportedMessage {
             get {
                 return ResourceManager.GetString("ConvertBackNotSupportedMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CSV (comma-delimited) (*.csv)|*.csv|All Files (*.*)|*.*.
+        ///   Looks up a localized string similar to Open....
         /// </summary>
-        internal static string CsvFilter {
+        public static string DialogTitleOpenFile {
             get {
-                return ResourceManager.GetString("CsvFilter", resourceCulture);
+                return ResourceManager.GetString("DialogTitleOpenFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save As....
+        /// </summary>
+        public static string DialogTitleSaveFileAs {
+            get {
+                return ResourceManager.GetString("DialogTitleSaveFileAs", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
-        internal static string ErrorDialogTitle {
+        public static string ErrorDialogTitle {
             get {
                 return ResourceManager.GetString("ErrorDialogTitle", resourceCulture);
             }
@@ -180,7 +189,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Select the file you want to export the current set of car generators to. The car generators in that file will be overwritten..
         /// </summary>
-        internal static string ExportInfoDialogMessage {
+        public static string ExportInfoDialogMessage {
             get {
                 return ResourceManager.GetString("ExportInfoDialogMessage", resourceCulture);
             }
@@ -189,7 +198,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Export Car Generators.
         /// </summary>
-        internal static string ExportInfoDialogTitle {
+        public static string ExportInfoDialogTitle {
             get {
                 return ResourceManager.GetString("ExportInfoDialogTitle", resourceCulture);
             }
@@ -198,34 +207,34 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Car generators exported successfully!.
         /// </summary>
-        internal static string ExportSuccessDialogMessage {
+        public static string ExportSuccessDialogMessage {
             get {
                 return ResourceManager.GetString("ExportSuccessDialogMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _File.
+        ///   Looks up a localized string similar to CSV (comma-delimited) (*.csv)|*.csv|All Files (*.*)|*.*.
         /// </summary>
-        internal static string FileMenuHeader {
+        public static string FilterCsv {
             get {
-                return ResourceManager.GetString("FileMenuHeader", resourceCulture);
+                return ResourceManager.GetString("FilterCsv", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to GTA3 Save Data (*.b)|*.b|All Files (*.*)|*.*.
         /// </summary>
-        internal static string Gta3SaveDataFilter {
+        public static string FilterGta3SaveData {
             get {
-                return ResourceManager.GetString("Gta3SaveDataFilter", resourceCulture);
+                return ResourceManager.GetString("FilterGta3SaveData", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Select the file you want to import car generators from. The current set of car generators will be overwritten..
         /// </summary>
-        internal static string ImportInfoDialogMessage {
+        public static string ImportInfoDialogMessage {
             get {
                 return ResourceManager.GetString("ImportInfoDialogMessage", resourceCulture);
             }
@@ -234,7 +243,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Import Car Generators.
         /// </summary>
-        internal static string ImportInfoDialogTitle {
+        public static string ImportInfoDialogTitle {
             get {
                 return ResourceManager.GetString("ImportInfoDialogTitle", resourceCulture);
             }
@@ -243,7 +252,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The number of car generators imported exceeds the maximum amount by {0}. The extra car generators will be omitted..
         /// </summary>
-        internal static string ImportLimitExceededDialogMessage {
+        public static string ImportLimitExceededDialogMessage {
             get {
                 return ResourceManager.GetString("ImportLimitExceededDialogMessage", resourceCulture);
             }
@@ -252,7 +261,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Import Limit Exceeded.
         /// </summary>
-        internal static string ImportLimitExceededDialogTitle {
+        public static string ImportLimitExceededDialogTitle {
             get {
                 return ResourceManager.GetString("ImportLimitExceededDialogTitle", resourceCulture);
             }
@@ -261,7 +270,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Car generators imported successfully!.
         /// </summary>
-        internal static string ImportSuccessDialogMessage {
+        public static string ImportSuccessDialogMessage {
             get {
                 return ResourceManager.GetString("ImportSuccessDialogMessage", resourceCulture);
             }
@@ -270,7 +279,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Incorrect block size read..
         /// </summary>
-        internal static string IncorrectBlockSizeReadMessage {
+        public static string IncorrectBlockSizeReadMessage {
             get {
                 return ResourceManager.GetString("IncorrectBlockSizeReadMessage", resourceCulture);
             }
@@ -279,7 +288,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Incorrect number of bytes decoded..
         /// </summary>
-        internal static string IncorrectNumberOfBytesDecodedMessage {
+        public static string IncorrectNumberOfBytesDecodedMessage {
             get {
                 return ResourceManager.GetString("IncorrectNumberOfBytesDecodedMessage", resourceCulture);
             }
@@ -288,7 +297,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Incorrect number of bytes encoded..
         /// </summary>
-        internal static string IncorrectNumberOfBytesEncodedMessage {
+        public static string IncorrectNumberOfBytesEncodedMessage {
             get {
                 return ResourceManager.GetString("IncorrectNumberOfBytesEncodedMessage", resourceCulture);
             }
@@ -297,7 +306,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Incorrect block tag - &apos;{0}&apos;. Expecting &apos;{1}&apos;..
         /// </summary>
-        internal static string InvalidBlockTagMessage {
+        public static string InvalidBlockTagMessage {
             get {
                 return ResourceManager.GetString("InvalidBlockTagMessage", resourceCulture);
             }
@@ -306,7 +315,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Incorrect number of columns read..
         /// </summary>
-        internal static string InvalidColumnCountMessage {
+        public static string InvalidColumnCountMessage {
             get {
                 return ResourceManager.GetString("InvalidColumnCountMessage", resourceCulture);
             }
@@ -315,7 +324,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Not a valid GTA3 save data file..
         /// </summary>
-        internal static string InvalidFileMessage {
+        public static string InvalidFileMessage {
             get {
                 return ResourceManager.GetString("InvalidFileMessage", resourceCulture);
             }
@@ -324,16 +333,205 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Invalid vehicle model ID ({0})..
         /// </summary>
-        internal static string InvalidModelIdMessage {
+        public static string InvalidModelIdMessage {
             get {
                 return ResourceManager.GetString("InvalidModelIdMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Edit.
+        /// </summary>
+        public static string MenuHeaderEdit {
+            get {
+                return ResourceManager.GetString("MenuHeaderEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _File.
+        /// </summary>
+        public static string MenuHeaderFile {
+            get {
+                return ResourceManager.GetString("MenuHeaderFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Help.
+        /// </summary>
+        public static string MenuHeaderHelp {
+            get {
+                return ResourceManager.GetString("MenuHeaderHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _View.
+        /// </summary>
+        public static string MenuHeaderView {
+            get {
+                return ResourceManager.GetString("MenuHeaderView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _About.
+        /// </summary>
+        public static string MenuItemHeaderAbout {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car Generators from _CSV....
+        /// </summary>
+        public static string MenuItemHeaderCarGensFromCsv {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderCarGensFromCsv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car Generators from GTA3 _Save....
+        /// </summary>
+        public static string MenuItemHeaderCarGensFromSave {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderCarGensFromSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car Generators to _CSV....
+        /// </summary>
+        public static string MenuItemHeaderCarGensToCsv {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderCarGensToCsv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car Generators to GTA3 _Save....
+        /// </summary>
+        public static string MenuItemHeaderCarGensToSave {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderCarGensToSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for _Updates.
+        /// </summary>
+        public static string MenuItemHeaderCheckForUpdates {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderCheckForUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Close.
+        /// </summary>
+        public static string MenuItemHeaderClose {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit _Metadata....
+        /// </summary>
+        public static string MenuItemHeaderEditMetadata {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderEditMetadata", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E_xit.
+        /// </summary>
+        public static string MenuItemHeaderExit {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Export.
+        /// </summary>
+        public static string MenuItemHeaderExport {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Import.
+        /// </summary>
+        public static string MenuItemHeaderImport {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Open....
+        /// </summary>
+        public static string MenuItemHeaderOpen {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Reset Row Order.
+        /// </summary>
+        public static string MenuItemHeaderResetRowOrder {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderResetRowOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Save.
+        /// </summary>
+        public static string MenuItemHeaderSave {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save _As....
+        /// </summary>
+        public static string MenuItemHeaderSaveAs {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderSaveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show _Unused Fields.
+        /// </summary>
+        public static string MenuItemHeaderShowUnusedFields {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderShowUnusedFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Zero Out Timers.
+        /// </summary>
+        public static string MenuItemHeaderZeroOutTImers {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderZeroOutTImers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Multiple calls are not supported..
         /// </summary>
-        internal static string MultipleCallsNotSupportedMessage {
+        public static string MultipleCallsNotSupportedMessage {
             get {
                 return ResourceManager.GetString("MultipleCallsNotSupportedMessage", resourceCulture);
             }
@@ -342,25 +540,16 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to You weren&apos;t supposed to be able to get here, you know..
         /// </summary>
-        internal static string OopsMessage {
+        public static string OopsMessage {
             get {
                 return ResourceManager.GetString("OopsMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open....
-        /// </summary>
-        internal static string OpenFileDialogTitle {
-            get {
-                return ResourceManager.GetString("OpenFileDialogTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Do you want to save your changes?.
         /// </summary>
-        internal static string SaveChangesPromptDialogMessage {
+        public static string SaveChangesPromptDialogMessage {
             get {
                 return ResourceManager.GetString("SaveChangesPromptDialogMessage", resourceCulture);
             }
@@ -369,25 +558,16 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Save Changes?.
         /// </summary>
-        internal static string SaveChangesPromptDialogTitle {
+        public static string SaveChangesPromptDialogTitle {
             get {
                 return ResourceManager.GetString("SaveChangesPromptDialogTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save As....
-        /// </summary>
-        internal static string SaveFileAsDialogTitle {
-            get {
-                return ResourceManager.GetString("SaveFileAsDialogTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Exported car generators to {0}..
         /// </summary>
-        internal static string StatusExportSuccessful {
+        public static string StatusExportSuccessful {
             get {
                 return ResourceManager.GetString("StatusExportSuccessful", resourceCulture);
             }
@@ -396,7 +576,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Failed to export car generators!.
         /// </summary>
-        internal static string StatusExportUnsuccessful {
+        public static string StatusExportUnsuccessful {
             get {
                 return ResourceManager.GetString("StatusExportUnsuccessful", resourceCulture);
             }
@@ -405,7 +585,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to File opened for edit..
         /// </summary>
-        internal static string StatusFileOpened {
+        public static string StatusFileOpened {
             get {
                 return ResourceManager.GetString("StatusFileOpened", resourceCulture);
             }
@@ -414,7 +594,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Imported car generators from {0}..
         /// </summary>
-        internal static string StatusImportSuccessful {
+        public static string StatusImportSuccessful {
             get {
                 return ResourceManager.GetString("StatusImportSuccessful", resourceCulture);
             }
@@ -423,7 +603,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Failed to import car generators!.
         /// </summary>
-        internal static string StatusImportUnsuccessful {
+        public static string StatusImportUnsuccessful {
             get {
                 return ResourceManager.GetString("StatusImportUnsuccessful", resourceCulture);
             }
@@ -432,7 +612,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to No file opened..
         /// </summary>
-        internal static string StatusNoFileOpened {
+        public static string StatusNoFileOpened {
             get {
                 return ResourceManager.GetString("StatusNoFileOpened", resourceCulture);
             }
@@ -441,7 +621,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to File saved successfully..
         /// </summary>
-        internal static string StatusSaveSuccessful {
+        public static string StatusSaveSuccessful {
             get {
                 return ResourceManager.GetString("StatusSaveSuccessful", resourceCulture);
             }
@@ -450,7 +630,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Failed to save file!.
         /// </summary>
-        internal static string StatusSaveUnsuccessful {
+        public static string StatusSaveUnsuccessful {
             get {
                 return ResourceManager.GetString("StatusSaveUnsuccessful", resourceCulture);
             }
@@ -459,7 +639,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
-        internal static string SuccesDialogTitle {
+        public static string SuccesDialogTitle {
             get {
                 return ResourceManager.GetString("SuccesDialogTitle", resourceCulture);
             }
