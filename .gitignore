@@ -4,5 +4,3 @@
 # Ignore build directories
 bin/
 obj/
-
-*.png
