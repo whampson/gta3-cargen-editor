@@ -4,6 +4,7 @@ using System.IO;
 using Microsoft.VisualBasic.FileIO;
 using WHampson.Gta3CarGenEditor.Models;
 using WHampson.Gta3CarGenEditor.Properties;
+using WHampson.Gta3CarGenEditor.Resources;
 
 namespace WHampson.Gta3CarGenEditor.Helpers
 {
@@ -112,7 +113,7 @@ namespace WHampson.Gta3CarGenEditor.Helpers
         {
             int columnCount = fields.Length;
             if (columnCount != NumColumns) {
-                throw new InvalidDataException(Resources.InvalidColumnCountMessage);
+                throw new InvalidDataException(Strings.InvalidColumnCountMessage);
             }
 
             // Convert fields from string values into their respective types
@@ -124,7 +125,7 @@ namespace WHampson.Gta3CarGenEditor.Helpers
             // Check model ID
             uint model = (uint) parsedValues[0];
             if (model != 0 && (model < VehicleModelMin || model > VehicleModelMax)) {
-                string msg = string.Format(Resources.InvalidModelIdMessage, model);
+                string msg = string.Format(Strings.InvalidModelIdMessage, model);
                 throw new InvalidDataException(msg);
             }
 
@@ -224,7 +225,7 @@ namespace WHampson.Gta3CarGenEditor.Helpers
             }
             else {
                 string msg = string.Format("{0} ({1}, type: {2})",
-                    Resources.OopsMessage,
+                    Strings.OopsMessage,
                     nameof(CarGeneratorCsvHelper),
                     (t == null) ? "null" : t.Name);
                 throw new InvalidOperationException(msg);

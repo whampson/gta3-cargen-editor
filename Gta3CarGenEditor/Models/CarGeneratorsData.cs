@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 using WHampson.Gta3CarGenEditor.Helpers;
-using WHampson.Gta3CarGenEditor.Properties;
+using WHampson.Gta3CarGenEditor.Resources;
 
 namespace WHampson.Gta3CarGenEditor.Models
 {
@@ -48,7 +48,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                 infoSize = r.ReadInt32();
                 bytesRead = Deserialize(stream, out m_carGeneratorsInfo);
                 if (bytesRead != infoSize) {
-                    throw new InvalidDataException(Resources.IncorrectNumberOfBytesDecodedMessage);
+                    throw new InvalidDataException(Strings.IncorrectNumberOfBytesDecodedMessage);
                 }
                 totalBytesRead += bytesRead + 4;
 
@@ -63,7 +63,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                     bytesRead += Deserialize(stream, out m_carGeneratorsArray[i]);
                 }
                 if (bytesRead != carGenSize) {
-                    throw new InvalidDataException(Resources.IncorrectNumberOfBytesDecodedMessage);
+                    throw new InvalidDataException(Strings.IncorrectNumberOfBytesDecodedMessage);
                 }
                 totalBytesRead += bytesRead;
             }

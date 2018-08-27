@@ -167,6 +167,9 @@
   <data name="ExportSuccessDialogMessage" xml:space="preserve">
     <value>Car generators exported successfully!</value>
   </data>
+  <data name="FileMenuHeader" xml:space="preserve">
+    <value>_File</value>
+  </data>
   <data name="Gta3SaveDataFilter" xml:space="preserve">
     <value>GTA3 Save Data (*.b)|*.b|All Files (*.*)|*.*</value>
   </data>

@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Interop;
-using WHampson.Gta3CarGenEditor.Properties;
+using WHampson.Gta3CarGenEditor.Resources;
 
 namespace WHampson.Gta3CarGenEditor.Helpers
 {
@@ -133,7 +133,7 @@ namespace WHampson.Gta3CarGenEditor.Helpers
         private static void Initialize()
         {
             if (_hHook != IntPtr.Zero) {
-                throw new NotSupportedException(Resources.MultipleCallsNotSupportedMessage);
+                throw new NotSupportedException(Strings.MultipleCallsNotSupportedMessage);
             }
 
 #pragma warning disable 0618    // GetCurrentThreadId() still works for what we need it to do.

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Windows;
-using WHampson.Gta3CarGenEditor.Properties;
+using WHampson.Gta3CarGenEditor.Resources;
 
 namespace WHampson.Gta3CarGenEditor.Events
 {
@@ -65,7 +65,7 @@ namespace WHampson.Gta3CarGenEditor.Events
                     dialog = new SaveFileDialog();
                     break;
                 default:
-                    throw new InvalidOperationException(Resources.OopsMessage);
+                    throw new InvalidOperationException(Strings.OopsMessage);
             }
 
             dialog.Title = Title;
