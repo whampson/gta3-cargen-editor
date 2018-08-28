@@ -124,13 +124,13 @@
     <value>Copyright (C) 2018 W. Hampson. All rights reserved.</value>
   </data>
   <data name="AppDescriptionLong" xml:space="preserve">
-    <value>This tool allows you to edit the parked car generators in a GTA3 savegame. You can control the car that spawns, it's location, color, and more! You can also transfer car generators between saves on any platform.</value>
+    <value>This tool allows you to edit the parked car generators in a GTA3 savegame. You can control the car that spawns, it's location, color, and more! You can also transfer parked car generators between saves on any platform.</value>
   </data>
   <data name="AppDescriptionShort" xml:space="preserve">
     <value>A simple tool for editing parked car generators in a GTA3 savegame.</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>GTA3 Car Generator Editor</value>
+    <value>GTA3 Parked Car Editor</value>
   </data>
   <data name="AppSpecialThanks" xml:space="preserve">
     <value>Special thanks to GTAKid667 for providing feedback and support during development.</value>
@@ -216,20 +216,20 @@
     <value>Unknown44</value>
   </data>
   <data name="DialogMessageExportInfo" xml:space="preserve">
-    <value>Select the file you want to export the current set of car generators to. The car generators in that file will be overwritten.</value>
+    <value>Select the file you want to export the current set of parked cars to. The parked car generators in that file will be overwritten.</value>
   </data>
   <data name="DialogMessageExportSuccessful" xml:space="preserve">
-    <value>Car generators exported successfully!</value>
+    <value>Parked cars exported successfully!</value>
   </data>
   <data name="DialogMessageImportInfo" xml:space="preserve">
-    <value>Select the file you want to import car generators from. The current set of car generators will be overwritten.</value>
+    <value>Select the file you want to import parked cars from. The current set of parked car generators will be overwritten.</value>
   </data>
   <data name="DialogMessageImportLimitExceeded" xml:space="preserve">
-    <value>The number of car generators imported exceeds the maximum amount by {0}. The extra car generators will be omitted.</value>
+    <value>The number of parked car generators imported exceeds the maximum amount by {0}. The extra car generators will be omitted.</value>
     <comment>{0} = the amount over the limit</comment>
   </data>
   <data name="DialogMessageImportSuccessful" xml:space="preserve">
-    <value>Car generators imported successfully!</value>
+    <value>Parked cars imported successfully!</value>
   </data>
   <data name="DialogMessageSaveChangesPrompt" xml:space="preserve">
     <value>Do you want to save your changes?</value>
@@ -247,10 +247,10 @@
     <value>Error</value>
   </data>
   <data name="DialogTitleExportInfo" xml:space="preserve">
-    <value>Export Car Generators</value>
+    <value>Export Parked Cars</value>
   </data>
   <data name="DialogTitleImportInfo" xml:space="preserve">
-    <value>Import Car Generators</value>
+    <value>Import Parked Cars</value>
   </data>
   <data name="DialogTitleImportLimitExceeded" xml:space="preserve">
     <value>Import Limit Exceeded</value>
@@ -336,16 +336,16 @@
     <value>_About</value>
   </data>
   <data name="MenuItemHeaderCarGensFromCsv" xml:space="preserve">
-    <value>Car Generators from _CSV...</value>
+    <value>Parked Cars from _CSV...</value>
   </data>
   <data name="MenuItemHeaderCarGensFromSave" xml:space="preserve">
-    <value>Car Generators from GTA3 _Save...</value>
+    <value>Parked Cars from GTA3 _Save...</value>
   </data>
   <data name="MenuItemHeaderCarGensToCsv" xml:space="preserve">
-    <value>Car Generators to _CSV...</value>
+    <value>Parked Cars to _CSV...</value>
   </data>
   <data name="MenuItemHeaderCarGensToSave" xml:space="preserve">
-    <value>Car Generators to GTA3 _Save...</value>
+    <value>Parked Cars to GTA3 _Save...</value>
   </data>
   <data name="MenuItemHeaderCheckForUpdates" xml:space="preserve">
     <value>Check for _Updates</value>
@@ -384,21 +384,21 @@
     <value>_Zero Out Timers</value>
   </data>
   <data name="StatusMessageExportSuccessful" xml:space="preserve">
-    <value>Exported car generators to {0}.</value>
+    <value>Exported parked cars to {0}.</value>
     <comment>{0} = path to file written</comment>
   </data>
   <data name="StatusMessageExportUnsuccessful" xml:space="preserve">
-    <value>Failed to export car generators!</value>
+    <value>Failed to export parked cars!</value>
   </data>
   <data name="StatusMessageFileOpened" xml:space="preserve">
     <value>File opened for edit.</value>
   </data>
   <data name="StatusMessageImportSuccessful" xml:space="preserve">
-    <value>Imported car generators from {0}.</value>
+    <value>Imported parked cars from {0}.</value>
     <comment>{0} = path to imported file</comment>
   </data>
   <data name="StatusMessageImportUnsuccessful" xml:space="preserve">
-    <value>Failed to import car generators!</value>
+    <value>Failed to import parked cars!</value>
   </data>
   <data name="StatusMessageNoFileOpened" xml:space="preserve">
     <value>No file opened.</value>
@@ -416,7 +416,7 @@
     <value>Probability that the vehicle will spawn with an alarm (percentage).</value>
   </data>
   <data name="ToolTipCanSpawn" xml:space="preserve">
-    <value>Specifies whether the vehicle will spawn in the game world, effectively enabling or disabling the car generator.</value>
+    <value>Specifies whether the vehicle will spawn in the game world, effectively enabling or disabling the parked car generator.</value>
   </data>
   <data name="ToolTipColor1" xml:space="preserve">
     <value>The vehicle's primary color.
@@ -461,7 +461,7 @@ Setting this field has no effect.</value>
 If the vehicle is not spawning, try setting this to 0.</value>
   </data>
   <data name="ToolTipUnknown" xml:space="preserve">
-    <value>The purpose of this field is unknown and changing it appears to have no effect on the car generator.</value>
+    <value>The purpose of this field is unknown and changing it appears to have no effect on the parked car generator.</value>
   </data>
   <data name="WindowTitleEditMetadata" xml:space="preserve">
     <value>Edit Metadata</value>

@@ -79,7 +79,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This tool allows you to edit the parked car generators in a GTA3 savegame. You can control the car that spawns, it&apos;s location, color, and more! You can also transfer car generators between saves on any platform..
+        ///   Looks up a localized string similar to This tool allows you to edit the parked car generators in a GTA3 savegame. You can control the car that spawns, it&apos;s location, color, and more! You can also transfer parked car generators between saves on any platform..
         /// </summary>
         public static string AppDescriptionLong {
             get {
@@ -97,7 +97,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GTA3 Car Generator Editor.
+        ///   Looks up a localized string similar to GTA3 Parked Car Editor.
         /// </summary>
         public static string AppName {
             get {
@@ -349,7 +349,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the file you want to export the current set of car generators to. The car generators in that file will be overwritten..
+        ///   Looks up a localized string similar to Select the file you want to export the current set of parked cars to. The parked car generators in that file will be overwritten..
         /// </summary>
         public static string DialogMessageExportInfo {
             get {
@@ -358,7 +358,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Car generators exported successfully!.
+        ///   Looks up a localized string similar to Parked cars exported successfully!.
         /// </summary>
         public static string DialogMessageExportSuccessful {
             get {
@@ -367,7 +367,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the file you want to import car generators from. The current set of car generators will be overwritten..
+        ///   Looks up a localized string similar to Select the file you want to import parked cars from. The current set of parked car generators will be overwritten..
         /// </summary>
         public static string DialogMessageImportInfo {
             get {
@@ -376,7 +376,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The number of car generators imported exceeds the maximum amount by {0}. The extra car generators will be omitted..
+        ///   Looks up a localized string similar to The number of parked car generators imported exceeds the maximum amount by {0}. The extra car generators will be omitted..
         /// </summary>
         public static string DialogMessageImportLimitExceeded {
             get {
@@ -385,7 +385,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Car generators imported successfully!.
+        ///   Looks up a localized string similar to Parked cars imported successfully!.
         /// </summary>
         public static string DialogMessageImportSuccessful {
             get {
@@ -439,7 +439,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Export Car Generators.
+        ///   Looks up a localized string similar to Export Parked Cars.
         /// </summary>
         public static string DialogTitleExportInfo {
             get {
@@ -448,7 +448,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import Car Generators.
+        ///   Looks up a localized string similar to Import Parked Cars.
         /// </summary>
         public static string DialogTitleImportInfo {
             get {
@@ -700,7 +700,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Car Generators from _CSV....
+        ///   Looks up a localized string similar to Parked Cars from _CSV....
         /// </summary>
         public static string MenuItemHeaderCarGensFromCsv {
             get {
@@ -709,7 +709,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Car Generators from GTA3 _Save....
+        ///   Looks up a localized string similar to Parked Cars from GTA3 _Save....
         /// </summary>
         public static string MenuItemHeaderCarGensFromSave {
             get {
@@ -718,7 +718,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Car Generators to _CSV....
+        ///   Looks up a localized string similar to Parked Cars to _CSV....
         /// </summary>
         public static string MenuItemHeaderCarGensToCsv {
             get {
@@ -727,7 +727,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Car Generators to GTA3 _Save....
+        ///   Looks up a localized string similar to Parked Cars to GTA3 _Save....
         /// </summary>
         public static string MenuItemHeaderCarGensToSave {
             get {
@@ -844,7 +844,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exported car generators to {0}..
+        ///   Looks up a localized string similar to Exported parked cars to {0}..
         /// </summary>
         public static string StatusMessageExportSuccessful {
             get {
@@ -853,7 +853,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to export car generators!.
+        ///   Looks up a localized string similar to Failed to export parked cars!.
         /// </summary>
         public static string StatusMessageExportUnsuccessful {
             get {
@@ -871,7 +871,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Imported car generators from {0}..
+        ///   Looks up a localized string similar to Imported parked cars from {0}..
         /// </summary>
         public static string StatusMessageImportSuccessful {
             get {
@@ -880,7 +880,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to import car generators!.
+        ///   Looks up a localized string similar to Failed to import parked cars!.
         /// </summary>
         public static string StatusMessageImportUnsuccessful {
             get {
@@ -934,7 +934,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies whether the vehicle will spawn in the game world, effectively enabling or disabling the car generator..
+        ///   Looks up a localized string similar to Specifies whether the vehicle will spawn in the game world, effectively enabling or disabling the parked car generator..
         /// </summary>
         public static string ToolTipCanSpawn {
             get {
@@ -1051,7 +1051,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The purpose of this field is unknown and changing it appears to have no effect on the car generator..
+        ///   Looks up a localized string similar to The purpose of this field is unknown and changing it appears to have no effect on the parked car generator..
         /// </summary>
         public static string ToolTipUnknown {
             get {
