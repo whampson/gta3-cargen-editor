@@ -133,7 +133,7 @@ namespace WHampson.Gta3CarGenEditor.Helpers
         private static void Initialize()
         {
             if (_hHook != IntPtr.Zero) {
-                throw new NotSupportedException(Strings.MultipleCallsNotSupportedMessage);
+                throw new NotSupportedException(Strings.ExceptionMessageMultipleCallsNotSupported);
             }
 
 #pragma warning disable 0618    // GetCurrentThreadId() still works for what we need it to do.

@@ -65,7 +65,7 @@ namespace WHampson.Gta3CarGenEditor.Events
                     dialog = new SaveFileDialog();
                     break;
                 default:
-                    throw new InvalidOperationException(Strings.OopsMessage);
+                    throw new InvalidOperationException(Strings.ExceptionMessageOops);
             }
 
             dialog.Title = Title;

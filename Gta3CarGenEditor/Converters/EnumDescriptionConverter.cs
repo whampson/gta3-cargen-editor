@@ -33,7 +33,7 @@ namespace WHampson.Gta3CarGenEditor.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotSupportedException(Strings.ConvertBackNotSupportedMessage);
+            throw new NotSupportedException(Strings.ExceptionMessageConvertBackNotSupported);
         }
     }
 }

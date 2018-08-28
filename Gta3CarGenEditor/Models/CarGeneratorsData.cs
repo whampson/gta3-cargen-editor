@@ -48,7 +48,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                 infoSize = r.ReadInt32();
                 bytesRead = Deserialize(stream, out m_carGeneratorsInfo);
                 if (bytesRead != infoSize) {
-                    throw new InvalidDataException(Strings.IncorrectNumberOfBytesDecodedMessage);
+                    throw new InvalidDataException(Strings.ExceptionMessageIncorrectNumberOfBytesDecoded);
                 }
                 totalBytesRead += bytesRead + 4;
 
@@ -63,7 +63,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                     bytesRead += Deserialize(stream, out m_carGeneratorsArray[i]);
                 }
                 if (bytesRead != carGenSize) {
-                    throw new InvalidDataException(Strings.IncorrectNumberOfBytesDecodedMessage);
+                    throw new InvalidDataException(Strings.ExceptionMessageIncorrectNumberOfBytesDecoded);
                 }
                 totalBytesRead += bytesRead;
             }

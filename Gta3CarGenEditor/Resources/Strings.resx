@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutDialogTitle" xml:space="preserve">
-    <value>About</value>
-  </data>
   <data name="AppAuthor" xml:space="preserve">
     <value>Created by W. Hampson (a.k.a. thehambone)</value>
   </data>
@@ -149,26 +146,152 @@
     <value>{0} (build {1})</value>
     <comment>{0} = the assembly informational version; {1} = the build number</comment>
   </data>
-  <data name="ConvertBackNotSupportedMessage" xml:space="preserve">
-    <value>ConvertBack is not supported for this converter.</value>
+  <data name="ButtonTextCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ButtonTextOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ColumnHeaderAlarmChance" xml:space="preserve">
+    <value>Alarm Chance</value>
+  </data>
+  <data name="ColumnHeaderCanSpawn" xml:space="preserve">
+    <value>Can Spawn</value>
+  </data>
+  <data name="ColumnHeaderColor1" xml:space="preserve">
+    <value>Color 1</value>
+  </data>
+  <data name="ColumnHeaderColor2" xml:space="preserve">
+    <value>Color 2</value>
+  </data>
+  <data name="ColumnHeaderForceSpawn" xml:space="preserve">
+    <value>Force Spawn</value>
+  </data>
+  <data name="ColumnHeaderHeading" xml:space="preserve">
+    <value>Heading</value>
+  </data>
+  <data name="ColumnHeaderLocation" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="ColumnHeaderLockedChance" xml:space="preserve">
+    <value>Locked Chance</value>
+  </data>
+  <data name="ColumnHeaderMaxSpawnDelay" xml:space="preserve">
+    <value>Max. Spawn Delay</value>
+  </data>
+  <data name="ColumnHeaderMinSpawnDelay" xml:space="preserve">
+    <value>Min. Spawn Delay</value>
+  </data>
+  <data name="ColumnHeaderModelId" xml:space="preserve">
+    <value>Vehicle</value>
+  </data>
+  <data name="ColumnHeaderRecentlyStolen" xml:space="preserve">
+    <value>Recently Stolen</value>
+  </data>
+  <data name="ColumnHeaderTimer" xml:space="preserve">
+    <value>Timer</value>
+  </data>
+  <data name="ColumnHeaderUnknown24" xml:space="preserve">
+    <value>Unknown24</value>
+  </data>
+  <data name="ColumnHeaderUnknown2C" xml:space="preserve">
+    <value>Unknown2C</value>
+  </data>
+  <data name="ColumnHeaderUnknown30" xml:space="preserve">
+    <value>Unknown30</value>
+  </data>
+  <data name="ColumnHeaderUnknown34" xml:space="preserve">
+    <value>Unknown34</value>
+  </data>
+  <data name="ColumnHeaderUnknown38" xml:space="preserve">
+    <value>Unknown38</value>
+  </data>
+  <data name="ColumnHeaderUnknown3C" xml:space="preserve">
+    <value>Unknown3C</value>
+  </data>
+  <data name="ColumnHeaderUnknown40" xml:space="preserve">
+    <value>Unknown40</value>
+  </data>
+  <data name="ColumnHeaderUnknown44" xml:space="preserve">
+    <value>Unknown44</value>
+  </data>
+  <data name="DialogMessageExportInfo" xml:space="preserve">
+    <value>Select the file you want to export the current set of car generators to. The car generators in that file will be overwritten.</value>
+  </data>
+  <data name="DialogMessageExportSuccessful" xml:space="preserve">
+    <value>Car generators exported successfully!</value>
+  </data>
+  <data name="DialogMessageImportInfo" xml:space="preserve">
+    <value>Select the file you want to import car generators from. The current set of car generators will be overwritten.</value>
+  </data>
+  <data name="DialogMessageImportLimitExceeded" xml:space="preserve">
+    <value>The number of car generators imported exceeds the maximum amount by {0}. The extra car generators will be omitted.</value>
+    <comment>{0} = the amount over the limit</comment>
+  </data>
+  <data name="DialogMessageImportSuccessful" xml:space="preserve">
+    <value>Car generators imported successfully!</value>
+  </data>
+  <data name="DialogMessageSaveChangesPrompt" xml:space="preserve">
+    <value>Do you want to save your changes?</value>
+  </data>
+  <data name="DialogTitleAbout" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="DialogTitleError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="DialogTitleExportInfo" xml:space="preserve">
+    <value>Export Car Generators</value>
+  </data>
+  <data name="DialogTitleImportInfo" xml:space="preserve">
+    <value>Import Car Generators</value>
+  </data>
+  <data name="DialogTitleImportLimitExceeded" xml:space="preserve">
+    <value>Import Limit Exceeded</value>
   </data>
   <data name="DialogTitleOpenFile" xml:space="preserve">
     <value>Open...</value>
   </data>
+  <data name="DialogTitleSaveChangesPrompt" xml:space="preserve">
+    <value>Save Changes?</value>
+  </data>
   <data name="DialogTitleSaveFileAs" xml:space="preserve">
     <value>Save As...</value>
   </data>
-  <data name="ErrorDialogTitle" xml:space="preserve">
-    <value>Error</value>
+  <data name="DialogTitleSuccess" xml:space="preserve">
+    <value>Success</value>
   </data>
-  <data name="ExportInfoDialogMessage" xml:space="preserve">
-    <value>Select the file you want to export the current set of car generators to. The car generators in that file will be overwritten.</value>
+  <data name="ExceptionMessageConvertBackNotSupported" xml:space="preserve">
+    <value>ConvertBack is not supported for this converter.</value>
   </data>
-  <data name="ExportInfoDialogTitle" xml:space="preserve">
-    <value>Export Car Generators</value>
+  <data name="ExceptionMessageIncorrectBlockSizeRead" xml:space="preserve">
+    <value>Incorrect block size read.</value>
   </data>
-  <data name="ExportSuccessDialogMessage" xml:space="preserve">
-    <value>Car generators exported successfully!</value>
+  <data name="ExceptionMessageIncorrectNumberOfBytesDecoded" xml:space="preserve">
+    <value>Incorrect number of bytes decoded.</value>
+  </data>
+  <data name="ExceptionMessageIncorrectNumberOfBytesEncoded" xml:space="preserve">
+    <value>Incorrect number of bytes encoded.</value>
+  </data>
+  <data name="ExceptionMessageInvalidBlockTag" xml:space="preserve">
+    <value>Incorrect block tag - '{0}'. Expecting '{1}'.</value>
+    <comment>{0} = bad tag; {1} = expected tag</comment>
+  </data>
+  <data name="ExceptionMessageInvalidColumnCount" xml:space="preserve">
+    <value>Incorrect number of columns read.</value>
+  </data>
+  <data name="ExceptionMessageInvalidFile" xml:space="preserve">
+    <value>Not a valid GTA3 save data file.</value>
+  </data>
+  <data name="ExceptionMessageInvalidModelId" xml:space="preserve">
+    <value>Invalid vehicle model ID ({0}).</value>
+    <comment>{0} = the invalid model ID</comment>
+  </data>
+  <data name="ExceptionMessageMultipleCallsNotSupported" xml:space="preserve">
+    <value>Multiple calls are not supported.</value>
+  </data>
+  <data name="ExceptionMessageOops" xml:space="preserve">
+    <value>You weren't supposed to be able to get here, you know.</value>
   </data>
   <data name="FilterCsv" xml:space="preserve">
     <value>CSV (comma-delimited) (*.csv)|*.csv|All Files (*.*)|*.*</value>
@@ -176,44 +299,17 @@
   <data name="FilterGta3SaveData" xml:space="preserve">
     <value>GTA3 Save Data (*.b)|*.b|All Files (*.*)|*.*</value>
   </data>
-  <data name="ImportInfoDialogMessage" xml:space="preserve">
-    <value>Select the file you want to import car generators from. The current set of car generators will be overwritten.</value>
+  <data name="LabelGenerateIfCloseCounter" xml:space="preserve">
+    <value>Generate if player is close counter:</value>
   </data>
-  <data name="ImportInfoDialogTitle" xml:space="preserve">
-    <value>Import Car Generators</value>
+  <data name="LabelNumberOfActiveCarGenerators" xml:space="preserve">
+    <value>Number of active car generators:</value>
   </data>
-  <data name="ImportLimitExceededDialogMessage" xml:space="preserve">
-    <value>The number of car generators imported exceeds the maximum amount by {0}. The extra car generators will be omitted.</value>
-    <comment>{0} = the amount over the limit</comment>
+  <data name="LabelNumberOfCarGenerators" xml:space="preserve">
+    <value>Number of car generators:</value>
   </data>
-  <data name="ImportLimitExceededDialogTitle" xml:space="preserve">
-    <value>Import Limit Exceeded</value>
-  </data>
-  <data name="ImportSuccessDialogMessage" xml:space="preserve">
-    <value>Car generators imported successfully!</value>
-  </data>
-  <data name="IncorrectBlockSizeReadMessage" xml:space="preserve">
-    <value>Incorrect block size read.</value>
-  </data>
-  <data name="IncorrectNumberOfBytesDecodedMessage" xml:space="preserve">
-    <value>Incorrect number of bytes decoded.</value>
-  </data>
-  <data name="IncorrectNumberOfBytesEncodedMessage" xml:space="preserve">
-    <value>Incorrect number of bytes encoded.</value>
-  </data>
-  <data name="InvalidBlockTagMessage" xml:space="preserve">
-    <value>Incorrect block tag - '{0}'. Expecting '{1}'.</value>
-    <comment>{0} = bad tag; {1} = expected tag</comment>
-  </data>
-  <data name="InvalidColumnCountMessage" xml:space="preserve">
-    <value>Incorrect number of columns read.</value>
-  </data>
-  <data name="InvalidFileMessage" xml:space="preserve">
-    <value>Not a valid GTA3 save data file.</value>
-  </data>
-  <data name="InvalidModelIdMessage" xml:space="preserve">
-    <value>Invalid vehicle model ID ({0}).</value>
-    <comment>{0} = the invalid model ID</comment>
+  <data name="LabelProcessCounter" xml:space="preserve">
+    <value>Process counter:</value>
   </data>
   <data name="MenuHeaderEdit" xml:space="preserve">
     <value>_Edit</value>
@@ -278,45 +374,87 @@
   <data name="MenuItemHeaderZeroOutTImers" xml:space="preserve">
     <value>_Zero Out Timers</value>
   </data>
-  <data name="MultipleCallsNotSupportedMessage" xml:space="preserve">
-    <value>Multiple calls are not supported.</value>
-  </data>
-  <data name="OopsMessage" xml:space="preserve">
-    <value>You weren't supposed to be able to get here, you know.</value>
-  </data>
-  <data name="SaveChangesPromptDialogMessage" xml:space="preserve">
-    <value>Do you want to save your changes?</value>
-  </data>
-  <data name="SaveChangesPromptDialogTitle" xml:space="preserve">
-    <value>Save Changes?</value>
-  </data>
-  <data name="StatusExportSuccessful" xml:space="preserve">
+  <data name="StatusMessageExportSuccessful" xml:space="preserve">
     <value>Exported car generators to {0}.</value>
     <comment>{0} = path to file written</comment>
   </data>
-  <data name="StatusExportUnsuccessful" xml:space="preserve">
+  <data name="StatusMessageExportUnsuccessful" xml:space="preserve">
     <value>Failed to export car generators!</value>
   </data>
-  <data name="StatusFileOpened" xml:space="preserve">
+  <data name="StatusMessageFileOpened" xml:space="preserve">
     <value>File opened for edit.</value>
   </data>
-  <data name="StatusImportSuccessful" xml:space="preserve">
+  <data name="StatusMessageImportSuccessful" xml:space="preserve">
     <value>Imported car generators from {0}.</value>
     <comment>{0} = path to imported file</comment>
   </data>
-  <data name="StatusImportUnsuccessful" xml:space="preserve">
+  <data name="StatusMessageImportUnsuccessful" xml:space="preserve">
     <value>Failed to import car generators!</value>
   </data>
-  <data name="StatusNoFileOpened" xml:space="preserve">
+  <data name="StatusMessageNoFileOpened" xml:space="preserve">
     <value>No file opened.</value>
   </data>
-  <data name="StatusSaveSuccessful" xml:space="preserve">
+  <data name="StatusMessageSaveSuccessful" xml:space="preserve">
     <value>File saved successfully.</value>
   </data>
-  <data name="StatusSaveUnsuccessful" xml:space="preserve">
+  <data name="StatusMessageSaveUnsuccessful" xml:space="preserve">
     <value>Failed to save file!</value>
   </data>
-  <data name="SuccesDialogTitle" xml:space="preserve">
-    <value>Success</value>
+  <data name="TextFileModified" xml:space="preserve">
+    <value>Modified</value>
+  </data>
+  <data name="ToolTipAlarmChance" xml:space="preserve">
+    <value>Probability that the vehicle will spawn with an alarm (percentage).</value>
+  </data>
+  <data name="ToolTipCanSpawn" xml:space="preserve">
+    <value>Specifies whether the vehicle will spawn in the game world, effectively enabling or disabling the car generator.</value>
+  </data>
+  <data name="ToolTipColor1" xml:space="preserve">
+    <value>The vehicle's primary color.
+Use -1 for a random color. See carcols.dat for color definitions.</value>
+  </data>
+  <data name="ToolTipColor2" xml:space="preserve">
+    <value>The vehicle's secondary color.
+Use -1 for a random color. See carcols.dat for color definitions.</value>
+  </data>
+  <data name="ToolTipForceSpawn" xml:space="preserve">
+    <value>Forces the vehicle to spawn more readily.
+It is unclear whether this field has any effect in-game.</value>
+  </data>
+  <data name="ToolTipHeading" xml:space="preserve">
+    <value>The vehicle's spawn direction in degrees.
+0 degrees is due north.</value>
+  </data>
+  <data name="ToolTipLocation" xml:space="preserve">
+    <value>The vehicle's location in the game world.</value>
+  </data>
+  <data name="ToolTipLockedChance" xml:space="preserve">
+    <value>Probability that the vehicle will spawn with locked doors (percentage).</value>
+  </data>
+  <data name="ToolTipMaxSpawnDelay" xml:space="preserve">
+    <value>The maximum time to wait before respawning the vehicle after it has been stolen.
+Setting this field has no effect as the game always waits 60000ms before re-spawning the vehicle.</value>
+  </data>
+  <data name="ToolTipMinSpawnDelay" xml:space="preserve">
+    <value>The minimum time to wait before respawning the vehicle after it has been stolen.
+Setting this field has no effect as the game always waits 60000ms before re-spawning the vehicle.</value>
+  </data>
+  <data name="ToolTipModelId" xml:space="preserve">
+    <value>The vehicle to spawn.
+Be warned that certain vehicles (e.g. Airtrain) will crash the game when spawned.</value>
+  </data>
+  <data name="ToolTipRecentlyStolen" xml:space="preserve">
+    <value>Indicates whether the vehicle has been stolen in the last 60 seconds and is waiting to re-spawn.
+Setting this field has no effect.</value>
+  </data>
+  <data name="ToolTipTimer" xml:space="preserve">
+    <value>The game timer when the car is generated.
+If the vehicle is not spawning, try setting this to 0.</value>
+  </data>
+  <data name="ToolTipUnknown" xml:space="preserve">
+    <value>The purpose of this field is unknown and changing it appears to have no effect on the car generator.</value>
+  </data>
+  <data name="WindowTitleEditMetadata" xml:space="preserve">
+    <value>Edit Metadata</value>
   </data>
 </root>

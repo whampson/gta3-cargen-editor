@@ -113,7 +113,7 @@ namespace WHampson.Gta3CarGenEditor.Helpers
         {
             int columnCount = fields.Length;
             if (columnCount != NumColumns) {
-                throw new InvalidDataException(Strings.InvalidColumnCountMessage);
+                throw new InvalidDataException(Strings.ExceptionMessageInvalidColumnCount);
             }
 
             // Convert fields from string values into their respective types
@@ -125,7 +125,7 @@ namespace WHampson.Gta3CarGenEditor.Helpers
             // Check model ID
             uint model = (uint) parsedValues[0];
             if (model != 0 && (model < VehicleModelMin || model > VehicleModelMax)) {
-                string msg = string.Format(Strings.InvalidModelIdMessage, model);
+                string msg = string.Format(Strings.ExceptionMessageInvalidModelId, model);
                 throw new InvalidDataException(msg);
             }
 
@@ -225,7 +225,7 @@ namespace WHampson.Gta3CarGenEditor.Helpers
             }
             else {
                 string msg = string.Format("{0} ({1}, type: {2})",
-                    Strings.OopsMessage,
+                    Strings.ExceptionMessageOops,
                     nameof(CarGeneratorCsvHelper),
                     (t == null) ? "null" : t.Name);
                 throw new InvalidOperationException(msg);

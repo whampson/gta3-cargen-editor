@@ -3,10 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:WHampson.Gta3CarGenEditor.ViewModels"
-        xmlns:local="clr-namespace:WHampson.Gta3CarGenEditor.Views"
+        xmlns:r="clr-namespace:WHampson.Gta3CarGenEditor.Resources"
         mc:Ignorable="d"
-        Title="Edit Metadata"
+        Title="{x:Static r:Strings.WindowTitleEditMetadata}"
         Height="190" Width="400"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner">
@@ -50,16 +49,16 @@
             </Grid.ColumnDefinitions>
         
             <Label Grid.Column="0" Grid.Row="0"
-                   Content="Number of car generators:"
+                   Content="{x:Static r:Strings.LabelNumberOfCarGenerators}"
                    Style="{StaticResource LabelStyle}"/>
             <Label Grid.Column="0" Grid.Row="1"
-                   Content="Number of active car generators:"
+                   Content="{x:Static r:Strings.LabelNumberOfActiveCarGenerators}"
                    Style="{StaticResource LabelStyle}"/>
             <Label Grid.Column="0" Grid.Row="2"
-                   Content="Process counter:"
+                   Content="{x:Static r:Strings.LabelProcessCounter}"
                    Style="{StaticResource LabelStyle}"/>
             <Label Grid.Column="0" Grid.Row="3"
-                   Content="Generate if player is close counter:"
+                   Content="{x:Static r:Strings.LabelGenerateIfCloseCounter}"
                    Style="{StaticResource LabelStyle}"/>
 
             <TextBox Grid.Column="1" Grid.Row="0"
@@ -89,11 +88,11 @@
             </Grid.ColumnDefinitions>
             
             <Button Grid.Column="2"
-                    Content="Cancel"
+                    Content="{x:Static r:Strings.ButtonTextCancel}"
                     Command="{Binding CancelCommand}"
                     Style="{StaticResource ButtonStyle}"/>
             <Button Grid.Column="3"
-                    Content="OK"
+                    Content="{x:Static r:Strings.ButtonTextOk}"
                     Command="{Binding OkCommand}"
                     Style="{StaticResource ButtonStyle}"/>
         </Grid>

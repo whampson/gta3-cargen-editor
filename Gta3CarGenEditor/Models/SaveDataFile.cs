@@ -153,7 +153,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                     // Read tag
                     string tag = Encoding.ASCII.GetString(r.ReadBytes(block.Tag.Length));
                     if (tag != block.Tag) {
-                        string msg = string.Format(Strings.InvalidBlockTagMessage,
+                        string msg = string.Format(Strings.ExceptionMessageInvalidBlockTag,
                             tag.StripNull(), block.Tag.StripNull());
                         throw new InvalidDataException(msg);
                     }
@@ -162,7 +162,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                     if (block.StoreBlockSize) {
                         nestedBlockSize = r.ReadInt32();
                         if (nestedBlockSize != blockSize - tag.Length - 4) {
-                            throw new InvalidDataException(Strings.IncorrectBlockSizeReadMessage);
+                            throw new InvalidDataException(Strings.ExceptionMessageIncorrectBlockSizeRead);
                         }
                         blockSize = nestedBlockSize;
                     }
@@ -204,7 +204,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                 }
 
                 if (bytesRead != totalSize) {
-                    throw new InvalidDataException(Strings.IncorrectNumberOfBytesDecodedMessage);
+                    throw new InvalidDataException(Strings.ExceptionMessageIncorrectNumberOfBytesDecoded);
                 }
             }
 
@@ -311,7 +311,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                 }
 
                 if (bytesWritten != totalSize + 4) {
-                    throw new InvalidDataException(Strings.IncorrectNumberOfBytesEncodedMessage);
+                    throw new InvalidDataException(Strings.ExceptionMessageIncorrectNumberOfBytesEncoded);
                 }
             }
 
@@ -393,7 +393,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                 default:
                     throw new InvalidOperationException(
                         string.Format("{0} ({1})",
-                            Strings.OopsMessage,
+                            Strings.ExceptionMessageOops,
                             nameof(SaveDataFile)));
             }
         }
@@ -486,7 +486,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                 }
 
             invalid_file:
-                throw new InvalidDataException(Strings.InvalidFileMessage);
+                throw new InvalidDataException(Strings.ExceptionMessageInvalidFile);
             }
         }
 

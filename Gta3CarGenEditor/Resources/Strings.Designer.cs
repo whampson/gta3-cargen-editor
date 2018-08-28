@@ -61,15 +61,6 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About.
-        /// </summary>
-        public static string AboutDialogTitle {
-            get {
-                return ResourceManager.GetString("AboutDialogTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Created by W. Hampson (a.k.a. thehambone).
         /// </summary>
         public static string AppAuthor {
@@ -151,11 +142,308 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ConvertBack is not supported for this converter..
+        ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        public static string ConvertBackNotSupportedMessage {
+        public static string ButtonTextCancel {
             get {
-                return ResourceManager.GetString("ConvertBackNotSupportedMessage", resourceCulture);
+                return ResourceManager.GetString("ButtonTextCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string ButtonTextOk {
+            get {
+                return ResourceManager.GetString("ButtonTextOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alarm Chance.
+        /// </summary>
+        public static string ColumnHeaderAlarmChance {
+            get {
+                return ResourceManager.GetString("ColumnHeaderAlarmChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can Spawn.
+        /// </summary>
+        public static string ColumnHeaderCanSpawn {
+            get {
+                return ResourceManager.GetString("ColumnHeaderCanSpawn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color 1.
+        /// </summary>
+        public static string ColumnHeaderColor1 {
+            get {
+                return ResourceManager.GetString("ColumnHeaderColor1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color 2.
+        /// </summary>
+        public static string ColumnHeaderColor2 {
+            get {
+                return ResourceManager.GetString("ColumnHeaderColor2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force Spawn.
+        /// </summary>
+        public static string ColumnHeaderForceSpawn {
+            get {
+                return ResourceManager.GetString("ColumnHeaderForceSpawn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heading.
+        /// </summary>
+        public static string ColumnHeaderHeading {
+            get {
+                return ResourceManager.GetString("ColumnHeaderHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        public static string ColumnHeaderLocation {
+            get {
+                return ResourceManager.GetString("ColumnHeaderLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked Chance.
+        /// </summary>
+        public static string ColumnHeaderLockedChance {
+            get {
+                return ResourceManager.GetString("ColumnHeaderLockedChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max. Spawn Delay.
+        /// </summary>
+        public static string ColumnHeaderMaxSpawnDelay {
+            get {
+                return ResourceManager.GetString("ColumnHeaderMaxSpawnDelay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min. Spawn Delay.
+        /// </summary>
+        public static string ColumnHeaderMinSpawnDelay {
+            get {
+                return ResourceManager.GetString("ColumnHeaderMinSpawnDelay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle.
+        /// </summary>
+        public static string ColumnHeaderModelId {
+            get {
+                return ResourceManager.GetString("ColumnHeaderModelId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recently Stolen.
+        /// </summary>
+        public static string ColumnHeaderRecentlyStolen {
+            get {
+                return ResourceManager.GetString("ColumnHeaderRecentlyStolen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timer.
+        /// </summary>
+        public static string ColumnHeaderTimer {
+            get {
+                return ResourceManager.GetString("ColumnHeaderTimer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown24.
+        /// </summary>
+        public static string ColumnHeaderUnknown24 {
+            get {
+                return ResourceManager.GetString("ColumnHeaderUnknown24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown2C.
+        /// </summary>
+        public static string ColumnHeaderUnknown2C {
+            get {
+                return ResourceManager.GetString("ColumnHeaderUnknown2C", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown30.
+        /// </summary>
+        public static string ColumnHeaderUnknown30 {
+            get {
+                return ResourceManager.GetString("ColumnHeaderUnknown30", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown34.
+        /// </summary>
+        public static string ColumnHeaderUnknown34 {
+            get {
+                return ResourceManager.GetString("ColumnHeaderUnknown34", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown38.
+        /// </summary>
+        public static string ColumnHeaderUnknown38 {
+            get {
+                return ResourceManager.GetString("ColumnHeaderUnknown38", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown3C.
+        /// </summary>
+        public static string ColumnHeaderUnknown3C {
+            get {
+                return ResourceManager.GetString("ColumnHeaderUnknown3C", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown40.
+        /// </summary>
+        public static string ColumnHeaderUnknown40 {
+            get {
+                return ResourceManager.GetString("ColumnHeaderUnknown40", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown44.
+        /// </summary>
+        public static string ColumnHeaderUnknown44 {
+            get {
+                return ResourceManager.GetString("ColumnHeaderUnknown44", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the file you want to export the current set of car generators to. The car generators in that file will be overwritten..
+        /// </summary>
+        public static string DialogMessageExportInfo {
+            get {
+                return ResourceManager.GetString("DialogMessageExportInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car generators exported successfully!.
+        /// </summary>
+        public static string DialogMessageExportSuccessful {
+            get {
+                return ResourceManager.GetString("DialogMessageExportSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the file you want to import car generators from. The current set of car generators will be overwritten..
+        /// </summary>
+        public static string DialogMessageImportInfo {
+            get {
+                return ResourceManager.GetString("DialogMessageImportInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of car generators imported exceeds the maximum amount by {0}. The extra car generators will be omitted..
+        /// </summary>
+        public static string DialogMessageImportLimitExceeded {
+            get {
+                return ResourceManager.GetString("DialogMessageImportLimitExceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car generators imported successfully!.
+        /// </summary>
+        public static string DialogMessageImportSuccessful {
+            get {
+                return ResourceManager.GetString("DialogMessageImportSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to save your changes?.
+        /// </summary>
+        public static string DialogMessageSaveChangesPrompt {
+            get {
+                return ResourceManager.GetString("DialogMessageSaveChangesPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string DialogTitleAbout {
+            get {
+                return ResourceManager.GetString("DialogTitleAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string DialogTitleError {
+            get {
+                return ResourceManager.GetString("DialogTitleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Car Generators.
+        /// </summary>
+        public static string DialogTitleExportInfo {
+            get {
+                return ResourceManager.GetString("DialogTitleExportInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Car Generators.
+        /// </summary>
+        public static string DialogTitleImportInfo {
+            get {
+                return ResourceManager.GetString("DialogTitleImportInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Limit Exceeded.
+        /// </summary>
+        public static string DialogTitleImportLimitExceeded {
+            get {
+                return ResourceManager.GetString("DialogTitleImportLimitExceeded", resourceCulture);
             }
         }
         
@@ -169,6 +457,15 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Changes?.
+        /// </summary>
+        public static string DialogTitleSaveChangesPrompt {
+            get {
+                return ResourceManager.GetString("DialogTitleSaveChangesPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save As....
         /// </summary>
         public static string DialogTitleSaveFileAs {
@@ -178,38 +475,101 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error.
+        ///   Looks up a localized string similar to Success.
         /// </summary>
-        public static string ErrorDialogTitle {
+        public static string DialogTitleSuccess {
             get {
-                return ResourceManager.GetString("ErrorDialogTitle", resourceCulture);
+                return ResourceManager.GetString("DialogTitleSuccess", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the file you want to export the current set of car generators to. The car generators in that file will be overwritten..
+        ///   Looks up a localized string similar to ConvertBack is not supported for this converter..
         /// </summary>
-        public static string ExportInfoDialogMessage {
+        public static string ExceptionMessageConvertBackNotSupported {
             get {
-                return ResourceManager.GetString("ExportInfoDialogMessage", resourceCulture);
+                return ResourceManager.GetString("ExceptionMessageConvertBackNotSupported", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Export Car Generators.
+        ///   Looks up a localized string similar to Incorrect block size read..
         /// </summary>
-        public static string ExportInfoDialogTitle {
+        public static string ExceptionMessageIncorrectBlockSizeRead {
             get {
-                return ResourceManager.GetString("ExportInfoDialogTitle", resourceCulture);
+                return ResourceManager.GetString("ExceptionMessageIncorrectBlockSizeRead", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Car generators exported successfully!.
+        ///   Looks up a localized string similar to Incorrect number of bytes decoded..
         /// </summary>
-        public static string ExportSuccessDialogMessage {
+        public static string ExceptionMessageIncorrectNumberOfBytesDecoded {
             get {
-                return ResourceManager.GetString("ExportSuccessDialogMessage", resourceCulture);
+                return ResourceManager.GetString("ExceptionMessageIncorrectNumberOfBytesDecoded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect number of bytes encoded..
+        /// </summary>
+        public static string ExceptionMessageIncorrectNumberOfBytesEncoded {
+            get {
+                return ResourceManager.GetString("ExceptionMessageIncorrectNumberOfBytesEncoded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect block tag - &apos;{0}&apos;. Expecting &apos;{1}&apos;..
+        /// </summary>
+        public static string ExceptionMessageInvalidBlockTag {
+            get {
+                return ResourceManager.GetString("ExceptionMessageInvalidBlockTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect number of columns read..
+        /// </summary>
+        public static string ExceptionMessageInvalidColumnCount {
+            get {
+                return ResourceManager.GetString("ExceptionMessageInvalidColumnCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not a valid GTA3 save data file..
+        /// </summary>
+        public static string ExceptionMessageInvalidFile {
+            get {
+                return ResourceManager.GetString("ExceptionMessageInvalidFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid vehicle model ID ({0})..
+        /// </summary>
+        public static string ExceptionMessageInvalidModelId {
+            get {
+                return ResourceManager.GetString("ExceptionMessageInvalidModelId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple calls are not supported..
+        /// </summary>
+        public static string ExceptionMessageMultipleCallsNotSupported {
+            get {
+                return ResourceManager.GetString("ExceptionMessageMultipleCallsNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You weren&apos;t supposed to be able to get here, you know..
+        /// </summary>
+        public static string ExceptionMessageOops {
+            get {
+                return ResourceManager.GetString("ExceptionMessageOops", resourceCulture);
             }
         }
         
@@ -232,110 +592,38 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the file you want to import car generators from. The current set of car generators will be overwritten..
+        ///   Looks up a localized string similar to Generate if player is close counter:.
         /// </summary>
-        public static string ImportInfoDialogMessage {
+        public static string LabelGenerateIfCloseCounter {
             get {
-                return ResourceManager.GetString("ImportInfoDialogMessage", resourceCulture);
+                return ResourceManager.GetString("LabelGenerateIfCloseCounter", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import Car Generators.
+        ///   Looks up a localized string similar to Number of active car generators:.
         /// </summary>
-        public static string ImportInfoDialogTitle {
+        public static string LabelNumberOfActiveCarGenerators {
             get {
-                return ResourceManager.GetString("ImportInfoDialogTitle", resourceCulture);
+                return ResourceManager.GetString("LabelNumberOfActiveCarGenerators", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The number of car generators imported exceeds the maximum amount by {0}. The extra car generators will be omitted..
+        ///   Looks up a localized string similar to Number of car generators:.
         /// </summary>
-        public static string ImportLimitExceededDialogMessage {
+        public static string LabelNumberOfCarGenerators {
             get {
-                return ResourceManager.GetString("ImportLimitExceededDialogMessage", resourceCulture);
+                return ResourceManager.GetString("LabelNumberOfCarGenerators", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import Limit Exceeded.
+        ///   Looks up a localized string similar to Process counter:.
         /// </summary>
-        public static string ImportLimitExceededDialogTitle {
+        public static string LabelProcessCounter {
             get {
-                return ResourceManager.GetString("ImportLimitExceededDialogTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Car generators imported successfully!.
-        /// </summary>
-        public static string ImportSuccessDialogMessage {
-            get {
-                return ResourceManager.GetString("ImportSuccessDialogMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Incorrect block size read..
-        /// </summary>
-        public static string IncorrectBlockSizeReadMessage {
-            get {
-                return ResourceManager.GetString("IncorrectBlockSizeReadMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Incorrect number of bytes decoded..
-        /// </summary>
-        public static string IncorrectNumberOfBytesDecodedMessage {
-            get {
-                return ResourceManager.GetString("IncorrectNumberOfBytesDecodedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Incorrect number of bytes encoded..
-        /// </summary>
-        public static string IncorrectNumberOfBytesEncodedMessage {
-            get {
-                return ResourceManager.GetString("IncorrectNumberOfBytesEncodedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Incorrect block tag - &apos;{0}&apos;. Expecting &apos;{1}&apos;..
-        /// </summary>
-        public static string InvalidBlockTagMessage {
-            get {
-                return ResourceManager.GetString("InvalidBlockTagMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Incorrect number of columns read..
-        /// </summary>
-        public static string InvalidColumnCountMessage {
-            get {
-                return ResourceManager.GetString("InvalidColumnCountMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Not a valid GTA3 save data file..
-        /// </summary>
-        public static string InvalidFileMessage {
-            get {
-                return ResourceManager.GetString("InvalidFileMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid vehicle model ID ({0})..
-        /// </summary>
-        public static string InvalidModelIdMessage {
-            get {
-                return ResourceManager.GetString("InvalidModelIdMessage", resourceCulture);
+                return ResourceManager.GetString("LabelProcessCounter", resourceCulture);
             }
         }
         
@@ -529,119 +817,227 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Multiple calls are not supported..
-        /// </summary>
-        public static string MultipleCallsNotSupportedMessage {
-            get {
-                return ResourceManager.GetString("MultipleCallsNotSupportedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You weren&apos;t supposed to be able to get here, you know..
-        /// </summary>
-        public static string OopsMessage {
-            get {
-                return ResourceManager.GetString("OopsMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do you want to save your changes?.
-        /// </summary>
-        public static string SaveChangesPromptDialogMessage {
-            get {
-                return ResourceManager.GetString("SaveChangesPromptDialogMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save Changes?.
-        /// </summary>
-        public static string SaveChangesPromptDialogTitle {
-            get {
-                return ResourceManager.GetString("SaveChangesPromptDialogTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Exported car generators to {0}..
         /// </summary>
-        public static string StatusExportSuccessful {
+        public static string StatusMessageExportSuccessful {
             get {
-                return ResourceManager.GetString("StatusExportSuccessful", resourceCulture);
+                return ResourceManager.GetString("StatusMessageExportSuccessful", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Failed to export car generators!.
         /// </summary>
-        public static string StatusExportUnsuccessful {
+        public static string StatusMessageExportUnsuccessful {
             get {
-                return ResourceManager.GetString("StatusExportUnsuccessful", resourceCulture);
+                return ResourceManager.GetString("StatusMessageExportUnsuccessful", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to File opened for edit..
         /// </summary>
-        public static string StatusFileOpened {
+        public static string StatusMessageFileOpened {
             get {
-                return ResourceManager.GetString("StatusFileOpened", resourceCulture);
+                return ResourceManager.GetString("StatusMessageFileOpened", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Imported car generators from {0}..
         /// </summary>
-        public static string StatusImportSuccessful {
+        public static string StatusMessageImportSuccessful {
             get {
-                return ResourceManager.GetString("StatusImportSuccessful", resourceCulture);
+                return ResourceManager.GetString("StatusMessageImportSuccessful", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Failed to import car generators!.
         /// </summary>
-        public static string StatusImportUnsuccessful {
+        public static string StatusMessageImportUnsuccessful {
             get {
-                return ResourceManager.GetString("StatusImportUnsuccessful", resourceCulture);
+                return ResourceManager.GetString("StatusMessageImportUnsuccessful", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to No file opened..
         /// </summary>
-        public static string StatusNoFileOpened {
+        public static string StatusMessageNoFileOpened {
             get {
-                return ResourceManager.GetString("StatusNoFileOpened", resourceCulture);
+                return ResourceManager.GetString("StatusMessageNoFileOpened", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to File saved successfully..
         /// </summary>
-        public static string StatusSaveSuccessful {
+        public static string StatusMessageSaveSuccessful {
             get {
-                return ResourceManager.GetString("StatusSaveSuccessful", resourceCulture);
+                return ResourceManager.GetString("StatusMessageSaveSuccessful", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Failed to save file!.
         /// </summary>
-        public static string StatusSaveUnsuccessful {
+        public static string StatusMessageSaveUnsuccessful {
             get {
-                return ResourceManager.GetString("StatusSaveUnsuccessful", resourceCulture);
+                return ResourceManager.GetString("StatusMessageSaveUnsuccessful", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Success.
+        ///   Looks up a localized string similar to Modified.
         /// </summary>
-        public static string SuccesDialogTitle {
+        public static string TextFileModified {
             get {
-                return ResourceManager.GetString("SuccesDialogTitle", resourceCulture);
+                return ResourceManager.GetString("TextFileModified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Probability that the vehicle will spawn with an alarm (percentage)..
+        /// </summary>
+        public static string ToolTipAlarmChance {
+            get {
+                return ResourceManager.GetString("ToolTipAlarmChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies whether the vehicle will spawn in the game world, effectively enabling or disabling the car generator..
+        /// </summary>
+        public static string ToolTipCanSpawn {
+            get {
+                return ResourceManager.GetString("ToolTipCanSpawn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The vehicle&apos;s primary color.
+        ///Use -1 for a random color. See carcols.dat for color definitions..
+        /// </summary>
+        public static string ToolTipColor1 {
+            get {
+                return ResourceManager.GetString("ToolTipColor1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The vehicle&apos;s secondary color.
+        ///Use -1 for a random color. See carcols.dat for color definitions..
+        /// </summary>
+        public static string ToolTipColor2 {
+            get {
+                return ResourceManager.GetString("ToolTipColor2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forces the vehicle to spawn more readily.
+        ///It is unclear whether this field has any effect in-game..
+        /// </summary>
+        public static string ToolTipForceSpawn {
+            get {
+                return ResourceManager.GetString("ToolTipForceSpawn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The vehicle&apos;s spawn direction in degrees.
+        ///0 degrees is due north..
+        /// </summary>
+        public static string ToolTipHeading {
+            get {
+                return ResourceManager.GetString("ToolTipHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The vehicle&apos;s location in the game world..
+        /// </summary>
+        public static string ToolTipLocation {
+            get {
+                return ResourceManager.GetString("ToolTipLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Probability that the vehicle will spawn with locked doors (percentage)..
+        /// </summary>
+        public static string ToolTipLockedChance {
+            get {
+                return ResourceManager.GetString("ToolTipLockedChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The maximum time to wait before respawning the vehicle after it has been stolen.
+        ///Setting this field has no effect as the game always waits 60000ms before re-spawning the vehicle..
+        /// </summary>
+        public static string ToolTipMaxSpawnDelay {
+            get {
+                return ResourceManager.GetString("ToolTipMaxSpawnDelay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The minimum time to wait before respawning the vehicle after it has been stolen.
+        ///Setting this field has no effect as the game always waits 60000ms before re-spawning the vehicle..
+        /// </summary>
+        public static string ToolTipMinSpawnDelay {
+            get {
+                return ResourceManager.GetString("ToolTipMinSpawnDelay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The vehicle to spawn.
+        ///Be warned that certain vehicles (e.g. Airtrain) will crash the game when spawned..
+        /// </summary>
+        public static string ToolTipModelId {
+            get {
+                return ResourceManager.GetString("ToolTipModelId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicates whether the vehicle has been stolen in the last 60 seconds and is waiting to re-spawn.
+        ///Setting this field has no effect..
+        /// </summary>
+        public static string ToolTipRecentlyStolen {
+            get {
+                return ResourceManager.GetString("ToolTipRecentlyStolen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game timer when the car is generated.
+        ///If the vehicle is not spawning, try setting this to 0..
+        /// </summary>
+        public static string ToolTipTimer {
+            get {
+                return ResourceManager.GetString("ToolTipTimer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The purpose of this field is unknown and changing it appears to have no effect on the car generator..
+        /// </summary>
+        public static string ToolTipUnknown {
+            get {
+                return ResourceManager.GetString("ToolTipUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Metadata.
+        /// </summary>
+        public static string WindowTitleEditMetadata {
+            get {
+                return ResourceManager.GetString("WindowTitleEditMetadata", resourceCulture);
             }
         }
     }

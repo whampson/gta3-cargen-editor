@@ -33,7 +33,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             m_carGenerators = new ObservableCollection<CarGenerator>();
             m_carGenerators.CollectionChanged += CarGenerators_CollectionChanged;
             m_windowTitle = Strings.AppName;
-            m_statusText = Strings.StatusNoFileOpened;
+            m_statusText = Strings.StatusMessageNoFileOpened;
         }
         #endregion
 
@@ -122,7 +122,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             CurrentSaveData = saveData;
             MostRecentPath = path;
             WindowTitle = string.Format("{0} - {1}", Strings.AppName, path);
-            StatusText = Strings.StatusFileOpened;
+            StatusText = Strings.StatusMessageFileOpened;
         }
 
         private SaveDataFile LoadSaveData(string path)
@@ -145,13 +145,13 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         {
             bool result = WriteSaveData(CurrentSaveData, path);
             if (!result) {
-                StatusText = Strings.StatusSaveUnsuccessful;
+                StatusText = Strings.StatusMessageSaveUnsuccessful;
                 return;
             }
 
             MostRecentPath = path;
             WindowTitle = string.Format("{0} - {1}", Strings.AppName, path);
-            StatusText = Strings.StatusSaveSuccessful;
+            StatusText = Strings.StatusMessageSaveSuccessful;
             IsFileModified = false;
         }
 
@@ -188,7 +188,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             CurrentSaveData = null;
             IsFileModified = false;
             WindowTitle = Strings.AppName;
-            StatusText = Strings.StatusNoFileOpened;
+            StatusText = Strings.StatusMessageNoFileOpened;
         }
 
         private void ZeroOutTimers()
@@ -232,7 +232,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             // Load other file
             SaveDataFile saveData = LoadSaveData(path);
             if (saveData == null) {
-                StatusText = Strings.StatusImportUnsuccessful;
+                StatusText = Strings.StatusMessageImportUnsuccessful;
                 return;
             }
 
@@ -246,7 +246,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             OnResetRowOrderRequested();
 
             // Update status
-            StatusText = string.Format(Strings.StatusImportSuccessful, path);
+            StatusText = string.Format(Strings.StatusMessageImportSuccessful, path);
             IsFileModified = true;
         }
 
@@ -259,12 +259,12 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             }
             catch (IOException ex) {
                 ShowErrorDialog(ex.Message);
-                StatusText = Strings.StatusImportUnsuccessful;
+                StatusText = Strings.StatusMessageImportUnsuccessful;
                 return;
             }
             catch (InvalidDataException ex) {
                 ShowErrorDialog(ex.Message);
-                StatusText = Strings.StatusImportUnsuccessful;
+                StatusText = Strings.StatusMessageImportUnsuccessful;
                 return;
             }
 
@@ -294,7 +294,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             UpdateNumberOfCarGenerators();
 
             // Update status
-            StatusText = string.Format(Strings.StatusImportSuccessful, path);
+            StatusText = string.Format(Strings.StatusMessageImportSuccessful, path);
             IsFileModified = true;
         }
 
@@ -303,19 +303,19 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             // Load other file
             SaveDataFile saveData = LoadSaveData(path);
             if (saveData == null) {
-                StatusText = Strings.StatusExportUnsuccessful;
+                StatusText = Strings.StatusMessageExportUnsuccessful;
                 return;
             }
 
             // Replace car generators in other file and store file
             saveData.CarGenerators = CurrentSaveData.CarGenerators;
             if (!WriteSaveData(saveData, path)) {
-                StatusText = Strings.StatusExportUnsuccessful;
+                StatusText = Strings.StatusMessageExportUnsuccessful;
                 return;
             }
 
             ShowExportSuccessDialog();
-            StatusText = string.Format(Strings.StatusExportSuccessful, path);
+            StatusText = string.Format(Strings.StatusMessageExportSuccessful, path);
         }
 
         private void ExportCarGeneratorsCSV(string path)
@@ -327,17 +327,17 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             }
             catch (IOException ex) {
                 ShowErrorDialog(ex.Message);
-                StatusText = Strings.StatusExportUnsuccessful;
+                StatusText = Strings.StatusMessageExportUnsuccessful;
                 return;
             }
             catch (InvalidDataException ex) {
                 ShowErrorDialog(ex.Message);
-                StatusText = Strings.StatusExportUnsuccessful;
+                StatusText = Strings.StatusMessageExportUnsuccessful;
                 return;
             }
 
             ShowExportSuccessDialog();
-            StatusText = string.Format(Strings.StatusExportSuccessful, path);
+            StatusText = string.Format(Strings.StatusMessageExportSuccessful, path);
         }
 
         private void ApplicationExit()
@@ -348,8 +348,8 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         private void ShowFileClosePrompt()
         {
             OnMessageBoxRequested(new MessageBoxEventArgs(
-                Strings.SaveChangesPromptDialogMessage,
-                Strings.SaveChangesPromptDialogTitle,
+                Strings.DialogMessageSaveChangesPrompt,
+                Strings.DialogTitleSaveChangesPrompt,
                 MessageBoxButton.YesNoCancel,
                 MessageBoxImage.Question,
                 MessageBoxResult.Yes,
@@ -360,8 +360,8 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         {
             OnFileDialogRequested(new FileDialogEventArgs(
                 FileDialogType.OpenDialog,
-                filter: Strings.Gta3SaveDataFilter,
-                title: Strings.OpenFileDialogTitle,
+                filter: Strings.FilterGta3SaveData,
+                title: Strings.DialogTitleOpenFile,
                 resultAction: resultAction));
         }
 
@@ -370,8 +370,8 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             OnFileDialogRequested(new FileDialogEventArgs(
                 FileDialogType.SaveDialog,
                 fileName: Path.GetFileName(MostRecentPath),
-                filter: Strings.Gta3SaveDataFilter,
-                title: Strings.SaveFileAsDialogTitle,
+                filter: Strings.FilterGta3SaveData,
+                title: Strings.DialogTitleSaveFileAs,
                 resultAction: resultAction));
         }
 
@@ -379,8 +379,8 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         {
             OnFileDialogRequested(new FileDialogEventArgs(
                 FileDialogType.OpenDialog,
-                filter: Strings.CsvFilter,
-                title: Strings.OpenFileDialogTitle,
+                filter: Strings.FilterCsv,
+                title: Strings.DialogTitleOpenFile,
                 resultAction: resultAction));
         }
 
@@ -388,8 +388,8 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         {
             OnFileDialogRequested(new FileDialogEventArgs(
                 FileDialogType.SaveDialog,
-                filter: Strings.CsvFilter,
-                title: Strings.SaveFileAsDialogTitle,
+                filter: Strings.FilterCsv,
+                title: Strings.DialogTitleSaveFileAs,
                 resultAction: resultAction));
         }
 
@@ -397,47 +397,47 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         {
             OnMessageBoxRequested(new MessageBoxEventArgs(
                 message,
-                Strings.ErrorDialogTitle,
+                Strings.DialogTitleError,
                 icon: MessageBoxImage.Error));
         }
 
         private void ShowImportSuccessDialog()
         {
             OnMessageBoxRequested(new MessageBoxEventArgs(
-                Strings.ImportSuccessDialogMessage,
-                Strings.SuccesDialogTitle,
+                Strings.DialogMessageImportSuccessful,
+                Strings.DialogTitleSuccess,
                 icon: MessageBoxImage.Information));
         }
 
         private void ShowExportSuccessDialog()
         {
             OnMessageBoxRequested(new MessageBoxEventArgs(
-                Strings.ExportSuccessDialogMessage,
-                Strings.SuccesDialogTitle,
+                Strings.DialogMessageExportSuccessful,
+                Strings.DialogTitleSuccess,
                 icon: MessageBoxImage.Information));
         }
 
         private void ShowImportInfoDialog()
         {
             OnMessageBoxRequested(new MessageBoxEventArgs(
-                Strings.ImportInfoDialogMessage,
-                Strings.ImportInfoDialogTitle,
+                Strings.DialogMessageImportInfo,
+                Strings.DialogTitleImportInfo,
                 icon: MessageBoxImage.Information));
         }
 
         private void ShowExportInfoDialog()
         {
             OnMessageBoxRequested(new MessageBoxEventArgs(
-                Strings.ExportInfoDialogMessage,
-                Strings.ExportInfoDialogTitle,
+                Strings.DialogMessageExportInfo,
+                Strings.DialogTitleExportInfo,
                 icon: MessageBoxImage.Information));
         }
 
         private void ShowImportCountExceededDialog(int overBy)
         {
             OnMessageBoxRequested(new MessageBoxEventArgs(
-                string.Format(Strings.ImportLimitExceededDialogMessage, overBy),
-                Strings.ImportLimitExceededDialogTitle,
+                string.Format(Strings.DialogMessageImportLimitExceeded, overBy),
+                Strings.DialogTitleImportLimitExceeded,
                 icon: MessageBoxImage.Warning));
         }
 
@@ -458,7 +458,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
             OnMessageBoxRequested(new MessageBoxEventArgs(
                 msg,
-                Strings.AboutDialogTitle,
+                Strings.DialogTitleAbout,
                 MessageBoxButton.OK,
                 MessageBoxImage.Information));
         }

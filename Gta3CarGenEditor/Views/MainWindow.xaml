@@ -6,8 +6,7 @@
         xmlns:m="clr-namespace:WHampson.Gta3CarGenEditor.Models"
         xmlns:vm="clr-namespace:WHampson.Gta3CarGenEditor.ViewModels"
         xmlns:conv="clr-namespace:WHampson.Gta3CarGenEditor.Converters"
-        xmlns:prop="clr-namespace:WHampson.Gta3CarGenEditor.Properties"
-        xmlns:local="clr-namespace:WHampson.Gta3CarGenEditor"
+        xmlns:r="clr-namespace:WHampson.Gta3CarGenEditor.Resources"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="{Binding WindowTitle}"
@@ -75,67 +74,67 @@
         <DockPanel>
             <!-- Menu bar -->
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_File">
+                <MenuItem Header="{x:Static r:Strings.MenuHeaderFile}">
                     <MenuItem Command="{Binding FileOpenCommand}"
-                              Header="_Open..."
+                              Header="{x:Static r:Strings.MenuItemHeaderOpen}"
                               InputGestureText="Ctrl+O"/>
                     <MenuItem Command="{Binding FileCloseCommand}"
-                              Header="_Close"
+                              Header="{x:Static r:Strings.MenuItemHeaderClose}"
                               InputGestureText="Ctrl+W"/>
                     <Separator/>
                     <MenuItem Command="{Binding FileSaveCommand}"
-                              Header="_Save"
+                              Header="{x:Static r:Strings.MenuItemHeaderSave}"
                               InputGestureText="Ctrl+S"/>
                     <MenuItem Command="{Binding FileSaveAsCommand}"
-                              Header="Save _As..."
+                              Header="{x:Static r:Strings.MenuItemHeaderSaveAs}"
                               InputGestureText="Ctrl+Shift+S"/>
                     <Separator/>
-                    <MenuItem Header="_Import">
+                    <MenuItem Header="{x:Static r:Strings.MenuItemHeaderImport}">
                         <MenuItem Command="{Binding ImportFromSaveDataCommand}"
-                                  Header="Car Generators from GTA3 _Save..."
+                                  Header="{x:Static r:Strings.MenuItemHeaderCarGensFromSave}"
                                   InputGestureText="Ctrl+I"/>
                         <MenuItem Command="{Binding ImportFromCSVCommand}"
-                                  Header="Car Generators from _CSV..."
+                                  Header="{x:Static r:Strings.MenuItemHeaderCarGensFromCsv}"
                                   InputGestureText="Ctrl+Shift+I"/>
                     </MenuItem>
-                    <MenuItem Header="_Export">
+                    <MenuItem Header="{x:Static r:Strings.MenuItemHeaderExport}">
                         <MenuItem Command="{Binding ExportToSaveDataCommand}"
-                                  Header="Car Generators to GTA3 _Save..."
+                                  Header="{x:Static r:Strings.MenuItemHeaderCarGensToSave}"
                                   InputGestureText="Ctrl+E"/>
                         <MenuItem Command="{Binding ExportToCSVCommand}"
-                                  Header="Car Generators to _CSV..."
+                                  Header="{x:Static r:Strings.MenuItemHeaderCarGensToCsv}"
                                   InputGestureText="Ctrl+Shift+E"/>
                     </MenuItem>
                     <Separator/>
                     <MenuItem Command="{Binding ApplicationExitCommand}"
-                              Header="E_xit"
+                              Header="{x:Static r:Strings.MenuItemHeaderExit}"
                               InputGestureText="Alt+F4"/>
                 </MenuItem>
-                <MenuItem Header="_Edit">
+                <MenuItem Header="{x:Static r:Strings.MenuHeaderEdit}">
                     <MenuItem Command="{Binding EditMetadataCommand}"
-                              Header="Edit _Metadata..."
+                              Header="{x:Static r:Strings.MenuItemHeaderEditMetadata}"
                               InputGestureText="Ctrl+M"/>
                     <Separator/>
                     <MenuItem Command="{Binding ZeroOutTimersCommand}"
-                              Header="_Zero Out Timers"
+                              Header="{x:Static r:Strings.MenuItemHeaderZeroOutTImers}"
                               InputGestureText="Ctrl+T"/>
                 </MenuItem>
-                <MenuItem Header="_View">
+                <MenuItem Header="{x:Static r:Strings.MenuHeaderView}">
                     <MenuItem Command="{Binding ShowUnusedFieldsCommand}"
-                              Header="Show _Unused Fields"
+                              Header="{x:Static r:Strings.MenuItemHeaderShowUnusedFields}"
                               InputGestureText="Ctrl+U"
                               IsChecked="{Binding IsShowingUnusedFields}"/>
                     <Separator/>
                     <MenuItem Command="{Binding ResetRowOrderCommand}"
-                              Header="_Reset Row Order"
+                              Header="{x:Static r:Strings.MenuItemHeaderResetRowOrder}"
                               InputGestureText="Ctrl+R"/>
                 </MenuItem>
-                <MenuItem Header="_Help">
+                <MenuItem Header="{x:Static r:Strings.MenuHeaderHelp}">
                     <MenuItem Command="{Binding CheckForUpdatesCommand}"
-                              Header="Check for _Updates..."/>
+                              Header="{x:Static r:Strings.MenuItemHeaderCheckForUpdates}"/>
                     <Separator/>
                     <MenuItem Command="{Binding ShowAboutDialogCommand}"
-                              Header="_About"
+                              Header="{x:Static r:Strings.MenuItemHeaderAbout}"
                               InputGestureText="F1"/>
                 </MenuItem>
             </Menu>
@@ -154,11 +153,12 @@
 
                 <DataGrid.Columns>
                     <!-- Model ID -->
-                    <DataGridTemplateColumn Header="Vehicle" SortMemberPath="Model" CanUserSort="True">
+                    <DataGridTemplateColumn Header="{x:Static r:Strings.ColumnHeaderModelId}" SortMemberPath="Model" CanUserSort="True">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="The vehicle to spawn.&#x0a;Be warned that certain vehicles (e.g. Airtrain) will crash the game when spawned."/>
+                                        Value="{x:Static r:Strings.ToolTipModelId}"/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTemplateColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
@@ -181,11 +181,11 @@
                     </DataGridTemplateColumn>
 
                     <!-- Location -->
-                    <DataGridTemplateColumn Header="Location" CanUserSort="True" SortMemberPath="Location">
+                    <DataGridTemplateColumn Header="{x:Static r:Strings.ColumnHeaderLocation}" CanUserSort="True" SortMemberPath="Location">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="The vehicle's location in the game world."/>
+                                        Value="{x:Static r:Strings.ToolTipLocation}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTemplateColumn.HeaderStyle>
@@ -202,227 +202,240 @@
                     </DataGridTemplateColumn>
 
                     <!-- Heading -->
-                    <DataGridTextColumn Header="Heading"
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderHeading}"
                                         Binding="{Binding Heading, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="The vehicle's spawn direction in degrees.&#x0a;0 degrees is due north."/>
+                                        Value="{x:Static r:Strings.ToolTipHeading}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
                     <!-- Color 1 -->
-                    <DataGridTextColumn Header="Color 1"
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderColor1}"
                                         Binding="{Binding Color1, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="The vehicle's primary color.&#x0a;Use -1 for a random color. See carcols.dat for color definitions."/>
+                                        Value="{x:Static r:Strings.ToolTipColor1}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
                     <!-- Color 2 -->
-                    <DataGridTextColumn Header="Color 2"
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderColor2}"
                                         Binding="{Binding Color2, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="The vehicle's secondary color.&#x0a;Use -1 for a random color. See carcols.dat for color definitions."/>
+                                        Value="{x:Static r:Strings.ToolTipColor2}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
-                    <!-- Alarm -->
-                    <DataGridTextColumn Header="Alarm Chance"
+                    <!-- Alarm Chance -->
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderAlarmChance}"
                                         Binding="{Binding AlarmChance, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="Percent chance that the vehicle will spawn with an alarm."/>
+                                        Value="{x:Static r:Strings.ToolTipAlarmChance}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
-                    <!-- Door Lock -->
-                    <DataGridTextColumn Header="Locked Chance"
+                    <!-- Locked Chance -->
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderLockedChance}"
                                         Binding="{Binding LockedChance, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="Percent chance that the vehicle will spawn with locked doors."/>
+                                        Value="{x:Static r:Strings.ToolTipLockedChance}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
-                    <!-- Can Spawn -->
-                    <DataGridCheckBoxColumn Header="Can Spawn"
+                    <!-- Spawn Count -->
+                    <DataGridCheckBoxColumn Header="{x:Static r:Strings.ColumnHeaderCanSpawn}"
                                         Binding="{Binding SpawnCount, Converter={StaticResource SpawnCountToBooleanConverter}, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridCheckBoxColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="Specifies whether the vehicle will spawn in the game world, effectively enabling or disabling the car generator."/>
+                                        Value="{x:Static r:Strings.ToolTipCanSpawn}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridCheckBoxColumn.HeaderStyle>
                     </DataGridCheckBoxColumn>
 
                     <!-- Timer -->
-                    <DataGridTextColumn Header="Timer"
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderTimer}"
                                         Binding="{Binding Timer, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="The game timer when the car is generated.&#x0a;If the vehicle is not spawning, try setting this to 0."/>
+                                        Value="{x:Static r:Strings.ToolTipTimer}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
                     <!-- Force Spawn -->
-                    <DataGridCheckBoxColumn Header="Force Spawn"
+                    <DataGridCheckBoxColumn Header="{x:Static r:Strings.ColumnHeaderForceSpawn}"
                                             Binding="{Binding ForceSpawn, UpdateSourceTrigger=PropertyChanged}"
                                             Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridCheckBoxColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="Forces the vehicle to spawn more readily.&#x0a;It is unclear whether this field has any effect in-game."/>
+                                        Value="{x:Static r:Strings.ToolTipForceSpawn}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridCheckBoxColumn.HeaderStyle>
                     </DataGridCheckBoxColumn>
 
                     <!-- Min. Spawn Delay -->
-                    <DataGridTextColumn Header="Min. Spawn Delay"
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderMinSpawnDelay}"
                                         Binding="{Binding MinSpawnDelay, UpdateSourceTrigger=PropertyChanged}"
                                         Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="The minimum time to wait before respawning the vehicle after it has been stolen.&#x0a;Setting this field does nothing as the game always waits 60000ms before re-spawning the vehicle."/>
+                                        Value="{x:Static r:Strings.ToolTipMinSpawnDelay}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
                     <!-- Max. Spawn Delay -->
-                    <DataGridTextColumn Header="Max. Spawn Delay"
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderMaxSpawnDelay}"
                                         Binding="{Binding MaxSpawnDelay, UpdateSourceTrigger=PropertyChanged}"
                                         Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="The maximum time to wait before respawning the vehicle after it has been stolen.&#x0a;Setting this field does nothing as the game always waits 60000ms before re-spawning the vehicle."/>
+                                        Value="{x:Static r:Strings.ToolTipMaxSpawnDelay}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
                     <!-- Has Recently Been Stolen -->
-                    <DataGridCheckBoxColumn Header="Recently Stolen"
+                    <DataGridCheckBoxColumn Header="{x:Static r:Strings.ColumnHeaderRecentlyStolen}"
                                             Binding="{Binding HasRecentlyBeenStolen, UpdateSourceTrigger=PropertyChanged}"
                                             Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridCheckBoxColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="Indicates whether the vehicle has been stolen and is waiting to re-spawn.&#x0a;Setting this field has no effect."/>
+                                        Value="{x:Static r:Strings.ToolTipRecentlyStolen}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridCheckBoxColumn.HeaderStyle>
                     </DataGridCheckBoxColumn>
 
+                    <!-- Unknown24 -->
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown24}"
+                                        Binding="{Binding Unknown24, UpdateSourceTrigger=PropertyChanged}"
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style>
+                                <Setter Property="ToolTipService.ToolTip"
+                                        Value="{x:Static r:Strings.ToolTipUnknown}"/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
+
                     <!-- Unknown2C -->
-                    <DataGridTextColumn Header="Unknown2C"
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown2C}"
                                         Binding="{Binding Unknown2C, UpdateSourceTrigger=PropertyChanged}"
                                         Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                                        Value="{x:Static r:Strings.ToolTipUnknown}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
                     <!-- Unknown30 -->
-                    <DataGridTextColumn Header="Unknown30"
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown30}"
                                         Binding="{Binding Unknown30, UpdateSourceTrigger=PropertyChanged}"
                                         Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                                        Value="{x:Static r:Strings.ToolTipUnknown}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
                     <!-- Unknown34 -->
-                    <DataGridTextColumn Header="Unknown34"
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown34}"
                                         Binding="{Binding Unknown34, UpdateSourceTrigger=PropertyChanged}"
                                         Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                                        Value="{x:Static r:Strings.ToolTipUnknown}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
                     <!-- Unknown38 -->
-                    <DataGridTextColumn Header="Unknown38"
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown38}"
                                         Binding="{Binding Unknown38, UpdateSourceTrigger=PropertyChanged}"
                                         Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                                        Value="{x:Static r:Strings.ToolTipUnknown}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
                     <!-- Unknown3C -->
-                    <DataGridTextColumn Header="Unknown3C"
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown3C}"
                                         Binding="{Binding Unknown3C, UpdateSourceTrigger=PropertyChanged}"
                                         Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                                        Value="{x:Static r:Strings.ToolTipUnknown}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
                     <!-- Unknown40 -->
-                    <DataGridTextColumn Header="Unknown40"
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown40}"
                                         Binding="{Binding Unknown40, UpdateSourceTrigger=PropertyChanged}"
                                         Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                                        Value="{x:Static r:Strings.ToolTipUnknown}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
                     <!-- Unknown44 -->
-                    <DataGridTextColumn Header="Unknown44"
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown44}"
                                         Binding="{Binding Unknown44, UpdateSourceTrigger=PropertyChanged}"
                                         Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="The purpose of this field is unknown and appears to have no effect on the car generator."/>
+                                        Value="{x:Static r:Strings.ToolTipUnknown}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
@@ -454,7 +467,7 @@
             <Separator Grid.Column="1"/>
 
             <StatusBarItem Grid.Column="2" HorizontalContentAlignment="Center">
-                <TextBlock Text="Modified"
+                <TextBlock Text="{x:Static r:Strings.TextFileModified}"
                            Visibility="{Binding IsFileModified, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </StatusBarItem>
             <Separator Grid.Column="3"/>
