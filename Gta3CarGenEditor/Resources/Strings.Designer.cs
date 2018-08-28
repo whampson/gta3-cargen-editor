@@ -520,7 +520,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect block tag - &apos;{0}&apos;. Expecting &apos;{1}&apos;..
+        ///   Looks up a localized string similar to Incorrect block tag - &apos;{0}&apos;. Expected &apos;{1}&apos;..
         /// </summary>
         public static string ExceptionMessageInvalidBlockTag {
             get {

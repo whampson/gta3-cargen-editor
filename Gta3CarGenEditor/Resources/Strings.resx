@@ -274,7 +274,7 @@
     <value>Incorrect number of bytes encoded.</value>
   </data>
   <data name="ExceptionMessageInvalidBlockTag" xml:space="preserve">
-    <value>Incorrect block tag - '{0}'. Expecting '{1}'.</value>
+    <value>Incorrect block tag - '{0}'. Expected '{1}'.</value>
     <comment>{0} = bad tag; {1} = expected tag</comment>
   </data>
   <data name="ExceptionMessageInvalidColumnCount" xml:space="preserve">
