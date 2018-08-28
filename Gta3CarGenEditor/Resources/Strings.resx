@@ -234,6 +234,12 @@
   <data name="DialogMessageSaveChangesPrompt" xml:space="preserve">
     <value>Do you want to save your changes?</value>
   </data>
+  <data name="DialogMessageUnhandledException1" xml:space="preserve">
+    <value>A fatal exception has occurred. The application will be terminated.</value>
+  </data>
+  <data name="DialogMessageUnhandledException2" xml:space="preserve">
+    <value>Please contact thehambone93@gmail.com about this error.</value>
+  </data>
   <data name="DialogTitleAbout" xml:space="preserve">
     <value>About</value>
   </data>
@@ -260,6 +266,9 @@
   </data>
   <data name="DialogTitleSuccess" xml:space="preserve">
     <value>Success</value>
+  </data>
+  <data name="DialogTitleUnhandledException" xml:space="preserve">
+    <value>Unhandled Exception</value>
   </data>
   <data name="ExceptionMessageConvertBackNotSupported" xml:space="preserve">
     <value>ConvertBack is not supported for this converter.</value>

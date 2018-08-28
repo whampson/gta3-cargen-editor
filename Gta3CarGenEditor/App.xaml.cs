@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Threading;
 using WHampson.Gta3CarGenEditor.Helpers;
+using WHampson.Gta3CarGenEditor.Resources;
 using WHampson.Gta3CarGenEditor.Views;
 
 namespace WHampson.Gta3CarGenEditor
@@ -23,9 +24,12 @@ namespace WHampson.Gta3CarGenEditor
 
             MessageBoxEx.Show(
                 MainWindow,
-                string.Format("A fatal exception has occurred. The application will be terminated.\n\n{0}: {1}\n\nPlease contact thehambone93@gmail.com about this error.",
-                    e.Exception.GetType().Name, e.Exception.Message),
-                "Unhandled Exception",
+                string.Format("{0}\n\n{1}: {2}\n\n{3}",
+                    Strings.DialogMessageUnhandledException1,
+                    e.Exception.GetType().Name,
+                    e.Exception.Message,
+                    Strings.DialogMessageUnhandledException2),
+                Strings.DialogTitleUnhandledException,
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
 

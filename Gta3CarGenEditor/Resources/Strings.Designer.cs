@@ -403,6 +403,24 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A fatal exception has occurred. The application will be terminated..
+        /// </summary>
+        public static string DialogMessageUnhandledException1 {
+            get {
+                return ResourceManager.GetString("DialogMessageUnhandledException1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please contact thehambone93@gmail.com about this error..
+        /// </summary>
+        public static string DialogMessageUnhandledException2 {
+            get {
+                return ResourceManager.GetString("DialogMessageUnhandledException2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string DialogTitleAbout {
@@ -480,6 +498,15 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         public static string DialogTitleSuccess {
             get {
                 return ResourceManager.GetString("DialogTitleSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unhandled Exception.
+        /// </summary>
+        public static string DialogTitleUnhandledException {
+            get {
+                return ResourceManager.GetString("DialogTitleUnhandledException", resourceCulture);
             }
         }
         
