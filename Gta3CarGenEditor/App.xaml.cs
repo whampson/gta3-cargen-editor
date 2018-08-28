@@ -11,8 +11,6 @@ namespace WHampson.Gta3CarGenEditor
     /// </summary>
     public partial class App : Application
     {
-        const int FatalErrorExitCode = 127;
-
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             MainWindow = new MainWindow();
