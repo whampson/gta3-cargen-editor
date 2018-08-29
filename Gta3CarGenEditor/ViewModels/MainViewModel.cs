@@ -11,6 +11,7 @@ using WHampson.Gta3CarGenEditor.Events;
 using WHampson.Gta3CarGenEditor.Helpers;
 using WHampson.Gta3CarGenEditor.Models;
 using WHampson.Gta3CarGenEditor.Resources;
+using WHampson.Gta3CarGenEditor.Views;
 
 namespace WHampson.Gta3CarGenEditor.ViewModels
 {
@@ -440,40 +441,6 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
                 Strings.DialogTitleImportLimitExceeded,
                 icon: MessageBoxImage.Warning));
         }
-
-        private void ShowAboutDialog()
-        {
-            string msg = string.Format("{0}\n" +
-                "{1}\n" +
-                "{2}\n\n" +
-                "{3}\n\n" +
-                "{4}\n\n\n" +
-                "{5}",
-                Strings.AppName,
-                Strings.AppAuthor,
-                string.Format(Strings.AppVersion, GetVersionString()),
-                Strings.AppDescriptionLong,
-                Strings.AppSpecialThanks,
-                Strings.AppCopyright);
-
-            OnMessageBoxRequested(new MessageBoxEventArgs(
-                msg,
-                Strings.DialogTitleAbout,
-                MessageBoxButton.OK,
-                MessageBoxImage.Information));
-        }
-
-        private string GetVersionString()
-        {
-            Assembly asm = Assembly.GetExecutingAssembly();
-            if (asm == null) {
-                return Strings.AppVersionError;
-            }
-
-            FileVersionInfo vInfo = FileVersionInfo.GetVersionInfo(asm.Location);
-            return string.Format(Strings.AppVersionFormat,
-                vInfo.ProductVersion, vInfo.FilePrivatePart);
-        }
         #endregion
 
         #region Commands
@@ -600,7 +567,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
 
         public ICommand ShowAboutDialogCommand
         {
-            get { return new RelayCommand(ShowAboutDialog); }
+            get { return new RelayCommand(OnAboutDialogRequested); }
         }
         #endregion
 
@@ -721,6 +688,12 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         protected void OnEditMetadataDialogRequested(MetadataDialogEventArgs e)
         {
             EditMetadataDialogRequested?.Invoke(this, e);
+        }
+
+        public event EventHandler<EventArgs> AboutDialogRequested;
+        protected void OnAboutDialogRequested()
+        {
+            AboutDialogRequested?.Invoke(this, new EventArgs());
         }
 
         public event EventHandler<EventArgs> ResetRowOrderRequested;

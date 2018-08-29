@@ -20,6 +20,7 @@ namespace WHampson.Gta3CarGenEditor.Views
             ViewModel.MessageBoxRequested += ViewModel_MessageBoxRequested;
             ViewModel.FileDialogRequested += ViewModel_FileDialogRequested;
             ViewModel.EditMetadataDialogRequested += ViewModel_EditMetadataDialogRequested;
+            ViewModel.AboutDialogRequested += ViewModel_AboutDialogRequested;
             ViewModel.ResetRowOrderRequested += ViewModel_ResetRowOrderRequested;
         }
 
@@ -53,6 +54,15 @@ namespace WHampson.Gta3CarGenEditor.Views
         private void ViewModel_EditMetadataDialogRequested(object sender, MetadataDialogEventArgs e)
         {
             MetadataWindow w = new MetadataWindow(new MetadataViewModel(e.Metadata))
+            {
+                Owner = this
+            };
+            w.ShowDialog();
+        }
+
+        private void ViewModel_AboutDialogRequested(object sender, EventArgs e)
+        {
+            AboutWindow w = new AboutWindow()
             {
                 Owner = this
             };
