@@ -1105,7 +1105,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://gtaforums.com/profile/907241-thehambone/.
+        ///   Looks up a localized string similar to http://gtaforums.com/index.php?showuser=907241.
         /// </summary>
         public static string UrlAuthor {
             get {

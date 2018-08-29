@@ -479,7 +479,7 @@ If the vehicle is not spawning, try setting this to 0.</value>
     <value>The purpose of this field is unknown and changing it appears to have no effect on the parked car generator.</value>
   </data>
   <data name="UrlAuthor" xml:space="preserve">
-    <value>https://gtaforums.com/profile/907241-thehambone/</value>
+    <value>http://gtaforums.com/index.php?showuser=907241</value>
   </data>
   <data name="UrlDonate" xml:space="preserve">
     <value>https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=KCLQ9SDXKDAHG&amp;lc=US&amp;item_name=Software%20Development%20Donation%20Bucket&amp;currency_code=USD&amp;bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted</value>
