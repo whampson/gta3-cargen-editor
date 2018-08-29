@@ -28,7 +28,7 @@ namespace WHampson.Gta3CarGenEditor
                     Strings.DialogMessageUnhandledException1,
                     e.Exception.GetType().Name,
                     e.Exception.Message,
-                    Strings.DialogMessageUnhandledException2),
+                    string.Format(Strings.DialogMessageUnhandledException2, Strings.AppAuthorContact)),
                 Strings.DialogTitleUnhandledException,
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
