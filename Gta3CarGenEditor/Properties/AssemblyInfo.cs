@@ -2,9 +2,9 @@
 using System.Runtime.InteropServices;
 using System.Windows;
 
-[assembly: AssemblyTitle("GTA3 Car Generator Editor")]
-[assembly: AssemblyDescription("A simple tool for editing car generators in a GTA3 save.")]
-[assembly: AssemblyProduct("GTA3 Car Generator Editor")]
+[assembly: AssemblyTitle("GTA3 Parked Car Editor")]
+[assembly: AssemblyDescription("A simple tool for editing parked car generators in a GTA3 savegame.")]
+[assembly: AssemblyProduct("GTA3 Parked Car Editor")]
 [assembly: AssemblyCopyright("Copyright (C) 2018 W. Hampson. All rights reserved.")]
 
 #if DEBUG
@@ -30,6 +30,6 @@ using System.Windows;
     ResourceDictionaryLocation.SourceAssembly   // generic resource dictionary 
 )]
 
-[assembly: AssemblyVersion("1.0.0.513")]
-[assembly: AssemblyFileVersion("1.0.0.513")]
-[assembly: AssemblyInformationalVersion("1.0.0-rc3")]
+[assembly: AssemblyVersion("1.0.0.516")]
+[assembly: AssemblyFileVersion("1.0.0.516")]
+[assembly: AssemblyInformationalVersion("1.0.0")]
