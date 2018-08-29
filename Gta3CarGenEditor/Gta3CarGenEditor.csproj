@@ -37,7 +37,7 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Images\icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
@@ -64,6 +64,7 @@
     </ApplicationDefinition>
     <Compile Include="Converters\EnumDescriptionConverter.cs" />
     <Compile Include="Converters\SpawnCountToBooleanConverter.cs" />
+    <Compile Include="Converters\StringToUriConverter.cs" />
     <Compile Include="Converters\Vector3dToStringConverter.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Events\DialogCloseEventArgs.cs" />
@@ -85,11 +86,19 @@
     <Compile Include="Models\SaveDataFile.cs" />
     <Compile Include="Models\VehicleModel.cs" />
     <Compile Include="Models\SaveDataFileXbox.cs" />
+    <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MetadataViewModel.cs" />
+    <Compile Include="Views\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MetadataWindow.xaml.cs">
       <DependentUpon>MetadataWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -138,10 +147,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\icon.png" />
+    <Resource Include="Resources\Images\icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\icon.ico" />
+    <Resource Include="Resources\Images\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\donate.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
