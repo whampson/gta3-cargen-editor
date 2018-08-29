@@ -88,7 +88,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This tool allows you to edit the parked car generators in a GTA3 savegame. You can control the car that spawns, it&apos;s location, color, and more! You can also transfer parked car generators between saves on any platform..
+        ///   Looks up a localized string similar to This tool allows you to edit the parked car generators in a GTA3 savegame. You can control the car that spawns, it&apos;s location, color, and more! You can even transfer parked car generators between saves!.
         /// </summary>
         public static string AppDescriptionLong {
             get {

@@ -127,7 +127,7 @@
     <value>Copyright (C) 2018 W. Hampson. All rights reserved.</value>
   </data>
   <data name="AppDescriptionLong" xml:space="preserve">
-    <value>This tool allows you to edit the parked car generators in a GTA3 savegame. You can control the car that spawns, it's location, color, and more! You can also transfer parked car generators between saves on any platform.</value>
+    <value>This tool allows you to edit the parked car generators in a GTA3 savegame. You can control the car that spawns, it's location, color, and more! You can even transfer parked car generators between saves!</value>
   </data>
   <data name="AppDescriptionShort" xml:space="preserve">
     <value>A simple tool for editing parked car generators in a GTA3 savegame.</value>
