@@ -61,11 +61,20 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Created by W. Hampson (a.k.a. thehambone).
+        ///   Looks up a localized string similar to thehambone.
         /// </summary>
         public static string AppAuthor {
             get {
                 return ResourceManager.GetString("AppAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to thehambone93@gmail.com.
+        /// </summary>
+        public static string AppAuthorContact {
+            get {
+                return ResourceManager.GetString("AppAuthorContact", resourceCulture);
             }
         }
         
@@ -115,38 +124,20 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Version: {0}.
-        /// </summary>
-        public static string AppVersion {
-            get {
-                return ResourceManager.GetString("AppVersion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to (not available).
-        /// </summary>
-        public static string AppVersionError {
-            get {
-                return ResourceManager.GetString("AppVersionError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} (build {1}).
-        /// </summary>
-        public static string AppVersionFormat {
-            get {
-                return ResourceManager.GetString("AppVersionFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string ButtonTextCancel {
             get {
                 return ResourceManager.GetString("ButtonTextCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string ButtonTextClose {
+            get {
+                return ResourceManager.GetString("ButtonTextClose", resourceCulture);
             }
         }
         
@@ -412,7 +403,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please contact thehambone93@gmail.com about this error..
+        ///   Looks up a localized string similar to Please contact {0} about this error..
         /// </summary>
         public static string DialogMessageUnhandledException2 {
             get {
@@ -916,11 +907,56 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Created by:.
+        /// </summary>
+        public static string TextCreatedBy {
+            get {
+                return ResourceManager.GetString("TextCreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you enjoy my work and would like to help me make more programs in the future, please feel free to make a donation!.
+        /// </summary>
+        public static string TextDonate {
+            get {
+                return ResourceManager.GetString("TextDonate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modified.
         /// </summary>
         public static string TextFileModified {
             get {
                 return ResourceManager.GetString("TextFileModified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version:.
+        /// </summary>
+        public static string TextVersion {
+            get {
+                return ResourceManager.GetString("TextVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (not available).
+        /// </summary>
+        public static string TextVersionError {
+            get {
+                return ResourceManager.GetString("TextVersionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} (build {1}).
+        /// </summary>
+        public static string TextVersionFormat {
+            get {
+                return ResourceManager.GetString("TextVersionFormat", resourceCulture);
             }
         }
         
@@ -959,6 +995,15 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         public static string ToolTipColor2 {
             get {
                 return ResourceManager.GetString("ToolTipColor2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to make a donation with PayPal..
+        /// </summary>
+        public static string ToolTipDonate {
+            get {
+                return ResourceManager.GetString("ToolTipDonate", resourceCulture);
             }
         }
         
@@ -1056,6 +1101,24 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         public static string ToolTipUnknown {
             get {
                 return ResourceManager.GetString("ToolTipUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://gtaforums.com/profile/907241-thehambone/.
+        /// </summary>
+        public static string UrlAuthor {
+            get {
+                return ResourceManager.GetString("UrlAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=KCLQ9SDXKDAHG&amp;lc=US&amp;item_name=Software%20Development%20Donation%20Bucket&amp;currency_code=USD&amp;bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted.
+        /// </summary>
+        public static string UrlDonate {
+            get {
+                return ResourceManager.GetString("UrlDonate", resourceCulture);
             }
         }
         

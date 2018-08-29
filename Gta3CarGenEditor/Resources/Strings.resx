@@ -118,7 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppAuthor" xml:space="preserve">
-    <value>Created by W. Hampson (a.k.a. thehambone)</value>
+    <value>thehambone</value>
+  </data>
+  <data name="AppAuthorContact" xml:space="preserve">
+    <value>thehambone93@gmail.com</value>
   </data>
   <data name="AppCopyright" xml:space="preserve">
     <value>Copyright (C) 2018 W. Hampson. All rights reserved.</value>
@@ -135,19 +138,11 @@
   <data name="AppSpecialThanks" xml:space="preserve">
     <value>Special thanks to GTAKid667 for providing feedback and support during development.</value>
   </data>
-  <data name="AppVersion" xml:space="preserve">
-    <value>Version: {0}</value>
-    <comment>{0} = app version and build number (see format below)</comment>
-  </data>
-  <data name="AppVersionError" xml:space="preserve">
-    <value>(not available)</value>
-  </data>
-  <data name="AppVersionFormat" xml:space="preserve">
-    <value>{0} (build {1})</value>
-    <comment>{0} = the assembly informational version; {1} = the build number</comment>
-  </data>
   <data name="ButtonTextCancel" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="ButtonTextClose" xml:space="preserve">
+    <value>Close</value>
   </data>
   <data name="ButtonTextOk" xml:space="preserve">
     <value>OK</value>
@@ -238,7 +233,8 @@
     <value>A fatal exception has occurred. The application will be terminated.</value>
   </data>
   <data name="DialogMessageUnhandledException2" xml:space="preserve">
-    <value>Please contact thehambone93@gmail.com about this error.</value>
+    <value>Please contact {0} about this error.</value>
+    <comment>{0} = app author email</comment>
   </data>
   <data name="DialogTitleAbout" xml:space="preserve">
     <value>About</value>
@@ -409,8 +405,24 @@
   <data name="StatusMessageSaveUnsuccessful" xml:space="preserve">
     <value>Failed to save file!</value>
   </data>
+  <data name="TextCreatedBy" xml:space="preserve">
+    <value>Created by:</value>
+  </data>
+  <data name="TextDonate" xml:space="preserve">
+    <value>If you enjoy my work and would like to help me make more programs in the future, please feel free to make a donation!</value>
+  </data>
   <data name="TextFileModified" xml:space="preserve">
     <value>Modified</value>
+  </data>
+  <data name="TextVersion" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="TextVersionError" xml:space="preserve">
+    <value>(not available)</value>
+  </data>
+  <data name="TextVersionFormat" xml:space="preserve">
+    <value>{0} (build {1})</value>
+    <comment>{0} = the assembly informational version; {1} = the build number</comment>
   </data>
   <data name="ToolTipAlarmChance" xml:space="preserve">
     <value>Probability that the vehicle will spawn with an alarm (percentage).</value>
@@ -425,6 +437,9 @@ Use -1 for a random color. See carcols.dat for color definitions.</value>
   <data name="ToolTipColor2" xml:space="preserve">
     <value>The vehicle's secondary color.
 Use -1 for a random color. See carcols.dat for color definitions.</value>
+  </data>
+  <data name="ToolTipDonate" xml:space="preserve">
+    <value>Click to make a donation with PayPal.</value>
   </data>
   <data name="ToolTipForceSpawn" xml:space="preserve">
     <value>Forces the vehicle to spawn more readily.
@@ -462,6 +477,12 @@ If the vehicle is not spawning, try setting this to 0.</value>
   </data>
   <data name="ToolTipUnknown" xml:space="preserve">
     <value>The purpose of this field is unknown and changing it appears to have no effect on the parked car generator.</value>
+  </data>
+  <data name="UrlAuthor" xml:space="preserve">
+    <value>https://gtaforums.com/profile/907241-thehambone/</value>
+  </data>
+  <data name="UrlDonate" xml:space="preserve">
+    <value>https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=KCLQ9SDXKDAHG&amp;lc=US&amp;item_name=Software%20Development%20Donation%20Bucket&amp;currency_code=USD&amp;bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted</value>
   </data>
   <data name="WindowTitleEditMetadata" xml:space="preserve">
     <value>Edit Metadata</value>
