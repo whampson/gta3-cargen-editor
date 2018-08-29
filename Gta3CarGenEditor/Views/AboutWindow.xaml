@@ -1,0 +1,122 @@
+﻿<Window x:Class="WHampson.Gta3CarGenEditor.Views.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:conv="clr-namespace:WHampson.Gta3CarGenEditor.Converters"
+        xmlns:r="clr-namespace:WHampson.Gta3CarGenEditor.Resources"
+        xmlns:vm="clr-namespace:WHampson.Gta3CarGenEditor.ViewModels"
+        mc:Ignorable="d"
+        Title="{x:Static r:Strings.DialogTitleAbout}"
+        Height="400" Width="575"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
+
+    <Window.DataContext>
+        <vm:AboutViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <conv:StringToUriConverter x:Key="StringToUriConverter"/>
+        <Style x:Key="TitleStyle" TargetType="TextBlock">
+            <Setter Property="TextBlock.FontSize" Value="18"/>
+            <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="BodyStyle" TargetType="TextBlock">
+            <Setter Property="TextBlock.TextWrapping" Value="WrapWithOverflow"/>
+        </Style>
+    </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}"/>
+        <KeyBinding Key="Return" Command="{Binding CloseCommand}"/>
+    </Window.InputBindings>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="115"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Canvas>
+                <Image Source="/Resources/Images/icon.png"
+                       Width="100" Height="100"
+                       Canvas.Left="10" Canvas.Top="10"/>
+            </Canvas>
+
+            <StackPanel Grid.Column="1" Margin="10,10,10,0">
+                <TextBlock Text="{x:Static r:Strings.AppName}"
+                           Style="{StaticResource TitleStyle}"
+                           Margin="0,12,0,0"/>
+                
+                <TextBlock FontSize="14">
+                    <TextBlock.Inlines>
+                        <Run Text="{x:Static r:Strings.TextCreatedBy}" FontStyle="Italic"/>
+                        <Hyperlink NavigateUri="{Binding Source={x:Static r:Strings.UrlAuthor}, Mode=OneWay, Converter={StaticResource StringToUriConverter}}"
+                                   RequestNavigate="Hyperlink_RequestNavigate">
+                            <Run Text="{x:Static r:Strings.AppAuthor}"/>
+                        </Hyperlink>
+                    </TextBlock.Inlines>
+                </TextBlock>
+
+                <TextBlock FontSize="14">
+                    <TextBlock.Inlines>
+                        <Run Text="{x:Static r:Strings.TextVersion}" FontStyle="Italic"/>
+                        <Run Text="{Binding AppVersion, Mode=OneWay}"/>
+                    </TextBlock.Inlines>
+                </TextBlock>
+
+                <TextBlock Text="{x:Static r:Strings.AppDescriptionLong}"
+                           Style="{StaticResource BodyStyle}"
+                           Margin="0,30,0,0"/>
+                <TextBlock Text="{x:Static r:Strings.AppSpecialThanks}"
+                           Style="{StaticResource BodyStyle}"
+                           Margin="0,10,0,0"/>
+                <TextBlock Text="{x:Static r:Strings.TextDonate}"
+                           Style="{StaticResource BodyStyle}"
+                           Margin="0,25,0,0"/>
+                <TextBlock Text="{x:Static r:Strings.AppCopyright}"
+                           Style="{StaticResource BodyStyle}"
+                           Margin="0,25,0,0"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.Background>
+                <SolidColorBrush Color="#f0f0f0"/>
+            </Grid.Background>
+            
+            <Button Grid.Column="0"
+                    Command="{Binding DonateCommand}"
+                    HorizontalAlignment="Left"
+                    Width="115"
+                    Margin="10,10,10,10"
+                    Cursor="Hand"
+                    ToolTipService.ToolTip="{x:Static r:Strings.ToolTipDonate}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="/Resources/Images/donate.gif"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            
+            <Button Grid.Column="3"
+                    Command="{Binding CloseCommand}"
+                    Content="{x:Static r:Strings.ButtonTextClose}"
+                    Margin="20,10,20,10"/>
+        </Grid>
+    </Grid>
+</Window>
