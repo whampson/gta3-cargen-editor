@@ -4,14 +4,12 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using WHampson.Gta3CarGenEditor.Events;
 using WHampson.Gta3CarGenEditor.Helpers;
 using WHampson.Gta3CarGenEditor.Models;
 using WHampson.Gta3CarGenEditor.Resources;
-using WHampson.Gta3CarGenEditor.Views;
 
 namespace WHampson.Gta3CarGenEditor.ViewModels
 {
@@ -561,7 +559,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         {
             get {
                 return new RelayCommand(
-                    () => Process.Start("https://github.com/whampson/gta3-cargen-editor/releases"));
+                    () => Process.Start(Strings.UrlUpdate));
             }
         }
 

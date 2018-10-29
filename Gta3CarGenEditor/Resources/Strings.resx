@@ -484,6 +484,9 @@ If the vehicle is not spawning, try setting this to 0.</value>
   <data name="UrlDonate" xml:space="preserve">
     <value>https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=KCLQ9SDXKDAHG&amp;lc=US&amp;item_name=Software%20Development%20Donation%20Bucket&amp;currency_code=USD&amp;bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted</value>
   </data>
+  <data name="UrlUpdate" xml:space="preserve">
+    <value>https://github.com/whampson/gta3-cargen-editor/releases</value>
+  </data>
   <data name="WindowTitleEditMetadata" xml:space="preserve">
     <value>Edit Metadata</value>
   </data>

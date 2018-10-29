@@ -1123,6 +1123,15 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://github.com/whampson/gta3-cargen-editor/releases.
+        /// </summary>
+        public static string UrlUpdate {
+            get {
+                return ResourceManager.GetString("UrlUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Metadata.
         /// </summary>
         public static string WindowTitleEditMetadata {
