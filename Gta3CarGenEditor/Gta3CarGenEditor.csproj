@@ -82,6 +82,8 @@
     <Compile Include="Models\DataBlock.cs" />
     <Compile Include="Models\SaveDataFileIOS.cs" />
     <Compile Include="Models\SaveDataFilePC.cs" />
+    <Compile Include="Models\SaveDataFilePS2AU.cs" />
+    <Compile Include="Models\SaveDataFilePS2JP.cs" />
     <Compile Include="Models\SaveDataFilePS2.cs" />
     <Compile Include="Models\SaveDataFile.cs" />
     <Compile Include="Models\VehicleModel.cs" />

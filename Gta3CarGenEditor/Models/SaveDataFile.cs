@@ -388,6 +388,10 @@ namespace WHampson.Gta3CarGenEditor.Models
                     return Deserialize<SaveDataFilePC>(data);
                 case GamePlatform.PlayStation2:
                     return Deserialize<SaveDataFilePS2>(data);
+                case GamePlatform.PlayStation2AU:
+                    return Deserialize<SaveDataFilePS2AU>(data);
+                case GamePlatform.PlayStation2JP:
+                    return Deserialize<SaveDataFilePS2JP>(data);
                 case GamePlatform.Xbox:
                     return Deserialize<SaveDataFileXbox>(data);
                 default:
@@ -442,11 +446,14 @@ namespace WHampson.Gta3CarGenEditor.Models
         private static GamePlatform DetectFileType(byte[] data)
         {
             const int UnknownConstant = 0x031401;
+            const int UnknownConstantJP = 0x031400;
 
             using (BinaryReader r = new BinaryReader(new MemoryStream(data))) {
                 bool isMobile;
                 bool isPcOrXbox;
                 bool isPs2;
+                bool isPs2AU;
+                bool isPs2JP;
 
                 byte[] scrTag = Encoding.ASCII.GetBytes(ScriptsTag);
                 int scrOffset = FindFirst(scrTag, data);
@@ -457,6 +464,8 @@ namespace WHampson.Gta3CarGenEditor.Models
                 isMobile = (scrOffset == 0xB8 && ReadInt(data, 0x34) == UnknownConstant);
                 isPcOrXbox = (scrOffset == 0xC4 && ReadInt(data, 0x44) == UnknownConstant);
                 isPs2 = (scrOffset == 0xB8 && ReadInt(data, 0x04) == UnknownConstant);
+                isPs2AU = (scrOffset == 0xB0 && ReadInt(data, 0x04) == UnknownConstant);
+                isPs2JP = (scrOffset == 0xB8 && ReadInt(data, 0x04) == UnknownConstantJP);
 
                 int sizeOfBlock0 = ReadInt(data, 0x00);
                 if (sizeOfBlock0 > data.Length) {
@@ -467,6 +476,12 @@ namespace WHampson.Gta3CarGenEditor.Models
 
                 if (isPs2) {
                     return GamePlatform.PlayStation2;
+                }
+                else if (isPs2AU) {
+                    return GamePlatform.PlayStation2AU;
+                }
+                else if (isPs2JP) {
+                    return GamePlatform.PlayStation2JP;
                 }
                 else if (isMobile) {
                     if (sizeOfBlock1 == 0x064C) {
