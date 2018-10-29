@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
@@ -21,6 +22,7 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         private CarGeneratorsInfo m_metadata;
         private string m_mostRecentPath;
         private bool m_isShowingUnusedFields;
+        private bool m_skipBlockSizeChecks;
         private bool m_isFileModified;
         private string m_windowTitle;
         private string m_statusText;
@@ -76,6 +78,21 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         {
             get { return m_isShowingUnusedFields; }
             set { m_isShowingUnusedFields = value; OnPropertyChanged(); }
+        }
+
+        public bool SkipBlockSizeChecks
+        {
+            get {
+                string key = Strings.SettingsSkipBlockSizeChecksKey;
+                bool.TryParse(ConfigurationManager.AppSettings[key], out bool temp);
+                return temp;
+            }
+
+            set {
+                string key = Strings.SettingsSkipBlockSizeChecksKey;
+                ConfigurationManager.AppSettings[key] = value.ToString();
+                OnPropertyChanged();
+            }
         }
 
         public bool IsFileOpen
@@ -555,12 +572,14 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
             get { return new RelayCommand(OnResetRowOrderRequested); }
         }
 
+        public ICommand SkipBlockSizeChecksCommand
+        {
+            get { return new RelayCommand(() => SkipBlockSizeChecks = !SkipBlockSizeChecks); }
+        }
+
         public ICommand CheckForUpdatesCommand
         {
-            get {
-                return new RelayCommand(
-                    () => Process.Start(Strings.UrlUpdate));
-            }
+            get { return new RelayCommand(() => Process.Start(Strings.UrlUpdate)); }
         }
 
         public ICommand ShowAboutDialogCommand

@@ -673,6 +673,15 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Options.
+        /// </summary>
+        public static string MenuHeaderOptions {
+            get {
+                return ResourceManager.GetString("MenuHeaderOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _View.
         /// </summary>
         public static string MenuHeaderView {
@@ -826,11 +835,29 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Skip _Block Size Checks.
+        /// </summary>
+        public static string MenuItemHeaderSkipBlockSizeChecks {
+            get {
+                return ResourceManager.GetString("MenuItemHeaderSkipBlockSizeChecks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _Zero Out Timers.
         /// </summary>
         public static string MenuItemHeaderZeroOutTImers {
             get {
                 return ResourceManager.GetString("MenuItemHeaderZeroOutTImers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SkipBlockSizeChecks.
+        /// </summary>
+        public static string SettingsSkipBlockSizeChecksKey {
+            get {
+                return ResourceManager.GetString("SettingsSkipBlockSizeChecksKey", resourceCulture);
             }
         }
         

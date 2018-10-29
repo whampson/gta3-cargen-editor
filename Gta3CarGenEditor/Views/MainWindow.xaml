@@ -129,6 +129,11 @@
                               Header="{x:Static r:Strings.MenuItemHeaderResetRowOrder}"
                               InputGestureText="Ctrl+R"/>
                 </MenuItem>
+                <MenuItem Header="{x:Static r:Strings.MenuHeaderOptions}">
+                    <MenuItem Command="{Binding SkipBlockSizeChecksCommand}"
+                              Header="{x:Static r:Strings.MenuItemHeaderSkipBlockSizeChecks}"
+                              IsChecked="{Binding SkipBlockSizeChecks}"/>
+                </MenuItem>
                 <MenuItem Header="{x:Static r:Strings.MenuHeaderHelp}">
                     <MenuItem Command="{Binding CheckForUpdatesCommand}"
                               Header="{x:Static r:Strings.MenuItemHeaderCheckForUpdates}"/>

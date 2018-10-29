@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -46,6 +47,8 @@ namespace WHampson.Gta3CarGenEditor.Models
         protected DataBlock m_pedTypes;
         protected DataBlock[] m_padding;
 
+        private bool m_skipBlockSizeChecks;
+
         protected SaveDataFile(GamePlatform fileType)
         {
             FileType = fileType;
@@ -73,6 +76,9 @@ namespace WHampson.Gta3CarGenEditor.Models
             m_streaming             = new DataBlock();
             m_pedTypes              = new DataBlock() { Tag = PedTypesTag };
             m_padding               = new DataBlock[0];
+
+            string key = Strings.SettingsSkipBlockSizeChecksKey;
+            bool.TryParse(ConfigurationManager.AppSettings[key], out m_skipBlockSizeChecks);
         }
 
         /// <summary>
@@ -161,7 +167,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                     // Read nested block size
                     if (block.StoreBlockSize) {
                         nestedBlockSize = r.ReadInt32();
-                        if (nestedBlockSize != blockSize - tag.Length - 4) {
+                        if (!m_skipBlockSizeChecks && nestedBlockSize != blockSize - tag.Length - 4) {
                             throw new InvalidDataException(Strings.ExceptionMessageIncorrectBlockSizeRead);
                         }
                         blockSize = nestedBlockSize;
@@ -203,7 +209,7 @@ namespace WHampson.Gta3CarGenEditor.Models
                     bytesRead += ReadDataBlock(stream, block);
                 }
 
-                if (bytesRead != totalSize) {
+                if (!m_skipBlockSizeChecks && bytesRead != totalSize) {
                     throw new InvalidDataException(Strings.ExceptionMessageIncorrectNumberOfBytesDecoded);
                 }
             }

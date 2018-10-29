@@ -325,6 +325,9 @@
   <data name="MenuHeaderHelp" xml:space="preserve">
     <value>_Help</value>
   </data>
+  <data name="MenuHeaderOptions" xml:space="preserve">
+    <value>_Options</value>
+  </data>
   <data name="MenuHeaderView" xml:space="preserve">
     <value>_View</value>
   </data>
@@ -376,8 +379,14 @@
   <data name="MenuItemHeaderShowUnusedFields" xml:space="preserve">
     <value>Show _Unused Fields</value>
   </data>
+  <data name="MenuItemHeaderSkipBlockSizeChecks" xml:space="preserve">
+    <value>Skip _Block Size Checks</value>
+  </data>
   <data name="MenuItemHeaderZeroOutTImers" xml:space="preserve">
     <value>_Zero Out Timers</value>
+  </data>
+  <data name="SettingsSkipBlockSizeChecksKey" xml:space="preserve">
+    <value>SkipBlockSizeChecks</value>
   </data>
   <data name="StatusMessageExportSuccessful" xml:space="preserve">
     <value>Exported parked cars to {0}.</value>
