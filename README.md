@@ -47,9 +47,17 @@ development, as well as the Idaho icon!
 Change Log
 ----------
 
-### 1.0.0
+## 1.1.0
+   Build: 538  
+Released: 29 October 2018
+
+### Notes
+  * Added support for Japanese and Australian saves.
+  * Added **Options** menu
+      - *Skip Block Size Checks* - Disables some sanity checks when loading a file. Use this if you are sure the file you want to load is a GTA3 savedata file, but you keep seeing the "Incorrect number of bytes read" error.
+## 1.0.0
    Build: 516  
 Released: 29 August 2018
 
-#### Notes
+### Notes
   * Initial release.
