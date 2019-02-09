@@ -29,7 +29,7 @@ System Requirements
 Contact
 -------
 Questions? Comments? Suggestions? Bugs to report?  
-  * Find me on [GTAForums](http://gtaforums.com/index.php?showuser=907241)
+  * Message me on [GTAForums](https://gtaforums.com/messenger/compose/?to=907241)
   * Email me at thehambone93(AT)gmail(DOT)com
 
 Since you're already on GitHub, why not
