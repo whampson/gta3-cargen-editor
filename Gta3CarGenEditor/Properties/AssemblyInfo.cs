@@ -1,11 +1,15 @@
-﻿using System.Reflection;
+//
+// WARNING! This file was auto-generated. DO NOT EDIT!
+//
+
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 
 [assembly: AssemblyTitle("GTA3 Parked Car Editor")]
-[assembly: AssemblyDescription("A simple tool for editing parked car generators in a GTA3 savegame.")]
+[assembly: AssemblyDescription("A tool for editing parked car generators in a GTA3 save file.")]
 [assembly: AssemblyProduct("GTA3 Parked Car Editor")]
-[assembly: AssemblyCopyright("Copyright (C) 2018 W. Hampson. All rights reserved.")]
+[assembly: AssemblyCopyright("Copyright (C) 2018-2023 Wes Hampson. All rights reserved.")]
 
 #if DEBUG
 [assembly: AssemblyConfiguration("Debug")]
@@ -13,23 +17,8 @@ using System.Windows;
 [assembly: AssemblyConfiguration("Release")]
 #endif
 
-[assembly: ComVisible(false)]
 
-/**
- * In order to begin building localizable applications, set
- * <UICulture>CultureYouAreCodingWith</UICulture> in your .csproj file
- * inside a <PropertyGroup>.  For example, if you are using US English
- * in your source files, set the <UICulture> to en-US.  Then uncomment
- * the NeutralResourceLanguage attribute below.  Update the "en-US" in
- * the line below to match the UICulture setting in the project file.
- */
-//[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.MainAssembly)]
+[assembly: AssemblyVersion("1.2.1.632")]
+[assembly: AssemblyFileVersion("1.2.1.632")]
+[assembly: AssemblyInformationalVersion("1.2-preview")]
 
-[assembly: ThemeInfo(
-    ResourceDictionaryLocation.None,            // theme-specific resource dictionaries
-    ResourceDictionaryLocation.SourceAssembly   // generic resource dictionary 
-)]
-
-[assembly: AssemblyVersion("1.1.0.538")]
-[assembly: AssemblyFileVersion("1.1.0.538")]
-[assembly: AssemblyInformationalVersion("1.1.0")]

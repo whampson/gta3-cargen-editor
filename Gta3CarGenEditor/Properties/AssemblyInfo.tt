@@ -1,0 +1,51 @@
+<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#
+    string output = File.ReadAllText(this.Host.ResolvePath("AssemblyInfo.cs"));
+    Regex pattern = new Regex("AssemblyVersion\\(\"(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<revision>\\d+)\\.(?<build>\\d+)\"\\)");
+    MatchCollection matches = pattern.Matches(output);
+    if (matches.Count == 1)
+    {
+        major = Convert.ToInt32(matches[0].Groups["major"].Value);
+        minor = Convert.ToInt32(matches[0].Groups["minor"].Value);
+        build = Convert.ToInt32(matches[0].Groups["build"].Value) + 1;
+        revision = Convert.ToInt32(matches[0].Groups["revision"].Value);
+        string buildConfig = this.Host.ResolveParameterValue("-","-","BuildConfiguration");
+        if (buildConfig == "Release") {
+            revision++;
+        }
+    }
+#>
+//
+// WARNING! This file was auto-generated. DO NOT EDIT!
+//
+
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Windows;
+
+[assembly: AssemblyTitle("GTA3 Parked Car Editor")]
+[assembly: AssemblyDescription("A tool for editing parked car generators in a GTA3 save file.")]
+[assembly: AssemblyProduct("GTA3 Parked Car Editor")]
+[assembly: AssemblyCopyright("Copyright (C) 2018-2023 Wes Hampson. All rights reserved.")]
+
+#if DEBUG
+[assembly: AssemblyConfiguration("Debug")]
+#else
+[assembly: AssemblyConfiguration("Release")]
+#endif
+
+
+[assembly: AssemblyVersion("<#= this.major #>.<#= this.minor #>.<#= this.revision #>.<#= this.build #>")]
+[assembly: AssemblyFileVersion("<#= this.major #>.<#= this.minor #>.<#= this.revision #>.<#= this.build #>")]
+[assembly: AssemblyInformationalVersion("<#= this.major #>.<#= this.minor #><#= this.extra #>")]
+
+<#+
+    int major = 1;
+    int minor = 0;
+    int revision = 0;
+    int build = 0;
+    string extra = "-preview";
+#>
