@@ -1,5 +1,6 @@
 # Ignore Visual Studio junk
 .vs/
+*.csproj.user
 
 # Ignore build directories
 bin/
