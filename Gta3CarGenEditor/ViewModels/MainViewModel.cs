@@ -22,7 +22,6 @@ namespace WHampson.Gta3CarGenEditor.ViewModels
         private CarGeneratorsInfo m_metadata;
         private string m_mostRecentPath;
         private bool m_isShowingUnusedFields;
-        private bool m_skipBlockSizeChecks;
         private bool m_isFileModified;
         private string m_windowTitle;
         private string m_statusText;

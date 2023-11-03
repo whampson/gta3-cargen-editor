@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
@@ -12,6 +13,11 @@ namespace WHampson.Gta3CarGenEditor.Converters
     [ValueConversion(typeof(Vector3d), typeof(string))]
     public class Vector3dToStringConverter : IValueConverter
     {
+        static NumberFormatInfo NumberFormat = new NumberFormatInfo
+        {
+            NumberDecimalSeparator = "."
+        };
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null || !(value is Vector3d)) {
@@ -20,7 +26,7 @@ namespace WHampson.Gta3CarGenEditor.Converters
 
             Vector3d v = value as Vector3d;
 
-            return string.Format("{0},{1},{2}", v.X, v.Y, v.Z);
+            return string.Format(NumberFormat, "{0:0.0##}, {1:0.0##}, {2:0.0##}", v.X, v.Y, v.Z);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -29,24 +35,32 @@ namespace WHampson.Gta3CarGenEditor.Converters
                 return DependencyProperty.UnsetValue;
             }
 
-            Vector3d v = new Vector3d();
             string src = value as string;
-            string[] compStr = src.Split(',');
-            if (compStr.Length < 3) {
-                return v;
+            List<string> tokens = new List<string>(src.Split(',', ' '));
+
+            int index = 0;
+            float[] coords = new float[3];
+
+            foreach (string tok in tokens) {
+                if (string.IsNullOrEmpty(tok)) {
+                    continue;
+                }
+                if (index > 2) {
+                    break;
+                }
+
+
+
+                bool valid = float.TryParse(tok, NumberStyles.Float, NumberFormat, out float coord);
+                if (!valid) {
+                    return DependencyProperty.UnsetValue;
+                }
+
+                coords[index] = coord;
+                index++;
             }
 
-            bool validX = float.TryParse(compStr[0], out float x);
-            bool validY = float.TryParse(compStr[1], out float y);
-            bool validZ = float.TryParse(compStr[2], out float z);
-
-            if (validX && validY && validZ) {
-                v.X = x;
-                v.Y = y;
-                v.Z = z;
-            }
-
-            return v;
+            return new Vector3d(coords);
         }
     }
 }

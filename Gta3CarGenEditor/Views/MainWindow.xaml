@@ -154,6 +154,7 @@
                       CanUserSortColumns="True"
                       CanUserAddRows="False"
                       CanUserDeleteRows="False"
+                      MinColumnWidth="75"
                       Name="dataGrid">
 
                 <DataGrid.Columns>
@@ -169,6 +170,14 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Model, Converter={StaticResource EnumDescriptionConverter}}"/>
+                                <!--<ComboBox ItemsSource="{Binding Source={StaticResource VehicleModelEnumData}, Mode=OneWay}"
+                                           SelectedItem="{Binding Model, UpdateSourceTrigger=PropertyChanged}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Converter={StaticResource EnumDescriptionConverter}}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>-->
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                         <DataGridTemplateColumn.CellEditingTemplate>
@@ -196,19 +205,19 @@
                         </DataGridTemplateColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Location}"/>
+                                <TextBlock Text="{Binding Location, Converter={StaticResource Vector3dToStringConverter}, UpdateSourceTrigger=LostFocus}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                         <DataGridTemplateColumn.CellEditingTemplate>
                             <DataTemplate>
-                                <TextBox Text="{Binding Location, Converter={StaticResource Vector3dToStringConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBox Text="{Binding Location, Converter={StaticResource Vector3dToStringConverter}, UpdateSourceTrigger=LostFocus}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
 
                     <!-- Heading -->
                     <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderHeading}"
-                                        Binding="{Binding Heading, UpdateSourceTrigger=PropertyChanged}">
+                                        Binding="{Binding Heading, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:0.0##}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -345,7 +354,7 @@
                     <!-- Unknown24 -->
                     <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown24}"
                                         Binding="{Binding Unknown24, UpdateSourceTrigger=PropertyChanged}"
-                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -358,7 +367,7 @@
                     <!-- Unknown2C -->
                     <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown2C}"
                                         Binding="{Binding Unknown2C, UpdateSourceTrigger=PropertyChanged}"
-                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -371,7 +380,7 @@
                     <!-- Unknown30 -->
                     <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown30}"
                                         Binding="{Binding Unknown30, UpdateSourceTrigger=PropertyChanged}"
-                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -384,7 +393,7 @@
                     <!-- Unknown34 -->
                     <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown34}"
                                         Binding="{Binding Unknown34, UpdateSourceTrigger=PropertyChanged}"
-                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -397,7 +406,7 @@
                     <!-- Unknown38 -->
                     <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown38}"
                                         Binding="{Binding Unknown38, UpdateSourceTrigger=PropertyChanged}"
-                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -410,7 +419,7 @@
                     <!-- Unknown3C -->
                     <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown3C}"
                                         Binding="{Binding Unknown3C, UpdateSourceTrigger=PropertyChanged}"
-                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -423,7 +432,7 @@
                     <!-- Unknown40 -->
                     <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown40}"
                                         Binding="{Binding Unknown40, UpdateSourceTrigger=PropertyChanged}"
-                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
@@ -436,7 +445,7 @@
                     <!-- Unknown44 -->
                     <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown44}"
                                         Binding="{Binding Unknown44, UpdateSourceTrigger=PropertyChanged}"
-                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"

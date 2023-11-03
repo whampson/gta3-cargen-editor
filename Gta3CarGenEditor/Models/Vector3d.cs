@@ -11,6 +11,26 @@ namespace WHampson.Gta3CarGenEditor.Models
         private float m_y;
         private float m_z;
 
+        public Vector3d()
+            : this(0, 0, 0)
+        { }
+
+        public Vector3d(float x, float y, float z)
+            : this(new float[] { x, y, z })
+        { }
+
+        public Vector3d(float[] coords)
+        {
+            if (coords.Length != 3)
+            {
+                throw new ArgumentException(nameof(coords));
+            }
+
+            X = coords[0];
+            Y = coords[1];
+            Z = coords[2];
+        }
+
         public float X
         {
             get { return m_x; }
