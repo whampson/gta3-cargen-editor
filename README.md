@@ -28,7 +28,7 @@ System Requirements
 
 Contact
 -------
-Questions? Comments? Suggestions? Bugs to report?  
+Questions? Comments? Suggestions? Bugs to report?
   * Message me on [GTAForums](https://gtaforums.com/messenger/compose/?to=907241)
   * Email me at thehambone93(AT)gmail(DOT)com
 
@@ -38,7 +38,7 @@ Since you're already on GitHub, why not
 
 Credits
 -------
-Program written by W. Hampson (thehambone).  
+Program written by Wes Hampson (thehambone).  
 Special thanks to GTAKid667 for providing feedback and support during
 development, as well as the Idaho icon!
 
@@ -46,6 +46,14 @@ development, as well as the Idaho icon!
 
 Change Log
 ----------
+
+## 1.2.0
+   Build: 678  
+Released: 4 November 2023
+
+### Notes
+  * Fixed a localization issue regarding the use of commas as decimal separators in floating-point values. The parked car table and generated .csv file will now use the period character (.) as the decimal separator regardless of region.
+  * Renamed some of the "unknown" fields as they are now known, and indicated which fields are unused.
 
 ## 1.1.0
    Build: 538  
