@@ -13,26 +13,24 @@ namespace WHampson.Gta3CarGenEditor.Models
         private float m_heading;
         private short m_color1;
         private short m_color2;
-        private bool m_forceSpawn;
+        private bool m_forceSpawn;      // unused
         private byte m_alarmChance;
         private byte m_lockedChance;
-        private ushort m_minSpawnDelay;
-        private ushort m_maxSpawnDelay;
+        private ushort m_minSpawnDelay; // unused
+        private ushort m_maxSpawnDelay; // unused
         private uint m_timer;
-        private int m_unknown24;            // vehicle index? (-1 = not spawned or is stolen)
-        private bool m_hasRecentlyBeenStolen;
+        private int m_handle;
         private short m_spawnCount;
-        private float m_unknown2C;
-        private float m_unknown30;
-        private float m_unknown34;
-        private float m_unknown38;
-        private float m_unknown3C;
-        private float m_unknown40;
-        private float m_unknown44;
+        private bool m_recentlyStolen;
+        private Vector3d m_vecInf;      // unused
+        private Vector3d m_vecSup;      // unused
+        private float m_size;           // unused
 
         public CarGenerator()
         {
             m_location = new Vector3d();
+            m_vecInf = new Vector3d();
+            m_vecSup = new Vector3d();
         }
 
         public VehicleModel Model
@@ -65,7 +63,7 @@ namespace WHampson.Gta3CarGenEditor.Models
             set { m_color2 = value; OnPropertyChanged(); }
         }
 
-        public bool ForceSpawn
+        public bool Unused_ForceSpawn
         {
             get { return m_forceSpawn; }
             set { m_forceSpawn = value; OnPropertyChanged(); }
@@ -83,13 +81,13 @@ namespace WHampson.Gta3CarGenEditor.Models
             set { m_lockedChance = value; OnPropertyChanged(); }
         }
 
-        public ushort MinSpawnDelay
+        public ushort Unused_MinSpawnDelay
         {
             get { return m_minSpawnDelay; }
             set { m_minSpawnDelay = value; OnPropertyChanged(); }
         }
 
-        public ushort MaxSpawnDelay
+        public ushort Unused_MaxSpawnDelay
         {
             get { return m_maxSpawnDelay; }
             set { m_maxSpawnDelay = value; OnPropertyChanged(); }
@@ -101,16 +99,16 @@ namespace WHampson.Gta3CarGenEditor.Models
             set { m_timer = value; OnPropertyChanged(); }
         }
 
-        public int Unknown24
+        public int Handle
         {
-            get { return m_unknown24; }
-            set { m_unknown24 = value; OnPropertyChanged(); }
+            get { return m_handle; }
+            set { m_handle = value; OnPropertyChanged(); }
         }
 
-        public bool HasRecentlyBeenStolen
+        public bool RecentlyStolen
         {
-            get { return m_hasRecentlyBeenStolen; }
-            set { m_hasRecentlyBeenStolen = value; OnPropertyChanged(); }
+            get { return m_recentlyStolen; }
+            set { m_recentlyStolen = value; OnPropertyChanged(); }
         }
 
         public short SpawnCount
@@ -119,46 +117,22 @@ namespace WHampson.Gta3CarGenEditor.Models
             set { m_spawnCount = value; OnPropertyChanged(); }
         }
 
-        public float Unknown2C
+        public Vector3d Unused_VecInf
         {
-            get { return m_unknown2C; }
-            set { m_unknown2C = value; OnPropertyChanged(); }
+            get { return m_vecInf; }
+            set { m_vecInf = value; OnPropertyChanged(); }
         }
 
-        public float Unknown30
+        public Vector3d Unused_VecSup
         {
-            get { return m_unknown30; }
-            set { m_unknown30 = value; OnPropertyChanged(); }
+            get { return m_vecSup; }
+            set { m_vecSup = value; OnPropertyChanged(); }
         }
 
-        public float Unknown34
+        public float Unused_Size
         {
-            get { return m_unknown34; }
-            set { m_unknown34 = value; OnPropertyChanged(); }
-        }
-
-        public float Unknown38
-        {
-            get { return m_unknown38; }
-            set { m_unknown38 = value; OnPropertyChanged(); }
-        }
-
-        public float Unknown3C
-        {
-            get { return m_unknown3C; }
-            set { m_unknown3C = value; OnPropertyChanged(); }
-        }
-
-        public float Unknown40
-        {
-            get { return m_unknown40; }
-            set { m_unknown40 = value; OnPropertyChanged(); }
-        }
-
-        public float Unknown44
-        {
-            get { return m_unknown44; }
-            set { m_unknown44 = value; OnPropertyChanged(); }
+            get { return m_size; }
+            set { m_size = value; OnPropertyChanged(); }
         }
 
         protected override long DeserializeObject(Stream stream)
@@ -177,17 +151,13 @@ namespace WHampson.Gta3CarGenEditor.Models
                 m_minSpawnDelay = r.ReadUInt16();
                 m_maxSpawnDelay = r.ReadUInt16();
                 m_timer = r.ReadUInt32();
-                m_unknown24 = r.ReadInt32();
+                m_handle = r.ReadInt32();
                 m_spawnCount = r.ReadInt16();
-                m_hasRecentlyBeenStolen = r.ReadBoolean();
+                m_recentlyStolen = r.ReadBoolean();
                 r.ReadByte();                       // Align byte
-                m_unknown2C = r.ReadSingle();
-                m_unknown30 = r.ReadSingle();
-                m_unknown34 = r.ReadSingle();
-                m_unknown38 = r.ReadSingle();
-                m_unknown3C = r.ReadSingle();
-                m_unknown40 = r.ReadSingle();
-                m_unknown44 = r.ReadSingle();
+                m_vecInf = Deserialize<Vector3d>(stream);
+                m_vecSup = Deserialize<Vector3d>(stream);
+                m_size = r.ReadSingle();
             }
 
             return stream.Position - start;
@@ -209,17 +179,13 @@ namespace WHampson.Gta3CarGenEditor.Models
                 w.Write(m_minSpawnDelay);
                 w.Write(m_maxSpawnDelay);
                 w.Write(m_timer);
-                w.Write(m_unknown24);
+                w.Write(m_handle);
                 w.Write(m_spawnCount);
-                w.Write(m_hasRecentlyBeenStolen);
+                w.Write(m_recentlyStolen);
                 w.Write((byte) 0);                  // Align byte
-                w.Write(m_unknown2C);
-                w.Write(m_unknown30);
-                w.Write(m_unknown34);
-                w.Write(m_unknown38);
-                w.Write(m_unknown3C);
-                w.Write(m_unknown40);
-                w.Write(m_unknown44);
+                Serialize(m_vecInf, stream);
+                Serialize(m_vecSup, stream);
+                w.Write(m_size);
             }
 
             return stream.Position - start;

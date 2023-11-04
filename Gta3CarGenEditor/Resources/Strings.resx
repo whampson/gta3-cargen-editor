@@ -124,7 +124,7 @@
     <value>thehambone93@gmail.com</value>
   </data>
   <data name="AppCopyright" xml:space="preserve">
-    <value>Copyright (C) 2018 W. Hampson. All rights reserved.</value>
+    <value>Copyright (C) 2018-2023 Wes Hampson. All rights reserved.</value>
   </data>
   <data name="AppDescriptionLong" xml:space="preserve">
     <value>This tool allows you to edit the parked car generators in a GTA3 savegame. You can control the car that spawns, it's location, color, and more! You can even transfer parked car generators between saves!</value>
@@ -162,6 +162,9 @@
   <data name="ColumnHeaderForceSpawn" xml:space="preserve">
     <value>Force Spawn</value>
   </data>
+  <data name="ColumnHeaderHandle" xml:space="preserve">
+    <value>Handle</value>
+  </data>
   <data name="ColumnHeaderHeading" xml:space="preserve">
     <value>Heading</value>
   </data>
@@ -183,32 +186,17 @@
   <data name="ColumnHeaderRecentlyStolen" xml:space="preserve">
     <value>Recently Stolen</value>
   </data>
+  <data name="ColumnHeaderSize" xml:space="preserve">
+    <value>Size</value>
+  </data>
   <data name="ColumnHeaderTimer" xml:space="preserve">
     <value>Timer</value>
   </data>
-  <data name="ColumnHeaderUnknown24" xml:space="preserve">
-    <value>Unknown24</value>
+  <data name="ColumnHeaderVecInf" xml:space="preserve">
+    <value>VecInf</value>
   </data>
-  <data name="ColumnHeaderUnknown2C" xml:space="preserve">
-    <value>Unknown2C</value>
-  </data>
-  <data name="ColumnHeaderUnknown30" xml:space="preserve">
-    <value>Unknown30</value>
-  </data>
-  <data name="ColumnHeaderUnknown34" xml:space="preserve">
-    <value>Unknown34</value>
-  </data>
-  <data name="ColumnHeaderUnknown38" xml:space="preserve">
-    <value>Unknown38</value>
-  </data>
-  <data name="ColumnHeaderUnknown3C" xml:space="preserve">
-    <value>Unknown3C</value>
-  </data>
-  <data name="ColumnHeaderUnknown40" xml:space="preserve">
-    <value>Unknown40</value>
-  </data>
-  <data name="ColumnHeaderUnknown44" xml:space="preserve">
-    <value>Unknown44</value>
+  <data name="ColumnHeaderVecSup" xml:space="preserve">
+    <value>VecSup</value>
   </data>
   <data name="DialogMessageExportInfo" xml:space="preserve">
     <value>Select the file you want to export the current set of parked cars to. The parked car generators in that file will be overwritten.</value>
@@ -383,7 +371,7 @@
     <value>Skip _Block Size Checks</value>
   </data>
   <data name="MenuItemHeaderZeroOutTImers" xml:space="preserve">
-    <value>_Zero Out Timers</value>
+    <value>Set Timers to _Zero</value>
   </data>
   <data name="SettingsSkipBlockSizeChecksKey" xml:space="preserve">
     <value>SkipBlockSizeChecks</value>

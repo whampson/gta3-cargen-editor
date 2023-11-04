@@ -13,7 +13,7 @@ namespace WHampson.Gta3CarGenEditor.Converters
     [ValueConversion(typeof(Vector3d), typeof(string))]
     public class Vector3dToStringConverter : IValueConverter
     {
-        static NumberFormatInfo NumberFormat = new NumberFormatInfo
+        public static readonly NumberFormatInfo NumberFormat = new NumberFormatInfo
         {
             NumberDecimalSeparator = "."
         };

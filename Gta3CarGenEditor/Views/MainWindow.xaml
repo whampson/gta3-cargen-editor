@@ -170,14 +170,6 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Model, Converter={StaticResource EnumDescriptionConverter}}"/>
-                                <!--<ComboBox ItemsSource="{Binding Source={StaticResource VehicleModelEnumData}, Mode=OneWay}"
-                                           SelectedItem="{Binding Model, UpdateSourceTrigger=PropertyChanged}">
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Converter={StaticResource EnumDescriptionConverter}}"/>
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>-->
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                         <DataGridTemplateColumn.CellEditingTemplate>
@@ -195,25 +187,16 @@
                     </DataGridTemplateColumn>
 
                     <!-- Location -->
-                    <DataGridTemplateColumn Header="{x:Static r:Strings.ColumnHeaderLocation}" CanUserSort="True" SortMemberPath="Location">
-                        <DataGridTemplateColumn.HeaderStyle>
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderLocation}"
+                                        Binding="{Binding Location, Converter={StaticResource Vector3dToStringConverter},UpdateSourceTrigger=LostFocus, StringFormat={}{0:0.0##}}">
+                        <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="{x:Static r:Strings.ToolTipLocation}"/>
+                                        Value="{x:Static r:Strings.ToolTipHeading}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
-                        </DataGridTemplateColumn.HeaderStyle>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Location, Converter={StaticResource Vector3dToStringConverter}, UpdateSourceTrigger=LostFocus}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                        <DataGridTemplateColumn.CellEditingTemplate>
-                            <DataTemplate>
-                                <TextBox Text="{Binding Location, Converter={StaticResource Vector3dToStringConverter}, UpdateSourceTrigger=LostFocus}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellEditingTemplate>
-                    </DataGridTemplateColumn>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
 
                     <!-- Heading -->
                     <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderHeading}"
@@ -299,9 +282,33 @@
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
-                    <!-- Force Spawn -->
+                    <!-- Recently Stolen -->
+                    <DataGridCheckBoxColumn Header="{x:Static r:Strings.ColumnHeaderRecentlyStolen}"
+                                            Binding="{Binding RecentlyStolen, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGridCheckBoxColumn.HeaderStyle>
+                            <Style>
+                                <Setter Property="ToolTipService.ToolTip"
+                                        Value="{x:Static r:Strings.ToolTipRecentlyStolen}"/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
+                            </Style>
+                        </DataGridCheckBoxColumn.HeaderStyle>
+                    </DataGridCheckBoxColumn>
+
+                    <!-- Handle -->
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderHandle}"
+                                        Binding="{Binding Handle, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style>
+                                <Setter Property="ToolTipService.ToolTip"
+                                        Value="{x:Static r:Strings.ToolTipTimer}"/>
+                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
+
+                    <!-- (Unused) Force Spawn -->
                     <DataGridCheckBoxColumn Header="{x:Static r:Strings.ColumnHeaderForceSpawn}"
-                                            Binding="{Binding ForceSpawn, UpdateSourceTrigger=PropertyChanged}"
+                                            Binding="{Binding Unused_ForceSpawn, UpdateSourceTrigger=PropertyChanged}"
                                             Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridCheckBoxColumn.HeaderStyle>
                             <Style>
@@ -312,9 +319,9 @@
                         </DataGridCheckBoxColumn.HeaderStyle>
                     </DataGridCheckBoxColumn>
 
-                    <!-- Min. Spawn Delay -->
+                    <!-- (Unused) Min. Spawn Delay -->
                     <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderMinSpawnDelay}"
-                                        Binding="{Binding MinSpawnDelay, UpdateSourceTrigger=PropertyChanged}"
+                                        Binding="{Binding Unused_MinSpawnDelay, UpdateSourceTrigger=PropertyChanged}"
                                         Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
@@ -325,9 +332,9 @@
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
-                    <!-- Max. Spawn Delay -->
+                    <!-- (Unused) Max. Spawn Delay -->
                     <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderMaxSpawnDelay}"
-                                        Binding="{Binding MaxSpawnDelay, UpdateSourceTrigger=PropertyChanged}"
+                                        Binding="{Binding Unused_MaxSpawnDelay, UpdateSourceTrigger=PropertyChanged}"
                                         Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
@@ -338,113 +345,35 @@
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
-                    <!-- Has Recently Been Stolen -->
-                    <DataGridCheckBoxColumn Header="{x:Static r:Strings.ColumnHeaderRecentlyStolen}"
-                                            Binding="{Binding HasRecentlyBeenStolen, UpdateSourceTrigger=PropertyChanged}"
-                                            Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
-                        <DataGridCheckBoxColumn.HeaderStyle>
-                            <Style>
-                                <Setter Property="ToolTipService.ToolTip"
-                                        Value="{x:Static r:Strings.ToolTipRecentlyStolen}"/>
-                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
-                            </Style>
-                        </DataGridCheckBoxColumn.HeaderStyle>
-                    </DataGridCheckBoxColumn>
-
-                    <!-- Unknown24 -->
-                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown24}"
-                                        Binding="{Binding Unknown24, UpdateSourceTrigger=PropertyChanged}"
-                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
+                    <!-- (Unused) VecInf -->
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderVecInf}"
+                                        Binding="{Binding Unused_VecInf, Converter={StaticResource Vector3dToStringConverter},UpdateSourceTrigger=LostFocus, StringFormat={}{0:0.0##}}"
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="{x:Static r:Strings.ToolTipUnknown}"/>
+                                        Value="{x:Static r:Strings.ToolTipHeading}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
-                    <!-- Unknown2C -->
-                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown2C}"
-                                        Binding="{Binding Unknown2C, UpdateSourceTrigger=PropertyChanged}"
-                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
+                    <!-- (Unused) VecSup -->
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderVecSup}"
+                                        Binding="{Binding Unused_VecSup, Converter={StaticResource Vector3dToStringConverter},UpdateSourceTrigger=LostFocus, StringFormat={}{0:0.0##}}"
+                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>
                                 <Setter Property="ToolTipService.ToolTip"
-                                        Value="{x:Static r:Strings.ToolTipUnknown}"/>
+                                        Value="{x:Static r:Strings.ToolTipHeading}"/>
                                 <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
 
-                    <!-- Unknown30 -->
-                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown30}"
-                                        Binding="{Binding Unknown30, UpdateSourceTrigger=PropertyChanged}"
-                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
-                        <DataGridTextColumn.HeaderStyle>
-                            <Style>
-                                <Setter Property="ToolTipService.ToolTip"
-                                        Value="{x:Static r:Strings.ToolTipUnknown}"/>
-                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
-                            </Style>
-                        </DataGridTextColumn.HeaderStyle>
-                    </DataGridTextColumn>
-
-                    <!-- Unknown34 -->
-                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown34}"
-                                        Binding="{Binding Unknown34, UpdateSourceTrigger=PropertyChanged}"
-                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
-                        <DataGridTextColumn.HeaderStyle>
-                            <Style>
-                                <Setter Property="ToolTipService.ToolTip"
-                                        Value="{x:Static r:Strings.ToolTipUnknown}"/>
-                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
-                            </Style>
-                        </DataGridTextColumn.HeaderStyle>
-                    </DataGridTextColumn>
-
-                    <!-- Unknown38 -->
-                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown38}"
-                                        Binding="{Binding Unknown38, UpdateSourceTrigger=PropertyChanged}"
-                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
-                        <DataGridTextColumn.HeaderStyle>
-                            <Style>
-                                <Setter Property="ToolTipService.ToolTip"
-                                        Value="{x:Static r:Strings.ToolTipUnknown}"/>
-                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
-                            </Style>
-                        </DataGridTextColumn.HeaderStyle>
-                    </DataGridTextColumn>
-
-                    <!-- Unknown3C -->
-                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown3C}"
-                                        Binding="{Binding Unknown3C, UpdateSourceTrigger=PropertyChanged}"
-                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
-                        <DataGridTextColumn.HeaderStyle>
-                            <Style>
-                                <Setter Property="ToolTipService.ToolTip"
-                                        Value="{x:Static r:Strings.ToolTipUnknown}"/>
-                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
-                            </Style>
-                        </DataGridTextColumn.HeaderStyle>
-                    </DataGridTextColumn>
-
-                    <!-- Unknown40 -->
-                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown40}"
-                                        Binding="{Binding Unknown40, UpdateSourceTrigger=PropertyChanged}"
-                                        Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
-                        <DataGridTextColumn.HeaderStyle>
-                            <Style>
-                                <Setter Property="ToolTipService.ToolTip"
-                                        Value="{x:Static r:Strings.ToolTipUnknown}"/>
-                                <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
-                            </Style>
-                        </DataGridTextColumn.HeaderStyle>
-                    </DataGridTextColumn>
-
-                    <!-- Unknown44 -->
-                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderUnknown44}"
-                                        Binding="{Binding Unknown44, UpdateSourceTrigger=PropertyChanged}"
+                    <!-- (Unused) Size -->
+                    <DataGridTextColumn Header="{x:Static r:Strings.ColumnHeaderSize}"
+                                        Binding="{Binding Unused_Size, UpdateSourceTrigger=PropertyChanged}"
                                         Visibility="{Binding DataContext.IsShowingUnusedFields, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference ProxyElement}, StringFormat={}{0:0.0##}}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style>

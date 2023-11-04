@@ -18,7 +18,7 @@ using System.Windows;
 #endif
 
 
-[assembly: AssemblyVersion("1.2.1.632")]
-[assembly: AssemblyFileVersion("1.2.1.632")]
-[assembly: AssemblyInformationalVersion("1.2-preview")]
+[assembly: AssemblyVersion("1.2.0.678")]
+[assembly: AssemblyFileVersion("1.2.0.678")]
+[assembly: AssemblyInformationalVersion("1.2")]
 

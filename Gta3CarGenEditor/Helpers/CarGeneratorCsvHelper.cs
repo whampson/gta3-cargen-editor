@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using Microsoft.VisualBasic.FileIO;
+using WHampson.Gta3CarGenEditor.Converters;
 using WHampson.Gta3CarGenEditor.Models;
-using WHampson.Gta3CarGenEditor.Properties;
 using WHampson.Gta3CarGenEditor.Resources;
 
 namespace WHampson.Gta3CarGenEditor.Helpers
@@ -23,12 +24,12 @@ namespace WHampson.Gta3CarGenEditor.Helpers
         /// </summary>
         private static readonly string[] ColumnNames =
         {
-            "modelId", "locationX", "locationY", "locationZ",
-            "heading", "color1", "color2", "forceSpawn",
-            "alarmChance", "lockedChance", "minSpawnDelay", "maxSpawnDelay",
-            "timer", "unknown24", "recentlyStolen", "spawnCount",
-            "unknown2C", "unknown30", "unknown34", "unknown38",
-            "unknown3C", "unknown40", "unknown44"
+            "ModelId", "LocationX", "LocationY", "LocationZ",
+            "Heading", "Color1", "Color1", "Unused_ForceSpawn",
+            "AlarmChance", "LockedChance", "Unused_MinSpawnDelay", "Unused_MaxSpawnDelay",
+            "Timer", "Handle", "RecentlyStolen", "SpawnCount",
+            "Unused_InfX", "Unused_InfY", "Unused_InfZ", "Unused_SupX",
+            "Unused_SupY", "Unused_SupZ", "Unused_Size"
         };
 
         /// <summary>
@@ -132,32 +133,38 @@ namespace WHampson.Gta3CarGenEditor.Helpers
             // Create CarGenerator object
             return new CarGenerator()
             {
-                Model = (VehicleModel) model,
+                Model = (VehicleModel)model,
                 Location = new Vector3d()
                 {
-                    X = (float) parsedValues[1],
-                    Y = (float) parsedValues[2],
-                    Z = (float) parsedValues[3],
+                    X = (float)parsedValues[1],
+                    Y = (float)parsedValues[2],
+                    Z = (float)parsedValues[3],
                 },
-                Heading = (float) parsedValues[4],
-                Color1 = (short) parsedValues[5],
-                Color2 = (short) parsedValues[6],
-                ForceSpawn = (bool) parsedValues[7],
-                AlarmChance = (byte) parsedValues[8],
-                LockedChance = (byte) parsedValues[9],
-                MinSpawnDelay = (ushort) parsedValues[10],
-                MaxSpawnDelay = (ushort) parsedValues[11],
-                Timer = (uint) parsedValues[12],
-                Unknown24 = (int) parsedValues[13],
-                HasRecentlyBeenStolen = (bool) parsedValues[14],
-                SpawnCount = (short) parsedValues[15],
-                Unknown2C = (float) parsedValues[16],
-                Unknown30 = (float) parsedValues[17],
-                Unknown34 = (float) parsedValues[18],
-                Unknown38 = (float) parsedValues[19],
-                Unknown3C = (float) parsedValues[20],
-                Unknown40 = (float) parsedValues[21],
-                Unknown44 = (float) parsedValues[22],
+                Heading = (float)parsedValues[4],
+                Color1 = (short)parsedValues[5],
+                Color2 = (short)parsedValues[6],
+                Unused_ForceSpawn = (bool)parsedValues[7],
+                AlarmChance = (byte)parsedValues[8],
+                LockedChance = (byte)parsedValues[9],
+                Unused_MinSpawnDelay = (ushort)parsedValues[10],
+                Unused_MaxSpawnDelay = (ushort)parsedValues[11],
+                Timer = (uint)parsedValues[12],
+                Handle = (int)parsedValues[13],
+                RecentlyStolen = (bool)parsedValues[14],
+                SpawnCount = (short)parsedValues[15],
+                Unused_VecInf = new Vector3d()
+                {
+                    X = (float)parsedValues[16],
+                    Y = (float)parsedValues[17],
+                    Z = (float)parsedValues[18],
+                },
+                Unused_VecSup = new Vector3d()
+                {
+                    X = (float)parsedValues[19],
+                    Y = (float)parsedValues[20],
+                    Z = (float)parsedValues[21],
+                },
+                Unused_Size = (float) parsedValues[22],
             };
         }
 
@@ -165,28 +172,28 @@ namespace WHampson.Gta3CarGenEditor.Helpers
         {
             string[] data = new string[NumColumns];
             data[0] = ((uint) carGen.Model).ToString();
-            data[1] = carGen.Location.X.ToString();
-            data[2] = carGen.Location.Y.ToString();
-            data[3] = carGen.Location.Z.ToString();
-            data[4] = carGen.Heading.ToString();
+            data[1] = carGen.Location.X.ToString(Vector3dToStringConverter.NumberFormat);
+            data[2] = carGen.Location.Y.ToString(Vector3dToStringConverter.NumberFormat);
+            data[3] = carGen.Location.Z.ToString(Vector3dToStringConverter.NumberFormat);
+            data[4] = carGen.Heading.ToString(Vector3dToStringConverter.NumberFormat);
             data[5] = carGen.Color1.ToString();
             data[6] = carGen.Color2.ToString();
-            data[7] = carGen.ForceSpawn.ToString();
+            data[7] = carGen.Unused_ForceSpawn.ToString();
             data[8] = carGen.AlarmChance.ToString();
             data[9] = carGen.LockedChance.ToString();
-            data[10] = carGen.MinSpawnDelay.ToString();
-            data[11] = carGen.MaxSpawnDelay.ToString();
+            data[10] = carGen.Unused_MinSpawnDelay.ToString();
+            data[11] = carGen.Unused_MaxSpawnDelay.ToString();
             data[12] = carGen.Timer.ToString();
-            data[13] = carGen.Unknown24.ToString();
-            data[14] = carGen.HasRecentlyBeenStolen.ToString();
+            data[13] = carGen.Handle.ToString();
+            data[14] = carGen.RecentlyStolen.ToString();
             data[15] = carGen.SpawnCount.ToString();
-            data[16] = carGen.Unknown2C.ToString();
-            data[17] = carGen.Unknown30.ToString();
-            data[18] = carGen.Unknown34.ToString();
-            data[19] = carGen.Unknown38.ToString();
-            data[20] = carGen.Unknown3C.ToString();
-            data[21] = carGen.Unknown40.ToString();
-            data[22] = carGen.Unknown44.ToString();
+            data[16] = carGen.Unused_VecInf.X.ToString(Vector3dToStringConverter.NumberFormat);
+            data[17] = carGen.Unused_VecInf.Y.ToString(Vector3dToStringConverter.NumberFormat);
+            data[18] = carGen.Unused_VecInf.Z.ToString(Vector3dToStringConverter.NumberFormat);
+            data[19] = carGen.Unused_VecSup.X.ToString(Vector3dToStringConverter.NumberFormat);
+            data[20] = carGen.Unused_VecSup.Y.ToString(Vector3dToStringConverter.NumberFormat);
+            data[21] = carGen.Unused_VecSup.Z.ToString(Vector3dToStringConverter.NumberFormat);
+            data[22] = carGen.Unused_Size.ToString(Vector3dToStringConverter.NumberFormat);
 
             return data;
         }
@@ -204,7 +211,7 @@ namespace WHampson.Gta3CarGenEditor.Helpers
                 result = byteResult;
             }
             else if (t == typeof(float)) {
-                success = float.TryParse(s, out float floatResult);
+                success = float.TryParse(s, NumberStyles.Float, Vector3dToStringConverter.NumberFormat, out float floatResult);
                 result = floatResult;
             }
             else if (t == typeof(int)) {

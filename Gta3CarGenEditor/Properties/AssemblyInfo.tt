@@ -13,9 +13,9 @@
         build = Convert.ToInt32(matches[0].Groups["build"].Value) + 1;
         revision = Convert.ToInt32(matches[0].Groups["revision"].Value);
         string buildConfig = this.Host.ResolveParameterValue("-","-","BuildConfiguration");
-        if (buildConfig == "Release") {
-            revision++;
-        }
+        //if (buildConfig == "Release") {
+        //    revision++;
+        //}
     }
 #>
 //
@@ -47,5 +47,5 @@ using System.Windows;
     int minor = 0;
     int revision = 0;
     int build = 0;
-    string extra = "-preview";
+    string extra = "";
 #>

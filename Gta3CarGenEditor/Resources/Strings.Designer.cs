@@ -19,7 +19,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Strings {
@@ -79,7 +79,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copyright (C) 2018 W. Hampson. All rights reserved..
+        ///   Looks up a localized string similar to Copyright (C) 2018-2023 Wes Hampson. All rights reserved..
         /// </summary>
         public static string AppCopyright {
             get {
@@ -196,6 +196,15 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Handle.
+        /// </summary>
+        public static string ColumnHeaderHandle {
+            get {
+                return ResourceManager.GetString("ColumnHeaderHandle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Heading.
         /// </summary>
         public static string ColumnHeaderHeading {
@@ -259,6 +268,15 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Size.
+        /// </summary>
+        public static string ColumnHeaderSize {
+            get {
+                return ResourceManager.GetString("ColumnHeaderSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Timer.
         /// </summary>
         public static string ColumnHeaderTimer {
@@ -268,74 +286,20 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown24.
+        ///   Looks up a localized string similar to VecInf.
         /// </summary>
-        public static string ColumnHeaderUnknown24 {
+        public static string ColumnHeaderVecInf {
             get {
-                return ResourceManager.GetString("ColumnHeaderUnknown24", resourceCulture);
+                return ResourceManager.GetString("ColumnHeaderVecInf", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown2C.
+        ///   Looks up a localized string similar to VecSup.
         /// </summary>
-        public static string ColumnHeaderUnknown2C {
+        public static string ColumnHeaderVecSup {
             get {
-                return ResourceManager.GetString("ColumnHeaderUnknown2C", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unknown30.
-        /// </summary>
-        public static string ColumnHeaderUnknown30 {
-            get {
-                return ResourceManager.GetString("ColumnHeaderUnknown30", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unknown34.
-        /// </summary>
-        public static string ColumnHeaderUnknown34 {
-            get {
-                return ResourceManager.GetString("ColumnHeaderUnknown34", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unknown38.
-        /// </summary>
-        public static string ColumnHeaderUnknown38 {
-            get {
-                return ResourceManager.GetString("ColumnHeaderUnknown38", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unknown3C.
-        /// </summary>
-        public static string ColumnHeaderUnknown3C {
-            get {
-                return ResourceManager.GetString("ColumnHeaderUnknown3C", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unknown40.
-        /// </summary>
-        public static string ColumnHeaderUnknown40 {
-            get {
-                return ResourceManager.GetString("ColumnHeaderUnknown40", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unknown44.
-        /// </summary>
-        public static string ColumnHeaderUnknown44 {
-            get {
-                return ResourceManager.GetString("ColumnHeaderUnknown44", resourceCulture);
+                return ResourceManager.GetString("ColumnHeaderVecSup", resourceCulture);
             }
         }
         
@@ -844,7 +808,7 @@ namespace WHampson.Gta3CarGenEditor.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Zero Out Timers.
+        ///   Looks up a localized string similar to Set Timers to _Zero.
         /// </summary>
         public static string MenuItemHeaderZeroOutTImers {
             get {
